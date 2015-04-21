@@ -14,7 +14,7 @@
 
 #include <Windows.h>
 
-#define      NUM_CHANNELS              1
+#define NUM_CHANNELS 1
 
 
 struct FMSettings {
@@ -55,10 +55,10 @@ double ToneToFrequence(char t)
 	}
 }
 
-std::vector<short> FMSyn(int sampleRate, int lengthInSec, double magnitude, FMSettings& settings)
-{
-	return FMSyn(sampleRate, lengthInSec, magnitude, settings.FC, settings.FM, settings.MI);
-}
+//std::vector<short> FMSyn(int sampleRate, int lengthInSec, double magnitude, FMSettings& settings)
+//{
+//	return FMSyn(sampleRate, lengthInSec, magnitude, settings.FC, settings.FM, settings.MI);
+//}
 
 std::vector<short> FMSyn(int sampleRate, int lengthInSec, double magnitude, double fc, double fm, double modIndex)
 {
@@ -77,18 +77,18 @@ std::vector<short> FMSyn(int sampleRate, int lengthInSec, double magnitude, doub
 	for(int i=0; i < numSamples; i += NUM_CHANNELS)
     {
 
-		if ((i % (sampleRate/40)) == 0)
-		{
-			modulationIndex += 2;
-			carrierFrequency++;
-			modulatorFrequency++;
+		//if ((i % (sampleRate/40)) == 0)
+		//{
+		//	modulationIndex += 2;
+		//	carrierFrequency++;
+		//	modulatorFrequency++;
 
-			if (modulationIndex > 40)
-			{
-				//carrierFrequency = fc;
-				modulationIndex = 0;
-			}
-		}
+		//	if (modulationIndex > 40)
+		//	{
+		//		//carrierFrequency = fc;
+		//		modulationIndex = 0;
+		//	}
+		//}
 				
 
 		float value = sin(carrierAngle);
@@ -208,12 +208,12 @@ int _tmain(int argc, _TCHAR* argv[])
 	//									 );
 
 
-	std::vector<short> audioData = FMSynWithRatio(44000, // sample rate
-									     3,		// länge in sec
+	std::vector<short> audioData = FMSynWithRatio(44100, // sample rate
+									     1,		// länge in sec
 										 1,   	// magnitute
-										 220,	// träger frequenz
+										 440,	// träger frequenz
 										 1,   // ratio
-										 0.01   // modulations index
+										 M_PI/2.0   // modulations index
 										 );
 	std::ofstream output("output2.wav", std::ios::binary);
 	WriteWaveHeader(output, audioData.size()*sizeof(short), 1, 44100); 
