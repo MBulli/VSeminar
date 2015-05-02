@@ -15,11 +15,9 @@
 
 using namespace std;
 
-
+const int numberOfChannels = 1;
 //Deprecated
 vector<short> createSine(int samplerate,int dauerInSekunden, int hertz) {
-
-	dauerInSekunden *= 2;
 
 	vector<short> sine;
 	
@@ -30,33 +28,34 @@ vector<short> createSine(int samplerate,int dauerInSekunden, int hertz) {
 	for(int i = 0; i < samplerate * dauerInSekunden; i++) {
 
 		sinePosition = i * sineWave;
-
-		sine.push_back(static_cast<short>(sin(sinePosition / sampleZahlGesamt) * MAXSHORT));
+		short val = static_cast<short>(sin(sinePosition / sampleZahlGesamt) * MAXSHORT);
+		for (int j = 0; j < numberOfChannels; j++)
+			sine.push_back(val);
 	}
 
 	return sine;
 }
 
 //Mod-Index = 0 gibt hier den einfachen Sinuston
-vector<short> modulateSine(int samplerate, int dauerInSekunden, int carrierFrequenzInHertz, int modulatorFrequenzInHertz, int modI) {
+vector<short> modulateSine(int samplerate, int dauerInSekunden, double carrierFrequenzInHertz, double modulatorFrequenzInHertz, double modI) {
 
 	vector<short> sine;
-
-	double modulator;
-	double carrier;
 	const double sampleZahlGesamt = samplerate * dauerInSekunden;
-	const double stepCarrier = 2 * M_PI * carrierFrequenzInHertz * dauerInSekunden / sampleZahlGesamt;
-	const double stepSine = 2 * M_PI * modulatorFrequenzInHertz * dauerInSekunden / sampleZahlGesamt;
+	const double stepCarrier = ((2*M_PI*carrierFrequenzInHertz) * dauerInSekunden) / sampleZahlGesamt;
+	const double stepSine = ((2*M_PI*modulatorFrequenzInHertz) * dauerInSekunden) / sampleZahlGesamt;
 	
+
+	double modulator = 0;
+	double carrier = 0;
 
 	for(int i = 0; i < samplerate * dauerInSekunden; i++) {
 
-		carrier = i * stepCarrier;
-		modulator = i * stepSine ;
+		carrier   += stepCarrier;
+		modulator += stepSine;
 
-		short val = static_cast<short>(sin(carrier + modI * sin(modulator)) * MAXSHORT);
-		sine.push_back(val);
-		sine.push_back(val);
+		short val = static_cast<short>(cos(carrier + modI * sin(modulator)) * MAXSHORT);
+		for (int j = 0; j < numberOfChannels;j++)
+			sine.push_back(val);
 	}
 
 	return sine;
@@ -87,10 +86,10 @@ void writeWaveHeader(ofstream& waveOut) {
 	memcpy(header.fmt,"fmt ",4);
 	header.fmtLength = 16;
 	header.typeOfFormatPCMis1 = 1;
-	header.numberOfChannels2 = 2;
+	header.numberOfChannels2 = numberOfChannels;
 	header.sampleRate = 44100;
-	header.sampleRateTBitsPerSampleTChannelsDiv8 = 44100*16*2/8;
-	header.bitsPerSampleTChannelsDiv8 = 2*16/8;
+	header.sampleRateTBitsPerSampleTChannelsDiv8 = 44100*16*header.numberOfChannels2/8;
+	header.bitsPerSampleTChannelsDiv8 = header.numberOfChannels2*16/8;
 	header.bitsPerSample = 16;
 	memcpy(header.data,"data",4);
 	header.datasize = 0;
@@ -121,7 +120,7 @@ void writeWaveData(ofstream& waveOut, vector<short> data) {
 int _tmain(int argc, _TCHAR* argv[])
 {
 	//Modulierten Sinuston generieren
-	vector<short> sineWave = modulateSine(44100,2,600,1200,1);
+	vector<short> sineWave = modulateSine(44100,2,200,201.5,1);
 
 	//Binärstream erzeugen
 	ofstream waveOutRef("output.wav",ios::binary);
