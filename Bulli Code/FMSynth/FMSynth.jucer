@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<JUCERPROJECT id="O4Wzdz" name="FMSynth" projectType="guiapp" version="1.0.0"
+              bundleIdentifier="com.yourcompany.FMSynth" includeBinaryInAppConfig="1"
+              jucerVersion="3.1.0">
+  <MAINGROUP id="NJpog5" name="FMSynth">
+    <GROUP id="{4ECDEE7A-DC96-11FB-1D4B-0A3A671D9D1E}" name="Source">
+      <FILE id="uhjj60" name="MainComponent.cpp" compile="1" resource="0"
+            file="Source/MainComponent.cpp"/>
+      <FILE id="oTc2eQ" name="Main.cpp" compile="1" resource="0" file="Source/Main.cpp"/>
+    </GROUP>
+  </MAINGROUP>
+  <EXPORTFORMATS>
+    <VS2013 targetFolder="Builds/VisualStudio2013">
+      <CONFIGURATIONS>
+        <CONFIGURATION name="Debug" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="1" optimisation="1" targetName="FMSynth"/>
+        <CONFIGURATION name="Release" winWarningLevel="4" generateManifest="1" winArchitecture="32-bit"
+                       isDebug="0" optimisation="2" targetName="FMSynth"/>
+      </CONFIGURATIONS>
+      <MODULEPATHS>
+        <MODULEPATH id="juce_core" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_events" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_graphics" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_data_structures" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_basics" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_gui_extra" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_cryptography" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_video" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_opengl" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_basics" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_devices" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_formats" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_processors" path="D:/lib/JUCE/modules"/>
+        <MODULEPATH id="juce_audio_utils" path="D:/lib/JUCE/modules"/>
+      </MODULEPATHS>
+    </VS2013>
+  </EXPORTFORMATS>
+  <MODULES>
+    <MODULES id="juce_audio_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_devices" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_formats" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_processors" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_audio_utils" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_core" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_cryptography" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_data_structures" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_events" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_graphics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_gui_basics" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_gui_extra" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_opengl" showAllCode="1" useLocalCopy="0"/>
+    <MODULES id="juce_video" showAllCode="1" useLocalCopy="0"/>
+  </MODULES>
+  <JUCEOPTIONS/>
+</JUCERPROJECT>
