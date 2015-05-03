@@ -29,7 +29,8 @@ public:
         setSize (800, 600);
 
         // specify the number of input and output channels that we want to open
-        setAudioChannels(1, 1);
+		// don't change - code assumes stereo
+        setAudioChannels(2, 2);
 
 		setWantsKeyboardFocus(true);
 
@@ -62,22 +63,15 @@ public:
 
         // For more details, see the help for AudioProcessor::getNextAudioBlock()
 		bufferToFill.clearActiveBufferRegion();
-		// const float originalPhase = phase;
 
-		for (int chan = 0; chan < bufferToFill.buffer->getNumChannels(); ++chan)
+		float* const leftChannelData  = bufferToFill.buffer->getWritePointer(0, bufferToFill.startSample);
+		float* const rightChannelData = bufferToFill.buffer->getWritePointer(1, bufferToFill.startSample);
+
+		for (int i = 0; i < bufferToFill.numSamples; ++i)
 		{
-			// phase = originalPhase;
-
-			float* const channelData = bufferToFill.buffer->getWritePointer(chan, bufferToFill.startSample);
-
-			for (int i = 0; i < bufferToFill.numSamples; ++i)
-			{
-				channelData[i] = amplitude * FM1.process(sampleRate);
-
-				// increment the phase step for the next sample
-				//phaseDelta = (2.0f * float_Pi * frequency) / sampleRate;
-				//phase = std::fmod(phase + phaseDelta, float_Pi * 2.0f);
-			}
+			const float y = amplitude * FM1.process(sampleRate);
+			leftChannelData[i]  = y;
+			rightChannelData[i] = y;
 		}
     }
 
