@@ -33,8 +33,8 @@ public:
 
 		setWantsKeyboardFocus(true);
 
-		FM1  = FMGenerator(440, 440, 1);
-		FM2 = FMGenerator(440, 880, 1);
+		FM1 = FMGenerator(200, 400, 2);
+		FM2 = FMGenerator(440, 880, 5);
     }
 
     ~MainContentComponent()
@@ -100,7 +100,35 @@ public:
 		} else if (KeyPress::isKeyCurrentlyDown('4')) {
 			FM1.modulationIndex = 4;
 		}
-		
+		if (KeyPress::isKeyCurrentlyDown('A'))	{
+			FM1.freqCarrier = 440;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('B')) {
+			FM1.freqCarrier = 493.883;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('C')) {
+			FM1.freqCarrier = 523.251;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('D')) {
+			FM1.freqCarrier = 587.330;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('E')) {
+			FM1.freqCarrier = 659.255;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('F')) {
+			FM1.freqCarrier = 698.456;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('G')) {
+			FM1.freqCarrier = 783.991;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+
 		amplitude = isKeyDown ? 0.5f : 0.0f;
 
 		return true;
