@@ -17,6 +17,9 @@ FMGenerator::FMGenerator()
 	AttackValue(1.0),
 	DecayValue(0.5)
 {
+	Attack = false;
+	AttackTimeStamp = 0;
+	ReleaseTimeStamp = 0;
 }
 
 FMGenerator::FMGenerator(float carrier, float modulation, float modIndex)
@@ -31,7 +34,9 @@ FMGenerator::FMGenerator(float carrier, float modulation, float modIndex)
 	AttackValue(1.0),
 	DecayValue(0.5)
 {
-
+	Attack = false;
+	AttackTimeStamp = 0;
+	ReleaseTimeStamp = 0;
 }
 FMGenerator::FMGenerator(float carrier, float modulation, float modIndex, int attackTime, int decayTime, int releaseTime, float attackValue, float decayValue)
 	: phaseCarrier(0),
@@ -45,7 +50,9 @@ FMGenerator::FMGenerator(float carrier, float modulation, float modIndex, int at
 	AttackValue(attackValue),
 	DecayValue(decayValue)
 {
-
+	Attack = false;
+	AttackTimeStamp = 0;
+	ReleaseTimeStamp = 0;
 }
 
 
@@ -54,10 +61,11 @@ FMGenerator::~FMGenerator()
 {
 }
 
-float FMGenerator::Envelope(long long time, bool release){
+float FMGenerator::Envelope(bool release){
 	long long currentTime = TimeHelper::GetCurrentTimeAsMilliseconds();
-	if (!release){
-		int timeSinceAttack = currentTime - time;
+	if (!release || currentTime - AttackTimeStamp <= (AttackTime + DecayTime)){
+		ReleaseTimeStamp = currentTime;
+		int timeSinceAttack = currentTime - AttackTimeStamp;
 		if (timeSinceAttack <= AttackTime){
 			return (AttackValue / AttackTime)*timeSinceAttack;
 		} else if (timeSinceAttack <= AttackTime + DecayTime){
@@ -66,15 +74,15 @@ float FMGenerator::Envelope(long long time, bool release){
 			return DecayValue;
 		}
 	} else {
-		int timeSinceRelease = currentTime - time;
+		int timeSinceRelease = currentTime - ReleaseTimeStamp;
 		return DecayValue - ((DecayValue / ReleaseTime)*(timeSinceRelease));
 	}
 	return 0.0;
 }
 
-float FMGenerator::process(double sampleRate, bool attack)
+float FMGenerator::process(double sampleRate)
 {
-	if (attack && AttackTimeStamp == 0){
+	if (Attack && AttackTimeStamp == 0){
 		AttackTimeStamp = TimeHelper::GetCurrentTimeAsMilliseconds();
 		ReleaseTimeStamp = 0;
 	}
@@ -86,13 +94,13 @@ float FMGenerator::process(double sampleRate, bool attack)
 	phaseCarrier = std::fmod(phaseCarrier + phaseDeltaCarrier, M_PI * 2.0f);
 	phaseModulation = std::fmod(phaseModulation + phaseDeltaModulation, M_PI * 2.0f);
 	
-	if (!attack && ReleaseTimeStamp == 0){ //release = !attack
+	if (!Attack && ReleaseTimeStamp == 0){ //release = !attack
 		ReleaseTimeStamp = TimeHelper::GetCurrentTimeAsMilliseconds();
 	}
 
-	long long time = attack  ? AttackTimeStamp : ReleaseTimeStamp; 
+	//long long time = Attack  ? AttackTimeStamp : ReleaseTimeStamp; 
 
-	float amplitude = Envelope(time, !attack); 
+	float amplitude = Envelope(!Attack); 
 
 	if (amplitude <= 0.0){
 		AttackTimeStamp = 0;

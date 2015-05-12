@@ -7,16 +7,17 @@ public:
 	FMGenerator(float carrier, float modulation, float modIndex, int attackTime, int decayTime, int releaseTime, float attackValue, float decayValue);
 	~FMGenerator();
 
-	float process(double sampleRate, bool attack);
+	float process(double sampleRate);
 
 private:
-	float FMGenerator::Envelope(long long time, bool release);
+	float FMGenerator::Envelope(bool release);
 
 public:
 	// FM Parameters
 	float freqCarrier;
 	float freqModulation;
 	float modulationIndex;
+	bool Attack;
 
 private:
 

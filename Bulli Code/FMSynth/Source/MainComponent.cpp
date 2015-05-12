@@ -58,7 +58,6 @@ public:
 		sampleRate = newSampleRate;
 		expectedSamplesPerBlock = samplesPerBlockExpected;
     }
-	bool attack = false;
 	std::vector<short> result = std::vector<short>();
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
@@ -72,7 +71,7 @@ public:
 
 		for (int i = 0; i < bufferToFill.numSamples; ++i)
 		{
-			const float y = amplitude * FM1.process(sampleRate, attack);
+			const float y = amplitude * FM1.process(sampleRate);
 			leftChannelData[i]  = y;
 			rightChannelData[i] = y;
 			result.push_back(static_cast<short>(y * SHRT_MAX));
@@ -87,10 +86,12 @@ public:
 	bool keyStateChanged(bool isKeyDown) override
 	{
 		if (KeyPress::isKeyCurrentlyDown(KeyPress::escapeKey)){
-			Wave::WriteWave(result, 1, sampleRate);
 			JUCEApplication::quit();
 		}
 
+		if (KeyPress::isKeyCurrentlyDown('S'))	{
+			Wave::WriteWave(result, 1, sampleRate);
+		}
 		if (KeyPress::isKeyCurrentlyDown('1'))	{
 			FM1.modulationIndex = 1;
 		} else if (KeyPress::isKeyCurrentlyDown('2')) {
@@ -100,6 +101,7 @@ public:
 		} else if (KeyPress::isKeyCurrentlyDown('4')) {
 			FM1.modulationIndex = 4;
 		}
+
 		if (KeyPress::isKeyCurrentlyDown('A'))	{
 			FM1.freqCarrier = 440;
 			FM1.freqModulation = FM1.freqCarrier;
@@ -131,7 +133,7 @@ public:
 		//amplitude = isKeyDown ? 0.5f : 0.0f;
 		//amplitude = isKeyDown ? Envelope(AnschlagZeit, 500, 1.0, 500, 0.75, 2000, 500) : 0.0;
 		amplitude = 1.0;
-		attack = isKeyDown;
+		FM1.Attack = isKeyDown;
 		return true;
 	}
 
