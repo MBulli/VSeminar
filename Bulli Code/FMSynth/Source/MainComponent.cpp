@@ -11,6 +11,8 @@
 
 #include "../JuceLibraryCode/JuceHeader.h"
 #include "FMGenerator.h"
+#include <vector>
+#include "Wave.h"
 
 //==============================================================================
 /*
@@ -22,7 +24,7 @@ class MainContentComponent   : public AudioAppComponent
 public:
     //==============================================================================
     MainContentComponent()
-		: amplitude(0.5f),
+		: amplitude(0.0f),
 		sampleRate(0.0),
 		expectedSamplesPerBlock(0)
     {
@@ -56,7 +58,8 @@ public:
 		sampleRate = newSampleRate;
 		expectedSamplesPerBlock = samplesPerBlockExpected;
     }
-
+	bool attack = false;
+	std::vector<short> result = std::vector<short>();
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
         // Your audio-processing code goes here!
@@ -69,21 +72,24 @@ public:
 
 		for (int i = 0; i < bufferToFill.numSamples; ++i)
 		{
-			const float y = amplitude * FM1.process(sampleRate);
+			const float y = amplitude * FM1.process(sampleRate, attack);
 			leftChannelData[i]  = y;
 			rightChannelData[i] = y;
+			result.push_back(static_cast<short>(y * SHRT_MAX));
+			//result.push_back(static_cast<short>(y * SHRT_MAX));
 		}
     }
-
+	
 	bool keyPressed(const KeyPress& key)
 	{
 		return false;
 	}
-
 	bool keyStateChanged(bool isKeyDown) override
 	{
-		if (KeyPress::isKeyCurrentlyDown(KeyPress::escapeKey))
+		if (KeyPress::isKeyCurrentlyDown(KeyPress::escapeKey)){
+			Wave::WriteWave(result, 1, sampleRate);
 			JUCEApplication::quit();
+		}
 
 		if (KeyPress::isKeyCurrentlyDown('1'))	{
 			FM1.modulationIndex = 1;
@@ -122,9 +128,10 @@ public:
 			FM1.freqCarrier = 783.991;
 			FM1.freqModulation = FM1.freqCarrier;
 		}
-
-		amplitude = isKeyDown ? 0.5f : 0.0f;
-
+		//amplitude = isKeyDown ? 0.5f : 0.0f;
+		//amplitude = isKeyDown ? Envelope(AnschlagZeit, 500, 1.0, 500, 0.75, 2000, 500) : 0.0;
+		amplitude = 1.0;
+		attack = isKeyDown;
 		return true;
 	}
 
