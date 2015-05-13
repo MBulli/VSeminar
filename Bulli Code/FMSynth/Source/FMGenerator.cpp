@@ -61,8 +61,8 @@ FMGenerator::~FMGenerator()
 {
 }
 
-float FMGenerator::Envelope(bool release){
-	long long currentTime = TimeHelper::GetCurrentTimeAsMilliseconds();
+float FMGenerator::Envelope(bool release, long long currentTime){
+	//long long currentTime = TimeHelper::GetCurrentTimeAsMilliseconds();
 	if (!release || currentTime - AttackTimeStamp <= (AttackTime + DecayTime)){
 		ReleaseTimeStamp = currentTime;
 		int timeSinceAttack = currentTime - AttackTimeStamp;
@@ -80,7 +80,7 @@ float FMGenerator::Envelope(bool release){
 	return 0.0;
 }
 
-float FMGenerator::process(double sampleRate)
+float FMGenerator::process(double sampleRate, long long currentTime)
 {
 	if (Attack && AttackTimeStamp == 0){
 		AttackTimeStamp = TimeHelper::GetCurrentTimeAsMilliseconds();
@@ -100,7 +100,7 @@ float FMGenerator::process(double sampleRate)
 
 	//long long time = Attack  ? AttackTimeStamp : ReleaseTimeStamp; 
 
-	float amplitude = Envelope(!Attack); 
+	float amplitude = Envelope(!Attack, currentTime); 
 
 	if (amplitude <= 0.0){
 		AttackTimeStamp = 0;

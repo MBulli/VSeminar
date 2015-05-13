@@ -13,6 +13,7 @@
 #include "FMGenerator.h"
 #include <vector>
 #include "Wave.h"
+#include "TimeHelper.h"
 
 //==============================================================================
 /*
@@ -26,7 +27,7 @@ public:
     MainContentComponent()
 		: amplitude(0.0f),
 		sampleRate(0.0),
-		expectedSamplesPerBlock(0)
+		expectedSamplesPerBlock(100)
     {
         setSize (800, 600);
 
@@ -36,8 +37,13 @@ public:
 
 		setWantsKeyboardFocus(true);
 
-		FM1 = FMGenerator(200, 400, 2);
+		FM1 = FMGenerator(200, 400, 2, 50,50,50,1.0,0.5);
 		FM2 = FMGenerator(440, 880, 5);
+		auto var = AudioDeviceManager::AudioDeviceSetup();
+		//deviceManager.getAudioDeviceSetup(var);
+		//var.bufferSize = 100;
+		//deviceManager.setAudioDeviceSetup(var,true);
+		//deviceManager.addAudioCallback(juce::AudioIODeviceCallback
     }
 
     ~MainContentComponent()
@@ -57,12 +63,13 @@ public:
         // For more details, see the help for AudioProcessor::prepareToPlay()
 		sampleRate = newSampleRate;
 		expectedSamplesPerBlock = samplesPerBlockExpected;
+		//expectedSamplesPerBlock = 100;a
     }
 	std::vector<short> result = std::vector<short>();
     void getNextAudioBlock (const AudioSourceChannelInfo& bufferToFill) override
     {
         // Your audio-processing code goes here!
-
+		long long time = TimeHelper::GetCurrentTimeAsMilliseconds();
         // For more details, see the help for AudioProcessor::getNextAudioBlock()
 		bufferToFill.clearActiveBufferRegion();
 
@@ -71,7 +78,7 @@ public:
 
 		for (int i = 0; i < bufferToFill.numSamples; ++i)
 		{
-			const float y = amplitude * FM1.process(sampleRate);
+			const float y = amplitude * FM1.process(sampleRate, time+i*1000/sampleRate);
 			leftChannelData[i]  = y;
 			rightChannelData[i] = y;
 			result.push_back(static_cast<short>(y * SHRT_MAX));
