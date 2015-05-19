@@ -110,11 +110,11 @@ public:
 		}
 
 		if (KeyPress::isKeyCurrentlyDown('A'))	{
-			FM1.freqCarrier = 440;
+			FM1.freqCarrier = 2*440;
 			FM1.freqModulation = FM1.freqCarrier;
 		}
 		else if (KeyPress::isKeyCurrentlyDown('B')) {
-			FM1.freqCarrier = 493.883;
+			FM1.freqCarrier = 2*493.883;
 			FM1.freqModulation = FM1.freqCarrier;
 		}
 		else if (KeyPress::isKeyCurrentlyDown('C')) {
