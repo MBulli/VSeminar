@@ -14,7 +14,9 @@
 #include <vector>
 #include "Wave.h"
 #include "TimeHelper.h"
+#include "RepaintTimer.h"
 #include <map>
+#include <string>
 
 #define ToneA 880.000
 #define ToneB 987.766
@@ -29,14 +31,22 @@
     This component lives inside our window, and this is where you should put all
     your controls and content.
 */
+void* TimerCallBack(void *obj);
+
 class MainContentComponent   : public AudioAppComponent
 {
 public:
     //==============================================================================
-    MainContentComponent()
+	MainContentComponent()
 		: amplitude(0.0f),
 		sampleRate(0.0),
-		expectedSamplesPerBlock(100)
+		expectedSamplesPerBlock(100),
+		timer([this]()
+			{
+				MessageManager* manager = MessageManager::getInstance();
+				if(!manager->hasStopMessageBeenSent())
+					manager->callFunctionOnMessageThread(TimerCallBack, this);
+			})
     {
         setSize (800, 600);
 
@@ -52,14 +62,18 @@ public:
 		toneMap['E'] = ToneE;
 		toneMap['F'] = ToneF;
 		toneMap['G'] = ToneG;
-		//FM1 = FMGenerator(3300, 8, 80, 200,400,800,1.0,0.9);
-		FM1 = FMGenerator(440, 880, 2, 1000,1000,1000,1.0,0.5);
-		
+		FM1 = FMGenerator(ToneC, ToneC, 2, 200,200,200,1.0,0.5);
+		timer.startTimer(50);
+
+
 		auto var = AudioDeviceManager::AudioDeviceSetup();
     }
 
+
+
     ~MainContentComponent()
     {
+		timer.stopTimer();
         shutdownAudio();
     }
 
@@ -100,42 +114,55 @@ public:
 	{
 		// (Our component is opaque, so we must completely fill the background with a solid colour)
 		g.fillAll(Colours::black);
+		g.setColour(Colours::white);
+		float fontHeight = g.getCurrentFont().getHeight();
+
+		String str = "FM Carrier frequency: " + std::to_string(FM1.freqCarrier);
+		g.drawSingleLineText(str, 0, fontHeight);
+		str = "FM Modulation frequency: " + std::to_string(FM1.freqModulation);
+		g.drawSingleLineText(str, 0, fontHeight * 2);
+		str = "FM Modulation Index: " + std::to_string(FM1.modulationIndex);
+		g.drawSingleLineText(str, 0, fontHeight * 3);
 
 		const float centreY = getHeight() / 2.0f;
 		Path wavePath;
-		if (FM1.Attack){
-			int span = 500;
-			float bla = getWidth() / (span*1.0);
-			//FM2 = FM1;
-			//FM2.reset();
-			FM2 = FMGenerator(FM1.freqCarrier, FM1.freqModulation, FM1.modulationIndex, 1, 1, 1, 1, 1);
-			FM2.Attack = true;
-			long long time = TimeHelper::GetCurrentTimeAsMilliseconds();
-			for (int i = 0; i <= span; i += 1){
-				//float fm = FM2.process(sampleRate, TimeHelper::GetCurrentTimeAsMilliseconds());
-				float fm = FM2.process(sampleRate, i == 0 ? time : time+1);
-				float value = (fm + 1)*getHeight() / 2;
-				if (i == 0)
-					wavePath.startNewSubPath(i*bla, value);
-				else
-					wavePath.lineTo(i*bla, value);
-			}
+		int span = 500;
+		float bla = getWidth() / (span*1.0);
+		FM2 = FM1;
+		FM2.Attack = FM1.Attack;
+		FM2.reset();
+
+		for (int i = 0; i <= span; i += 1){
+			float fm = FM2.process(sampleRate, TimeHelper::GetCurrentTimeAsMilliseconds());
+			float value = (fm + 1)*getHeight() / 2;
+			if (i == 0)
+				wavePath.startNewSubPath(i*bla, value);
+			else
+				wavePath.lineTo(i*bla, value);
 		}
-		else{
-			wavePath.startNewSubPath(0, centreY);
-			wavePath.lineTo(getWidth(), centreY);
-		}
-		g.setColour(Colours::grey);
+
 		g.strokePath(wavePath, PathStrokeType(2.0f));
 	}
 
 
-	bool keyPressed(const KeyPress& key)
+	bool keyPressed(const KeyPress& key) override
 	{
-		FM1.freqCarrier = toneMap[key.getKeyCode()]*2*octave;
-		FM1.freqModulation = FM1.freqCarrier;
+		if (key.getKeyCode() == 'A'
+			|| key.getKeyCode() == 'B'
+			|| key.getKeyCode() == 'C'
+			|| key.getKeyCode() == 'D'
+			|| key.getKeyCode() == 'E'
+			|| key.getKeyCode() == 'F'
+			|| key.getKeyCode() == 'G'
+			)
+		{
+			FM1.freqCarrier = toneMap[key.getKeyCode()] * 2 * octave;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+
 		return false;
 	}
+
 	bool keyStateChanged(bool isKeyDown) override
 	{
 		if (KeyPress::isKeyCurrentlyDown(KeyPress::escapeKey)){
@@ -153,19 +180,36 @@ public:
 
 		if (KeyPress::isKeyCurrentlyDown(KeyPress::upKey)){
 			FM1.freqModulation *= 2;
+			std::cout << FM1.freqModulation << std::endl;
 		} else if (KeyPress::isKeyCurrentlyDown(KeyPress::downKey)){
 			FM1.freqModulation /= 2;
+			std::cout << FM1.freqModulation << std::endl;
 		}
 
 		if (KeyPress::isKeyCurrentlyDown('+'))	{
 			octave *= 2;
+			FM1.freqCarrier *= 2;
+			FM1.freqModulation = FM1.freqCarrier;
 		} else if (KeyPress::isKeyCurrentlyDown('-')) {
 			octave /= 2;
+			FM1.freqCarrier /= 2;
+			FM1.freqModulation = FM1.freqCarrier;
 		}
 
 		amplitude = 1.0;
-		FM1.Attack = isKeyDown;
-		repaint();
+		if (KeyPress::isKeyCurrentlyDown('C')
+			|| KeyPress::isKeyCurrentlyDown('D')
+			|| KeyPress::isKeyCurrentlyDown('E')
+			|| KeyPress::isKeyCurrentlyDown('F')
+			|| KeyPress::isKeyCurrentlyDown('G')
+			|| KeyPress::isKeyCurrentlyDown('B')
+			|| KeyPress::isKeyCurrentlyDown('A')
+			)
+			FM1.Attack = true;
+		else
+			FM1.Attack = false;
+		
+		//repaint();
 		return true;
 	}
 
@@ -206,6 +250,8 @@ private:
 	FMGenerator FM1;
 	FMGenerator FM2;
 
+	RepaintTimer timer;
+
 	std::vector<short> result;
 	std::map<int, float> toneMap;
 	float octave = 1;
@@ -213,7 +259,11 @@ private:
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
 
-
+void* TimerCallBack(void *obj)
+{
+	static_cast<MainContentComponent*>(obj)->repaint();
+	return nullptr;
+}
 // (This function is called by the app startup code to create our main component)
 Component* createMainContentComponent()     { return new MainContentComponent(); }
 
