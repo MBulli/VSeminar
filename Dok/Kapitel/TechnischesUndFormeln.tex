@@ -6,7 +6,7 @@ Die einfachste Form eines Tons lässt sich durch eine Sinus- oder Kosinusschwing
 
 Sinus und Kosinus sind periodische Funktionen, d.h. die Funktionswerte wiederholen sich nach einer sogenannten Periode. Mathematisch ausgedrückt muss es dafür eine konstante p  geben, für die bei einem beliebigen x gilt: $f(x + p) =  f(x)$ .
 
-Am besten verdeutlichen kann man dies anhand des Einheitskreises. Abbildung \ref{fig:unitcircle} zeigt, wie sich Sinus und Cosinus aus den Seiten eines rechtwinkligen Dreiecks im Einheitskreis berechnen lassen:
+Am besten verdeutlichen kann man dies anhand des Einheitskreises. Abbildung \ref{fig:unitcircle} zeigt, wie sich Sinus und Kosinus aus den Seiten eines rechtwinkligen Dreiecks im Einheitskreis berechnen lassen:
 
 \begin{figure} [ht]
 \centering
@@ -22,7 +22,7 @@ $\sin(\pi) = \frac{\text{gegenüberliegende Seite}}{\text{Hypotenuse}} = \frac{a
 
 $\to\sin(\pi) = \frac{a}{1} = a$.
 
-$\cos(\pi) = \frac{\text{anliegende Seite}}{\text{Hypotenuse}} = \frac{b}{c} = \frac{b}{1} = b$.
+$\cos(\pi) = \frac{\text{anliegende Seite}}{\text{Hypotenuse}} = \frac{b}{c} = \frac{b}{1} = b$.\\
 
 \begin{figure} [ht]
 \centering
@@ -32,13 +32,15 @@ $\cos(\pi) = \frac{\text{anliegende Seite}}{\text{Hypotenuse}} = \frac{b}{c} = \
 Quelle: \url{http://www.ulrich-rapp.de/stoff/mathematik/Sinus_Einheitskreis.gif}
 \end{figure}
 
+Die Sinusfunktion erhält man, wenn man auf der y-Achse lediglich die Funktionswerte des Kreises betrachtet und den Winkel im Einheitskreis als x-Werte der Funktion nimmt. Bei einer Schwingung wird für x dann die Zeit t eingesetzt. Eine Periode ist genau $2\pi$ Einheiten auf der Horizontalen Achse lang ($\pi$ ist die Kreiszahl), was im Einheitskreis einem Winkel von 360\degree entspricht. Daher spricht man auch von Winkelfunktionen, denn man kann den Funktionswert der Sinus- und Kosinusfunktion auch anhand des Winkels im Einheitskreis angeben. 
+Eine Veranschaulichung des Zusammenhangs zwischen den Einheitskreis und der Sinusfunktion zeigt Abbildung \ref{fig:unitcircleToSinus}.
 
-Die Sinusfunktion erhält man, wenn man auf der Y-Achse lediglich die Funktionswerte des Kreises betrachtet und den Winkel im Einheitskreis als x-Werte der Funktion nimmt. Bei einer Schwingung wird für x dann die Zeit t eingesetzt. Eine Periode ist genau 2*Pi Einheiten auf der Horizontalen Achse lang (Pi ist die Kreiszahl), was im Einheitskreis einem Winkel von 360\degree entspricht. Daher spricht man auch von Winkelfunktionen, denn man kann den Funktionswert der Sinus- und Kosinusfunktion auch anhand des Winkels im Einheitskreis angeben. Eine Veranschaulichung dazu zeigt Abbildung \ref{fig:unitcircleToSinus}.
+Der Unterschied von der Kosinusfunktion zur Sinusfunktion ist, dass der Kosinus bei dem Funktionswert 1 beginnt und Sinus bei Funktionswert 0. Aus diesem Zusammenhang lassen sich folgende Beziehungen zwischen Sinus und Kosinus feststellen:\\
 
-Der Unterschied von der Kosinusfunktion zur Sinusfunktion ist, dass der Kosinus bei dem Funktionswert 1 beginnt und Sinus bei Funktionswert 0. Aus diesem Zusammenhang lassen sich folgende Beziehungen zwischen Sinus und Kosinus feststellen:
-
+\begin{lstlisting}[mathescape]
 $\sin(\frac {\pi}{2} – x) =\cos(x)$
 $\cos(\frac {\pi}{2} – x) = \sin(x)$
+\end{lstlisting}
 
 Überträgt man diese mathematischen Erkenntnisse nun auf einen Ton, so kann man dessen Funktion wie folgt beschreiben: 		$y(t) = y_0 * \sin(2 \pi f * t)$
 
