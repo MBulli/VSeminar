@@ -1,5 +1,30 @@
 \subsection{Besonderheiten der FM-Synthese}
 
 \subsubsection{Phasenmodulation als FM}
+Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Wie der Name andeutet wird der Momentanphasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden.
+\begin{equation}
+s(t)=A*sin(\theta(t))
+\end{equation}
+Dabei wird $\theta(t)$ als \textit{momentaner Winkel} bezeichnet und ist als Summe der konstanten Kreisfrequenz $\omega_0$ multipliziert mit der Zeit $t$ und der \textit{momentanen Phase} $\varphi(t)$ definiert:
+\begin{equation}
+\theta(t)=\omega_0t + \varphi(t)
+\end{equation}
+Die erste Ableitung nach der Zeit $\dot{\theta}(t)$ entspricht der \textit{momentan Frequenz} $\omega_m(t)$.
+\begin{equation}
+\omega_m(t)=\frac{d\theta(t)}{dt}=\frac{d[\omega_0t+\varphi(t)]}{dt}=\frac{d\omega_0t}{dt}+\frac{d\varphi(t)}{dt}=\omega_0+\frac{d\varphi(t)}{dt}
+\end{equation}
+\textbf{ANALOGIE PHYSIK}
+
+Wird nun die momentane Phase des Trägersignals proportional zum Modulationssignal $p(t)$ verändert, erhält man das \textbf{phasenmodulierte} Signal $s_{PM}(t)$.\\
+Wird jedoch die momentante Frequenz des Trägersignals proportional zum Modulationssignal $f(t)$ verändert, erhält man das \textbf{frequenzmodulierte} Signal $s_{FM}(t)$.
+
+Mit dieser Erkenntnis ergeben sich für die Phasenmodulation folgende mathematische Zusammenhänge:
+\[
+\varphi(t)=\varphi_0+k_{PM}*p(t)
+\]
+\[
+\Rightarrow
+\]
+
 \subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
 \subsubsection{Harmonische Frequenzverhältnisse(Inkl. Vibrato)}

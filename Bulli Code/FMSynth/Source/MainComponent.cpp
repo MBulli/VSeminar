@@ -166,12 +166,45 @@ public:
 			FM1.freqModulation /= 2;
 		}
 
+<<<<<<< HEAD
 		if (KeyPress::isKeyCurrentlyDown('+'))	{
 			octave *= 2;
 		} else if (KeyPress::isKeyCurrentlyDown('-')) {
 			octave /= 2;
 		}
 		
+=======
+		if (KeyPress::isKeyCurrentlyDown('A'))	{
+			FM1.freqCarrier = 2*440;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('B')) {
+			FM1.freqCarrier = 2*493.883;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('C')) {
+			FM1.freqCarrier = 523.251;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('D')) {
+			FM1.freqCarrier = 587.330;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('E')) {
+			FM1.freqCarrier = 659.255;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('F')) {
+			FM1.freqCarrier = 698.456;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		else if (KeyPress::isKeyCurrentlyDown('G')) {
+			FM1.freqCarrier = 783.991;
+			FM1.freqModulation = FM1.freqCarrier;
+		}
+		//amplitude = isKeyDown ? 0.5f : 0.0f;
+		//amplitude = isKeyDown ? Envelope(AnschlagZeit, 500, 1.0, 500, 0.75, 2000, 500) : 0.0;
+>>>>>>> origin/master
 		amplitude = 1.0;
 		FM1.Attack = isKeyDown;
 		repaint();
