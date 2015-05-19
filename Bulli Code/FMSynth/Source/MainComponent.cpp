@@ -56,10 +56,6 @@ public:
 		FM1 = FMGenerator(440, 880, 2, 1000,1000,1000,1.0,0.5);
 		
 		auto var = AudioDeviceManager::AudioDeviceSetup();
-		//deviceManager.getAudioDeviceSetup(var);
-		//var.bufferSize = 100;
-		//deviceManager.setAudioDeviceSetup(var,true);
-		//deviceManager.addAudioCallback(juce::AudioIODeviceCallback
     }
 
     ~MainContentComponent()
@@ -153,58 +149,20 @@ public:
 			FM1.modulationIndex -= 1;
 		} else if (KeyPress::isKeyCurrentlyDown('2')) {
 			FM1.modulationIndex += 1;
-		} /*else if (KeyPress::isKeyCurrentlyDown('3')) {
-			FM1.modulationIndex = 3*2;
-		} else if (KeyPress::isKeyCurrentlyDown('4')) {
-			FM1.modulationIndex = 4*4;
-		} else if (KeyPress::isKeyCurrentlyDown('0')){
-			FM1.modulationIndex = 0;
-		}*/
+		} 
+
 		if (KeyPress::isKeyCurrentlyDown(KeyPress::upKey)){
 			FM1.freqModulation *= 2;
 		} else if (KeyPress::isKeyCurrentlyDown(KeyPress::downKey)){
 			FM1.freqModulation /= 2;
 		}
 
-<<<<<<< HEAD
 		if (KeyPress::isKeyCurrentlyDown('+'))	{
 			octave *= 2;
 		} else if (KeyPress::isKeyCurrentlyDown('-')) {
 			octave /= 2;
 		}
-		
-=======
-		if (KeyPress::isKeyCurrentlyDown('A'))	{
-			FM1.freqCarrier = 2*440;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		else if (KeyPress::isKeyCurrentlyDown('B')) {
-			FM1.freqCarrier = 2*493.883;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		else if (KeyPress::isKeyCurrentlyDown('C')) {
-			FM1.freqCarrier = 523.251;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		else if (KeyPress::isKeyCurrentlyDown('D')) {
-			FM1.freqCarrier = 587.330;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		else if (KeyPress::isKeyCurrentlyDown('E')) {
-			FM1.freqCarrier = 659.255;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		else if (KeyPress::isKeyCurrentlyDown('F')) {
-			FM1.freqCarrier = 698.456;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		else if (KeyPress::isKeyCurrentlyDown('G')) {
-			FM1.freqCarrier = 783.991;
-			FM1.freqModulation = FM1.freqCarrier;
-		}
-		//amplitude = isKeyDown ? 0.5f : 0.0f;
-		//amplitude = isKeyDown ? Envelope(AnschlagZeit, 500, 1.0, 500, 0.75, 2000, 500) : 0.0;
->>>>>>> origin/master
+
 		amplitude = 1.0;
 		FM1.Attack = isKeyDown;
 		repaint();

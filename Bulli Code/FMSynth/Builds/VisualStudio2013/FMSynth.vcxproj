@@ -1250,9 +1250,9 @@
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_gui_extra\juce_gui_extra.cpp" />
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_opengl\juce_opengl.cpp" />
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_video\juce_video.cpp" />
+    <ClCompile Include="..\..\Source\RepaintTimer.cpp" />
     <ClCompile Include="..\..\Source\TimeHelper.cpp" />
     <ClCompile Include="..\..\Source\Wave.cpp" />
-    <ClCompile Include="RepaintTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\FMGenerator.h" />
@@ -1709,9 +1709,9 @@
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_video\juce_video.h" />
     <ClInclude Include="..\..\JuceLibraryCode\AppConfig.h" />
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h" />
+    <ClInclude Include="..\..\Source\RepaintTimer.h" />
     <ClInclude Include="..\..\Source\TimeHelper.h" />
     <ClInclude Include="..\..\Source\Wave.h" />
-    <ClInclude Include="RepaintTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\JuceLibraryCode\modules\juce_audio_basics\juce_module_info" />
