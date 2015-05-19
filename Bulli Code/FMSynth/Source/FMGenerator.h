@@ -2,12 +2,11 @@
 class FMGenerator
 {
 public:
-	FMGenerator();
-	FMGenerator(float carrier, float modulation, float modIndex);
-	FMGenerator(float carrier, float modulation, float modIndex, int attackTime, int decayTime, int releaseTime, float attackValue, float decayValue);
+	FMGenerator(float carrier = 440, float modulation = 440, float modIndex = 1.0, int attackTime = 50, int decayTime = 50, int releaseTime = 50, float attackValue = 1.0, float decayValue = 0.5);
 	~FMGenerator();
 
 	float process(double sampleRate, long long currentTime);
+	void reset();
 
 private:
 	float FMGenerator::Envelope(bool release, long long currentTime);

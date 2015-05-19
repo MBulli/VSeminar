@@ -1252,6 +1252,7 @@
     <ClCompile Include="..\..\JuceLibraryCode\modules\juce_video\juce_video.cpp" />
     <ClCompile Include="..\..\Source\TimeHelper.cpp" />
     <ClCompile Include="..\..\Source\Wave.cpp" />
+    <ClCompile Include="RepaintTimer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\FMGenerator.h" />
@@ -1710,6 +1711,7 @@
     <ClInclude Include="..\..\JuceLibraryCode\JuceHeader.h" />
     <ClInclude Include="..\..\Source\TimeHelper.h" />
     <ClInclude Include="..\..\Source\Wave.h" />
+    <ClInclude Include="RepaintTimer.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\JuceLibraryCode\modules\juce_audio_basics\juce_module_info" />

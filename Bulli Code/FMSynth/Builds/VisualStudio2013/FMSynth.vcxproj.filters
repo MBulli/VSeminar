@@ -1470,6 +1470,9 @@
     <ClCompile Include="..\..\Source\Wave.cpp">
       <Filter>FMSynth\Source</Filter>
     </ClCompile>
+    <ClCompile Include="RepaintTimer.cpp">
+      <Filter>FMSynth\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\FMGenerator.h">
@@ -2838,6 +2841,9 @@
       <Filter>FMSynth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\Wave.h">
+      <Filter>FMSynth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="RepaintTimer.h">
       <Filter>FMSynth\Source</Filter>
     </ClInclude>
   </ItemGroup>
