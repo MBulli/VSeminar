@@ -51,6 +51,7 @@ float FMGenerator::process(double sampleRate, long long currentTime)
 		AttackTimeStamp = currentTime;
 		ReleaseTimeStamp = 0;
 	}
+
 	const float phaseDeltaCarrier    = (2 * M_PI * freqCarrier) / sampleRate;
 	const float phaseDeltaModulation = (2 * M_PI * freqModulation) / sampleRate;
 
@@ -69,7 +70,8 @@ float FMGenerator::process(double sampleRate, long long currentTime)
 	return amplitude*y;
 }
 
-void FMGenerator::reset(){
+void FMGenerator::reset()
+{
 	phaseCarrier = 0;
 	phaseModulation = 0;
 }

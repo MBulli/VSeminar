@@ -17,6 +17,7 @@
 #include "RepaintTimer.h"
 #include <map>
 #include <string>
+#include <chrono>
 
 #define ToneA 880.000
 #define ToneB 987.766
@@ -55,6 +56,7 @@ public:
         setAudioChannels(2, 2);
 
 		setWantsKeyboardFocus(true);
+
 		toneMap['A'] = ToneA;
 		toneMap['B'] = ToneB;
 		toneMap['C'] = ToneC;
@@ -62,9 +64,9 @@ public:
 		toneMap['E'] = ToneE;
 		toneMap['F'] = ToneF;
 		toneMap['G'] = ToneG;
+
 		FM1 = FMGenerator(ToneC, ToneC, 2, 50,50,50,1.0,0.5);
 		timer.startTimer(50);
-
 
 		auto var = AudioDeviceManager::AudioDeviceSetup();
     }
@@ -112,36 +114,49 @@ public:
 	
 	void paint(Graphics& g) override
 	{
+		auto start = std::chrono::system_clock::now();
+
 		// (Our component is opaque, so we must completely fill the background with a solid colour)
 		g.fillAll(Colours::black);
 		g.setColour(Colours::white);
-		float fontHeight = g.getCurrentFont().getHeight();
 
-		String str = "FM Carrier frequency: " + std::to_string(FM1.freqCarrier);
-		g.drawSingleLineText(str, 0, fontHeight);
-		str = "FM Modulation frequency: " + std::to_string(FM1.freqModulation);
-		g.drawSingleLineText(str, 0, fontHeight * 2);
-		str = "FM Modulation Index: " + std::to_string(FM1.modulationIndex);
-		g.drawSingleLineText(str, 0, fontHeight * 3);
+		// Draw FM parameters
+		String str;
+		str << "FM Carrier frequency: " << FM1.freqCarrier << "\n";
+		str << "FM Modulation frequency: " << FM1.freqModulation << "\n";
+		str << "FM Modulation Index: " << FM1.modulationIndex << "\n";
 
-		const float centreY = getHeight() / 2.0f;
-		Path wavePath;
-		int span = getWidth();
-		float bla = getWidth() / (span*1.0);
-		FM2 = FM1;
-		FM2.Attack = FM1.Attack;
-		FM2.reset();
+		const float fontHeight = g.getCurrentFont().getHeight();
+		g.drawMultiLineText(str, 0, fontHeight, INT32_MAX);
 
-		for (int i = 0; i <= span; i += 1){
-			float fm = FM2.process(sampleRate, TimeHelper::GetCurrentTimeAsMilliseconds());
-			float value = (fm + 1)*getHeight() / 2;
-			if (i == 0)
-				wavePath.startNewSubPath(i*bla, value);
-			else
-				wavePath.lineTo(i*bla, value);
+		const float halfHeight = getHeight() / 2.0f;
+		int spanX = getWidth();
+
+		// Copy FMGenerator with exact parameters. Reset it and create visualization data
+		auto tempFM = FM1;
+		tempFM.Attack = FM1.Attack;
+		tempFM.reset();
+
+		// Create path with preallocated memory to avoid reallocation. One lintTo() call needs 3 coords.
+		wavePath.preallocateSpace(3 * spanX);
+		wavePath.clear();
+
+		wavePath.startNewSubPath(0, halfHeight);
+
+		for (int i = 0; i <= spanX; i += 1) 
+		{
+			float amp = tempFM.process(sampleRate, TimeHelper::GetCurrentTimeAsMilliseconds());
+
+			// move amplitude to [0;2] and center the wave in Y
+			float value = (amp + 1) * halfHeight;
+
+			wavePath.lineTo(i, value);
 		}
-
+		
 		g.strokePath(wavePath, PathStrokeType(2.0f));
+
+		auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now() - start);
+		g.drawSingleLineText(std::to_string(duration.count()), 0, fontHeight * 4);
 	}
 
 
@@ -248,13 +263,15 @@ private:
 	int expectedSamplesPerBlock;
 
 	FMGenerator FM1;
-	FMGenerator FM2;
 
 	RepaintTimer timer;
 
 	std::vector<short> result;
 	std::map<int, float> toneMap;
 	float octave = 1;
+
+	Path wavePath;
+	
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (MainContentComponent)
 };
