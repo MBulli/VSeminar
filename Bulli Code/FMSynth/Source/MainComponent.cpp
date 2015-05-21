@@ -62,7 +62,7 @@ public:
 		toneMap['E'] = ToneE;
 		toneMap['F'] = ToneF;
 		toneMap['G'] = ToneG;
-		FM1 = FMGenerator(ToneC, ToneC, 2, 200,200,200,1.0,0.5);
+		FM1 = FMGenerator(ToneC, ToneC, 2, 50,50,50,1.0,0.5);
 		timer.startTimer(50);
 
 
@@ -126,7 +126,7 @@ public:
 
 		const float centreY = getHeight() / 2.0f;
 		Path wavePath;
-		int span = 500;
+		int span = getWidth();
 		float bla = getWidth() / (span*1.0);
 		FM2 = FM1;
 		FM2.Attack = FM1.Attack;
