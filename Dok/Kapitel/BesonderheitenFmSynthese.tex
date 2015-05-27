@@ -1,7 +1,7 @@
 \subsection{Besonderheiten der FM-Synthese}
 
 \subsubsection{Phasenmodulation als FM}
-Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der Phasenmodulation und die Frequenzmodulation beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben.
+Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben.
 
 Wie der Name Winkelmodulation andeutet wird der Phasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden.
 \begin{equation}
@@ -53,6 +53,19 @@ Wie einführlich erklärt ist die Phasenmodulation mit der Frequenzmodulation ve
 k_{PM}*p(t)=k_{FM} * \int_0^t{f(t)} dt
 \end{equation}
 Solang \(k_{PM}\) gleich \(k_{FM}\) ist und \(f(t)\) ableitbar ist, kann eine PM durch eine FM dargestellt werden. Umgekehrt gilt, dass wenn \(p(t)\) integrierbar ist, kann eine FM durch eine PM dargestellt werden.
+
+Bisher wurde nur das modulierte Signal betrachtet und dessen Abhängigkeit von den allgemeinen Modulationssignale \(p(t)\) bzw. \(f(t)\). Für die bisherigen Erkenntnisse war es einfach nicht notwendig, sich auf eine spezifische Modulationssignale festzulegen. Diese allgemeine Betrachtung ist jedoch mehr für die Nachrichtentechnik interessant als für einen FM Synthesizer.
+Daher werden die folgenden Formeln im Kontext der Akustik betrachtet und weniger streng mathematisch wie bisher. So kann zum Beispiel das menschliche Gehör keine Phasenverschiebungen wahrnehmen. Dies erlaubt Umformungen von Terme die mathematisch nicht korrekt sind, jedoch am Ergebnis, also dem hörbaren Klang keine Auswirkung haben. Des Weiteren wird im Folgenden ein sinusförmigen Signal als Modulator verwendet, welches sowohl für die PM als auch die FM verwendet wird und wie folgt definiert ist
+\begin{equation}
+m(t)=f(t)=p(t)=sin(\omega_m t)
+\end{equation}
+Wobei \(\omega_m\) die Modulationskreisfrequenz darstellt. Eingesetzt in die Formeln für PM und FM ergibt sich
+\begin{equation}
+s_{PM}(t)=A*sin(\omega_0t+k_{PM}*sin(\omega_m t))
+\end{equation}
+\begin{equation}
+s_{FM}(t)=A*sin(\omega_0t+k_{FM}*\int_0^t{sin(\omega_m t)} dt)
+\end{equation}
 
 \subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
 Was sind SFB?
