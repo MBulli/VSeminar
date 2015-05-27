@@ -1,4 +1,23 @@
 \subsection{Praktische Anwendung der FM-Synthese}
 \subsubsection{Nachbildung eines Instruments}
+Da es bei der FM Synthese nicht möglich ist im vorfeld zu wissen was für ein Signal herauskommt. Ist es schwer mit dieser Technik ein echt wirkendes Instrument nachzubilden.
+Trotzdem gibt es einige Methoden den generierten Klang natürlicher wirken zu lassen. Diese werden im weiteren Verlauf diese Kapitels vorgestellt und anschließend versucht den Klang eines Instruments zu erzeugen.
+
+Hüllkurven
+Da bei vielen Instrumenten die Lautstärke während der Laufzeit eines Tones variiert, und ein abruptes Ein oder Ausschalten des Tones nicht besonders gut klingt, ist die nutzung einer Hüllkurve oder ADSR-Hüllkurve ein wichtiger Bestandteil der Nachbildung eines Instrumentes. ADSR steht für die einzelnen Phasen eines Tons: Attack, Decay, Sustain und Release. Diese Phasen sollen hier vereinfacht erklärt werden. Beim Drücken einer Taste wird der Ton angeschlagen und die Lautstärke des Tons steigt schnell bis zu einem maximal Wert an. Diese Phase wird Attack-Phase genannt. Nachdem die maximale Lautstärke erreicht wurde, startet die Decay Phase. In dieser Phase sinkt die Lautstärke schnell auf einen geringeren Wert ab. Danach befindet sich der Ton in der Sustain Phase und die Lautstärke bleibt gleich, solange der Ton gespielt wird. Sobald die Taste losgelassen wird, nimmt die Lautstärke wieder bis zu ihrem minimal Wert ab. 
+
+In Abb. 1 ist der Verlauf der Lautstärke einer Standard ADSR-Hüllkurve noch einmal grafisch dargestellt.
+
+Da allerdings bei vielen Instrumenten die Lautstärke in den einzelnen Phasen der ADSR-Hüllkurve nicht gleichmäßig steigt oder sinkt, ist es nötig die Kurven zu variieren. Zum Biespiel steigt bei vielen Instrumenten die Lautstärke in der Attack Phase exponentiell an und fällt in der Decay und Release Phase auch exponentiell ab. Manche Synthesizer bieten zusätzlich auch noch eine Hold Phase vor der Attack Phase, da manche Instrumente einige Zeit benötigen bis sie nach dem Anschlagen des Tones in die Attack Phase eintreten.
+In Abb. 2 ist der Verlauf der Lautstärke einer komplexen ADSR-Hüllkurve grafisch dargestellt. In Abb3-5 sehen sie für Instrumenten typische Hüllkurven.
+
+Abb3. Blechblasinstrumente 
+
+
+Variabler Modulationsindex
+Auch wenn das Hinzufügen einer ADSR-Hüllkurve den Klang des synthetisierten Tones schon stark verbessert, hört sich der erzeugte Ton leider noch nicht wie ein echtes Instrument an. Um den Ton noch realistischer klingen zu lassen kann der Modulationsindex über die Zeit oder die Amplitude variiert werden und somit die Anzahl der Oberschwingungen verändert werden. Bei Blasinstrumenten wird der Modulationsindex typischerweise über die Amplitude variiert während bei Holzblasinstrumenten 
+
+
+
 \subsubsection{Modulationsframework (Theorie -> Praxis)}
 \subsubsection{Demo: Parameter und Effekte - Grafiken (evtl. Plotten)}

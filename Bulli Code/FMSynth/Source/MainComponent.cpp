@@ -64,8 +64,17 @@ public:
 		toneMap['E'] = ToneE;
 		toneMap['F'] = ToneF;
 		toneMap['G'] = ToneG;
-
-		FM1 = FMGenerator(ToneC, ToneC, 2, 50,50,50,1.0,0.5);
+		DefaultEnvelope* env = new DefaultEnvelope(50, 50, 5-0, 1, 0.5);
+		FM1 = FMGenerator(ToneC, ToneC, 2,env);
+		FM1.Attack = false;
+		//FMGenerator FM2 = FMGenerator(100, 101.5, 1, env);
+		//FM2.Attack = true;
+		//std::vector<short> v = std::vector<short>();
+		//for (int i = 0; i < 5*40000; i++){
+		//	float value = FM2.process(40000, i/40000);
+		//	v.push_back(value*SHRT_MAX);
+		//}
+		//Wave::WriteWave(v, 1, 40000);
 		timer.startTimer(50);
 
 		auto var = AudioDeviceManager::AudioDeviceSetup();
@@ -141,11 +150,11 @@ public:
 		wavePath.preallocateSpace(3 * spanX);
 		wavePath.clear();
 
+		long long time = TimeHelper::GetCurrentTimeAsMilliseconds();
 		wavePath.startNewSubPath(0, halfHeight);
-
 		for (int i = 0; i <= spanX; i += 1) 
 		{
-			float amp = tempFM.process(sampleRate, TimeHelper::GetCurrentTimeAsMilliseconds());
+			float amp = tempFM.process(sampleRate, time);
 
 			// move amplitude to [0;2] and center the wave in Y
 			float value = (amp + 1) * halfHeight;
