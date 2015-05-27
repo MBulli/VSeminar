@@ -129,6 +129,7 @@
     </Bscmake>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\Source\DefaultEnvelope.cpp" />
     <ClCompile Include="..\..\Source\FMGenerator.cpp" />
     <ClCompile Include="..\..\Source\MainComponent.cpp" />
     <ClCompile Include="..\..\Source\Main.cpp" />
@@ -1255,6 +1256,8 @@
     <ClCompile Include="..\..\Source\Wave.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\Source\DefaultEnvelope.h" />
+    <ClInclude Include="..\..\Source\Envelope.h" />
     <ClInclude Include="..\..\Source\FMGenerator.h" />
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioDataConverters.h" />
     <ClInclude Include="..\..\JuceLibraryCode\modules\juce_audio_basics\buffers\juce_AudioSampleBuffer.h" />

@@ -1473,6 +1473,9 @@
     <ClCompile Include="..\..\Source\RepaintTimer.cpp">
       <Filter>FMSynth\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\DefaultEnvelope.cpp">
+      <Filter>FMSynth\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\FMGenerator.h">
@@ -2844,6 +2847,12 @@
       <Filter>FMSynth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\RepaintTimer.h">
+      <Filter>FMSynth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Envelope.h">
+      <Filter>FMSynth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DefaultEnvelope.h">
       <Filter>FMSynth\Source</Filter>
     </ClInclude>
   </ItemGroup>
