@@ -1,9 +1,9 @@
 \subsection{Besonderheiten der FM-Synthese}
 
 \subsubsection{Phasenmodulation als FM}
-Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben.
+Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben. Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung, da er in seinem Artikel eine Formel beschreibt die einer PM gleicht und ein MUSIC V Patch der eine FM beschreibt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM Synthesizer entnommen werden, dass Yamaha ihre FM Synthese über eine PM erzeugt. \cite{oya1987electronic} 
 
-Wie der Name Winkelmodulation andeutet wird der Phasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. Die Amplitude des Trägersignals bleibt dabei stets unverändert. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden.
+Wie der Name Winkelmodulation andeutet wird der Phasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. Die Amplitude \(A\) bleibt während der Modulation konstant. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden:
 \begin{equation}
 s(t)=A*sin(\theta(t))
 \label{eq:signal_basis_funktion}
@@ -13,34 +13,32 @@ Dabei wird \(\theta(t)\) als \textit{momentaner Winkel} bezeichnet und ist als S
 \theta(t)=\omega_0t + \varphi(t)
 \end{equation*}
 
-Wird nun die momentane \textbf{Phase} des Trägersignals proportional zum Modulationssignal \(p(t)\) verändert, erhält man das \textbf{phasenmodulierte} Signal \(s_{PM}(t)\).
+Wird nun die momentane \textbf{Phase} des Trägersignals proportional zum Modulationssignal \(p(t)\) verändert, erhält man das \textbf{phasenmodulierte} Signal \(s_{PM}(t)\). \cite[S. 209]{lathi}
 Für die momentane Phase ergibt sich folgende einfache Formel:
 \begin{equation}
 \varphi(t)=\varphi_0+k_{PM}*p(t)
 \label{eq:varphi_t}
 \end{equation}
-Für akustische Anwendungen wird der konstante Teil \(\varphi_0\) der Phase nicht benötigt und wird als 0 angenommen. Bei \(k_{PM}\) handelt es sich um eine Proportionalitätskonstante, welche Modulatorkonstante genannt wird. Wird nun \(\theta(t)\) in die allgemeine Formel \ref{eq:signal_basis_funktion} für ein moduliertes Signal substituiert und das obige \(\varphi(t)\) eingesetzt, ergibt sich die Formel für das phasenmodulierte Signal
+Für akustische Anwendungen wird der konstante Teil \(\varphi_0\) der Phase nicht benötigt und wird als 0 angenommen. Bei \(k_{PM}\) handelt es sich um eine Proportionalitätskonstante, welche Modulatorkonstante genannt wird. Die Modulatorkonstante bestimmt, wie stark das Modulationssignal auf das Trägersignal einwirkt. Wird nun \(\theta(t)\) in die allgemeine Formel \ref{eq:signal_basis_funktion} für ein moduliertes Signal substituiert und das obige \(\varphi(t)\) eingesetzt, ergibt sich die Formel für das phasenmodulierte Signal
 \begin{equation}
 s_{PM}(t)=A*sin(\omega_0t + \varphi(t))=A*sin(\omega_0t+k_{PM}*p(t))
 \label{eq:s_pm}
 \end{equation}
-Für die Herleitung der Frequenzmodulation muss zuvor noch der Begriff der \textit{momentan Frequenz} \(\omega_m(t)\) eingeführt werden.
-Diese entspricht der Änderung des Phasenwinkels in Abhängigkeit der Zeit. Daher kann die momentan Frequenz durch die erste Ableitung des Phasenwinkels nach der Zeit $\dot \theta(t)$ bestimmt werden.
+Für die Herleitung der Frequenzmodulation muss zuvor noch der Begriff der \textit{momentan Kreisfrequenz} \(\omega_m(t)\) eingeführt werden.
+Diese entspricht der Änderung des Phasenwinkels in Abhängigkeit der Zeit. Daher kann die momentan Kreisfrequenz durch die erste Ableitung des Phasenwinkels nach der Zeit $\dot \theta(t)$ bestimmt werden. \cite[S. 209]{lathi}
 \begin{equation}
 \omega_m(t)=\dot \theta(t)=\frac{d\theta(t)}{dt}=\frac{d[\omega_0t+\varphi(t)]}{dt}=\frac{d\omega_0t}{dt}+\frac{d\varphi(t)}{dt}=\omega_0+\frac{d\varphi(t)}{dt}
 \label{eq:omega_m_herleitung}
 \end{equation}
+Wieso dieser Zusammenhang gültig ist, lässt sich einfach veranschaulichen. Bei \(\omega_m\) handelt es sich um die Kreisfrequenz, also wie häufig eine Schwingung einen Kreis durchläuft pro Zeitspanne, hier in Sekunden. Bei einer Kreisfrequenz von \(\omega=2 s^{-1}\) wird ein Phasenwinkel von \(4\pi\) pro Sekunde überstrichen. Wird nun die Kreisfrequenz erhöht, wird ein größerer Phasenwinkel überstrichen. Daher gibt die momentane Kreisfrequenz die Änderungsrate des momentanen Phasenwinkels zu einem bestimmten Zeitpunkt \(t\) an. Da die Änderung einer Funktion der Ableitung dieser Funktion entspricht, ergibt sich der Zusammenhang aus der obigen Formel. Eine Analogie aus der Physik hierzu ist der Zusammenhang zwischen Weg \(s(t)\) und Geschwindigkeit \(v(t)\). Die Geschwindigkeit gibt die Änderung des Weges pro Zeiteinheit vor und somit gilt, \(\dot{s(t)}=v(t)\). In unserem Zusammenhang verhält sich die Kreisfrequenz analog zur Geschwindigkeit und der Phasenwinkel ist im Prinzip die Strecke ausgedrückt als Winkel.
 
-
-\textbf{ANALOGIE PHYSIK/BEGRÜNDUNG WARUM ABLEITUNG}
-
-Wird die momentane \textbf{Frequenz} des Trägersignals proportional zum Modulationssignal \(f(t)\) verändert, erhält man das \textbf{frequenzmodulierte} Signal \(s_{FM}(t)\). Für die momentane Frequenz ergibt sich analog zur Phasenmodulation folgende Formel:
+Wird die momentane \textbf{Frequenz} des Trägersignals proportional zum Modulationssignal \(f(t)\) verändert, erhält man das \textbf{frequenzmodulierte} Signal \(s_{FM}(t)\). \cite[S. 210]{lathi} Für die momentane Frequenz ergibt sich analog zur Phasenmodulation folgende Formel:
 \begin{equation}
 \omega_m(t)=\omega_0+k_{FM}*f(t)
 \label{eq:omega_m}
 \end{equation}
 
-Bei \(k_{FM}\) handelt es sich wieder um eine Modulatorkonstante. Um nun das frequenzmodulierte Signal zu erhalten muss die momentan Frequenz, analog wie bei der Phasenmodulation, in \(s(t)\) eingesetzt werden. Jedoch kommt \(\omega_m\) nicht direkt in \(s(t)\) oder \(\theta(t)\) vor. Aus Formel \ref{eq:omega_m_herleitung} ist jedoch bekannt, dass die momentane Frequenz gleich der  Ableitung des momentan Winkels \(\theta(t)\) ist. Im Umkehrschluss bedeutet das, dass die Integration von \(\omega_m\) nach der Zeit gleich \(\theta(t)\) sein muss.
+Bei \(k_{FM}\) handelt es sich wieder um eine Modulatorkonstante und gibt an wie stark das Modulationssignal das Trägersignal beeinflusst. Um nun das frequenzmodulierte Signal zu erhalten muss die momentan Frequenz, analog wie bei der Phasenmodulation, in \(s(t)\) eingesetzt werden. Jedoch kommt \(\omega_m\) nicht direkt in \(s(t)\) oder \(\theta(t)\) vor. Aus Formel \ref{eq:omega_m_herleitung} ist jedoch bekannt, dass die momentane Frequenz gleich der  Ableitung des momentan Winkels \(\theta(t)\) ist. Im Umkehrschluss bedeutet das, dass die Integration von \(\omega_m\) nach der Zeit gleich \(\theta(t)\) sein muss.
 \begin{equation*}
 \theta(t)=\int_0^t{\omega_m(t)} dt = \int_0^t{\omega_0 + k_{FM}*f(t)} dt = \omega_0t + k_{FM} * \int_0^t{f(t)} dt
 \end{equation*}
@@ -56,7 +54,7 @@ Wie einführlich erklärt ist die Phasenmodulation mit der Frequenzmodulation ve
 k_{PM}*p(t)=k_{FM} * \int_0^t{f(t)} dt
 \end{equation}
 
-Vorausgesetzt \(k_{PM}\) ist gleich \(k_{FM}\), dann können beide Faktoren aus der Gleichung eliminiert werden. Ist es nun möglich für \(f(t)\) eine Ableitung zu finden, kann eine PM durch eine FM dargestellt werden. Durch die Ableitung von \(\int{f(t)}\) wird das Integral aufgehoben und die Gleichung reduziert sich zu einem einfachen \(p(t)=f(t)\). Umgekehrt gilt, dass genau dann eine FM durch eine PM dargestellt werden kann, wenn \(p(t)\) integrierbar ist. Unter diesen Bedingungen sind beide Verfahren mathematisch betrachtet gleich. Die unterschiedlichen Namen (FM, PM) zeigen somit nur, welche Größe des Modulationssignals (\(p(t), f(t)\)) proportional ist. [1]
+Vorausgesetzt \(k_{PM}\) ist gleich \(k_{FM}\), dann können beide Faktoren aus der Gleichung eliminiert werden. Ist es nun möglich für \(f(t)\) eine Ableitung zu finden, kann eine PM durch eine FM dargestellt werden. Durch die Ableitung von \(\int{f(t)}\) wird das Integral aufgehoben und die Gleichung reduziert sich zu einem einfachen \(p(t)=f(t)\). Umgekehrt gilt, dass genau dann eine FM durch eine PM dargestellt werden kann, wenn \(p(t)\) integrierbar ist. Unter diesen Bedingungen sind beide Verfahren mathematisch betrachtet gleich. Daher kann nur anhand der Betrachtung eines modulierten Signals nicht darauf zurück geschlossen werden, ob es mit einer Phasen- oder Frequenzmodulation moduliert wurde. Die unterschiedlichen Namen (FM, PM) zeigen somit nur, welche Größe des Modulationssignals (\(f(t), p(t)\)) proportional ist. \cite[S. 210]{lathi}
 Eine weitere erwähnenswerte Eigenschaft lässt sich gewinnen, wenn der momentane Phasenwinkel beider Verfahren gegenüber gestellt wird. Während \(\varphi(t)\) für PM durch die Formel \ref{eq:varphi_t} gegeben ist, muss \(\varphi(t)\) für FM durch gleichsetzten der Formeln \ref{eq:omega_m_herleitung} und \ref{eq:omega_m} gewonnen werden:
 \begin{eqnarray*}
 \omega_0+\frac{d\varphi(t)}{dt}&=&\omega_0+k_{FM}*f(t) \\
@@ -83,7 +81,7 @@ Wobei \(\omega_m\) die Modulationskreisfrequenz darstellt. Eingesetzt in die For
 s_{PM}(t)&=&A*sin(\omega_0t+k_{PM}*sin(\omega_m t)) \\
 s_{FM}(t)&=&A*sin(\omega_0t+k_{FM}*\int_0^t{sin(\omega_m t)} dt)
 \end{eqnarray*}
-Die von Chowning vorgestellte Formel gleicht der Formel für eine PM. [CHOWNING] Wobei Chowning seine Formel als Frequenzmodulation vorstellt. Wieso diese Aussage trotzdem korrekt ist, wird im Folgenden gezeigt. Im ersten Schritt muss das Integral innerhalb von \(s_{FM}\) ausgerechnet werden:
+Die von Chowning vorgestellte Formel gleicht der Formel für eine PM. \cite{chowningPaper} Wobei Chowning seine Formel als Frequenzmodulation vorstellt. Wieso diese Aussage trotzdem korrekt ist, wird im Folgenden gezeigt. Im ersten Schritt muss das Integral innerhalb von \(s_{FM}\) ausgerechnet werden:
 \begin{equation*}
 s_{FM}(t)=A*sin(\omega_0t-\frac{k_{FM}}{\omega_m}*cos(\omega_m t))
 \end{equation*}
@@ -101,10 +99,14 @@ Wie berechnet man sie (Fourier Analyse/Bessel Funktion)
 
 Frequenz allein reicht nicht aus um Töne zu unterscheiden. Obertöne sind ausschlaggebend 
 
+Ein Ton wird durch eine einfache Sinusschwingung erzeugt. Die Tonstärke, also die Lautstärke eines Tones, hängt von der Amplitude der Schwingung ab. Je größer die Amplitude desto lauter wirkt der Ton. Die Frequenz einer Schwingung empfindet der Mensch als Tonhöhe. Je größer die Frequenz der Schwingung desto höher wird der Ton empfunden. 
+Ein natürlicher Klang setzt sich nicht aus einer einzigen Frequenz zusammen, sondern aus mehreren Teiltönen. Jeder Teilton entspricht einem Sinuston mit einer bestimmten Frequenz, welche ein ganzzahliges Vielfaches des tiefsten Teiltones ist. Der tiefste Teilton, also der Teilton mit der niedrigsten Frequenz, wird als Grundton bezeichnet. \cite[S. 87]{borucki} 
+Dabei kann das menschliche Gehör die Tonhöhe bestimmen, auch wenn der Grundton schwach ausgeprägt oder nicht vorhanden ist. \cite[S. 4]{zwicker} Des Weiteren nehmen wir neben der Tonhöhe und Lautstärke eines Tones etwas weiteres war. Das Spektrum eines Tones gibt uns ein Gefühl für unterschiedliche Klänge. Dieses Empfinden wird als Klangfarbe bezeichnet und lässt uns z.B. zwischen verschiedenen Instrumenten unterscheiden. \cite[S. 5]{zwicker} \cite[S. 226]{raichel}
+Warum die Teiltöne entscheidend für den Klangcharakter sind erkennt man an der Funktionsweise des menschlichen Ohr. Die Schallwellen eines Klangs versetzten im Ohr, genauer in der Gehörschnecke, eine Flüssigkeit in Schwingung. Dadurch, dass die Gehörschnecke sich verengt, treffen die unterschiedlichen Frequenzen an unterschiedlichen Stellen auf Sinneshaare, welche die entsprechenden elektrischen Signale an das Gehirn weiterleiten. \cite[S. 87 f.]{zwicker} Um daher das Klangbild eines synthetisieren Tones zu bestimmen, reicht es nicht aus die berechnete Kurve zu betrachten, welche eine Funktion der Zeit ist. Ein Frequenzspektrum enthält viel mehr Informationen um das Klangbild zu beurteilen. Ein Frequenzspektrum berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz.
 
-Ein natürlicher Klang setzt sich nicht aus einer einzigen Frequenz zusammen, sondern aus mehreren Teiltönen. Jeder Teilton entspricht einem Sinuston mit einer bestimmten Frequenz. Der Tiefton mit der niedrigsten Frequenz, wird als Grundton bezeichnet. In der Regel bestimmt der Grundton die wahrgenommene Tonhöhe. \textbf{(Besonderer Fall: Wenn Grundton aufgehoben wird, siehe Chowing Fig 1)} Die restlichen Teiltöne werden Obertöne genannt und bestimmen die Klangfarbe. Warum die Teiltöne entscheidend für den Klangcharakter sind erkennt man an der Funktionsweise des menschlichen Ohr. Die Schallwellen eines Klangs versetzten im Ohr, genauer in der Gehörschnecke, eine Flüssigkeit in Schwingung. Dadurch, dass die Gehörschnecke sich verengt, treffen die unterschiedlichen Frequenzen an unterschiedlichen Stellen auf die Haare, welche die entsprechenden elektrischen Signale an das Gehirn weiterleiten.
 
 
+Durch die zeitliche Änderung der Frequenz bei der Frequenzmodulation entstehen Seitenfrequenzbänder.
 
 
 Das Frequenzspektrum eines natürlichen Tons ist selten statisch sondern variiert mit der Zeit. Diese Änderung der Teiltöne lässt das menschliche Ohr Töne unterschiedlich wahrnehmen. Durch die FM-Synthese lassen sich, im Vergleich zu anderen Syntheseverfahren, auf einfachen Weg komplexe und vielfältige Frequenzspektren künstlich erzeugen.
