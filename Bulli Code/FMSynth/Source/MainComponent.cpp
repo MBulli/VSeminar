@@ -18,6 +18,7 @@
 #include <map>
 #include <string>
 #include <chrono>
+#include "DoubleFMGenerator.h"
 
 #define ToneA 880.000
 #define ToneB 987.766
@@ -64,17 +65,9 @@ public:
 		toneMap['E'] = ToneE;
 		toneMap['F'] = ToneF;
 		toneMap['G'] = ToneG;
-		DefaultEnvelope* env = new DefaultEnvelope(50, 50, 5-0, 1, 0.5);
-		FM1 = FMGenerator(ToneC, ToneC, 2,env);
-		FM1.Attack = false;
-		//FMGenerator FM2 = FMGenerator(100, 101.5, 1, env);
-		//FM2.Attack = true;
-		//std::vector<short> v = std::vector<short>();
-		//for (int i = 0; i < 5*40000; i++){
-		//	float value = FM2.process(40000, i/40000);
-		//	v.push_back(value*SHRT_MAX);
-		//}
-		//Wave::WriteWave(v, 1, 40000);
+		DefaultEnvelope* env = new DefaultEnvelope(100, 100, 100 , 1, 0.5);
+		FM1 = new FMGenerator(ToneA, ToneA, 1,/*ToneC, 2,*/env);
+
 		timer.startTimer(50);
 
 		auto var = AudioDeviceManager::AudioDeviceSetup();
@@ -114,7 +107,7 @@ public:
 		float* const rightChannelData = bufferToFill.buffer->getWritePointer(1, bufferToFill.startSample);
 		for (int i = 0; i < bufferToFill.numSamples; ++i)
 		{
-			const float y = FM1.process(sampleRate, time+i*1000/sampleRate);
+			const float y = FM1->process(sampleRate, time+i*1000/sampleRate);
 			leftChannelData[i]  = y;
 			rightChannelData[i] = y;
 			result.push_back(static_cast<short>(y * SHRT_MAX));
@@ -131,9 +124,9 @@ public:
 
 		// Draw FM parameters
 		String str;
-		str << "FM Carrier frequency: " << FM1.freqCarrier << "\n";
-		str << "FM Modulation frequency: " << FM1.freqModulation << "\n";
-		str << "FM Modulation Index: " << FM1.modulationIndex << "\n";
+		str << "FM Carrier frequency: " << FM1->freqCarrier << "\n";
+		str << "FM Modulation frequency: " << FM1->freqModulation << "\n";
+		str << "FM Modulation Index: " << FM1->modulationIndex << "\n";
 
 		const float fontHeight = g.getCurrentFont().getHeight();
 		g.drawMultiLineText(str, 0, fontHeight, INT32_MAX);
@@ -142,9 +135,10 @@ public:
 		int spanX = getWidth();
 
 		// Copy FMGenerator with exact parameters. Reset it and create visualization data
-		auto tempFM = FM1;
-		tempFM.Attack = FM1.Attack;
-		tempFM.reset();
+		auto tempFM = new FMGenerator(FM1->freqCarrier, FM1->freqModulation, FM1->modulationIndex, FM1->envelope);
+		
+		tempFM->Attack = FM1->Attack;
+		tempFM->reset();
 
 		// Create path with preallocated memory to avoid reallocation. One lintTo() call needs 3 coords.
 		wavePath.preallocateSpace(3 * spanX);
@@ -154,7 +148,7 @@ public:
 		wavePath.startNewSubPath(0, halfHeight);
 		for (int i = 0; i <= spanX; i += 1) 
 		{
-			float amp = tempFM.process(sampleRate, time);
+			float amp = tempFM->process(sampleRate, time);
 
 			// move amplitude to [0;2] and center the wave in Y
 			float value = (amp + 1) * halfHeight;
@@ -180,8 +174,8 @@ public:
 			|| key.getKeyCode() == 'G'
 			)
 		{
-			FM1.freqCarrier = toneMap[key.getKeyCode()] * 2 * octave;
-			FM1.freqModulation = FM1.freqCarrier;
+			FM1->freqCarrier = toneMap[key.getKeyCode()] * 2 * octave;
+			FM1->freqModulation = FM1->freqCarrier;
 		}
 
 		return false;
@@ -197,27 +191,27 @@ public:
 			Wave::WriteWave(result, 1, sampleRate);
 		}
 		if (KeyPress::isKeyCurrentlyDown('1'))	{
-			FM1.modulationIndex -= 1;
+			FM1->modulationIndex -= 1;
 		} else if (KeyPress::isKeyCurrentlyDown('2')) {
-			FM1.modulationIndex += 1;
+			FM1->modulationIndex += 1;
 		} 
 
 		if (KeyPress::isKeyCurrentlyDown(KeyPress::upKey)){
-			FM1.freqModulation *= 2;
-			std::cout << FM1.freqModulation << std::endl;
+			FM1->freqModulation *= 2;
+			std::cout << FM1->freqModulation << std::endl;
 		} else if (KeyPress::isKeyCurrentlyDown(KeyPress::downKey)){
-			FM1.freqModulation /= 2;
-			std::cout << FM1.freqModulation << std::endl;
+			FM1->freqModulation /= 2;
+			std::cout << FM1->freqModulation << std::endl;
 		}
 
 		if (KeyPress::isKeyCurrentlyDown('+'))	{
 			octave *= 2;
-			FM1.freqCarrier *= 2;
-			FM1.freqModulation = FM1.freqCarrier;
+			FM1->freqCarrier *= 2;
+			FM1->freqModulation = FM1->freqCarrier;
 		} else if (KeyPress::isKeyCurrentlyDown('-')) {
 			octave /= 2;
-			FM1.freqCarrier /= 2;
-			FM1.freqModulation = FM1.freqCarrier;
+			FM1->freqCarrier /= 2;
+			FM1->freqModulation = FM1->freqCarrier;
 		}
 
 		amplitude = 1.0;
@@ -229,9 +223,9 @@ public:
 			|| KeyPress::isKeyCurrentlyDown('B')
 			|| KeyPress::isKeyCurrentlyDown('A')
 			)
-			FM1.Attack = true;
+			FM1->Attack = true;
 		else
-			FM1.Attack = false;
+			FM1->Attack = false;
 		
 		//repaint();
 		return true;
@@ -271,7 +265,7 @@ private:
 	double sampleRate;
 	int expectedSamplesPerBlock;
 
-	FMGenerator FM1;
+	FMGenerator* FM1;
 
 	RepaintTimer timer;
 

@@ -1476,6 +1476,12 @@
     <ClCompile Include="..\..\Source\DefaultEnvelope.cpp">
       <Filter>FMSynth\Source</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\Source\DoubleFMGenerator.cpp">
+      <Filter>FMSynth\Source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Source\FeedbackFMGenerator.cpp">
+      <Filter>FMSynth\Source</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Source\FMGenerator.h">
@@ -2853,6 +2859,15 @@
       <Filter>FMSynth\Source</Filter>
     </ClInclude>
     <ClInclude Include="..\..\Source\DefaultEnvelope.h">
+      <Filter>FMSynth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\Generator.h">
+      <Filter>FMSynth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\DoubleFMGenerator.h">
+      <Filter>FMSynth\Source</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Source\FeedbackFMGenerator.h">
       <Filter>FMSynth\Source</Filter>
     </ClInclude>
   </ItemGroup>
