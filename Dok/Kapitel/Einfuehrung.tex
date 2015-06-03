@@ -1,7 +1,7 @@
 \section{Einführung}
 
 \subsection{Prinzip der FM-Synthese}
-Die FM Synthese ist eine für die Musikwelt sehr wichtige Anwendung der Frequenzmodulation, welche bereits aus der Nachrichtentechnik bekannt ist. Generell wird dabei die Frequenz eines Trägersignals durch ein weiteres Modulationssignal verändert, die Amplitude bleibt jedoch unangetastet. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
+Die Frequenzmodulationssynthese ist eine für die Musikwelt sehr wichtige Anwendung der Frequenzmodulation, welche bereits aus der Nachrichtentechnik bekannt ist. Generell wird dabei die Frequenz eines Trägersignals durch ein weiteres Modulationssignal verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
 
 Die momentane Amplitude des modulierten Signals lässt sich durch folgende Formel beschreiben:
 
@@ -23,11 +23,11 @@ Quelle: Eigene Darstellung mit Matlab
 
 Die Frequenzmodulationssynthese ist in ihren Grundzügen recht einfach zu verstehen und man kann mit geringem Aufwand bereits sehr komplexe, wenn auch oft unkontrollierbare Signale mit komplexen Klangspektren (bzw. Frequenzspektren) erzeugen. Wie sich im Folgenden jedoch noch herausstellen wird, ist es dagegen sehr schwierig und erfordert viel Zeit und Aufwand, durch die FM-Synthese gezielt Signale zu erzeugen und diese zu kontrollieren.
 
-Praktisch gesehen kann die Frequenzmodulations-Synthese dazu verwendet werden, um zum Einen Klangbilder echter Instrumente digital nachzubilden, jedoch auch, um ganz neue Töne zu erzeugen, die so in der realen Welt nicht vorkommen.
+Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum Einen Klangbilder echter Instrumente digital nachzubilden, jedoch auch um ganz neue Töne zu erzeugen, die so in der realen Welt nicht vorkommen.
 
 \subsection{Beispiele}
 In diesem Kapitel werden einige konkrete Beispiele der FM-Synthese anhand von Träger- und Modulationsfunktion sowie der daraus resultierenden Funktion aufgezeigt. Die Grafiken zeigen jeweils Plots von allen drei Signalen, welche mit Matlab erzeugt wurden.
-Die Frequenzen der Träger- und Modulationsfunktion wurden so gewählt, dass sie in einem Frequenzbereich liegen, der vom menschlichen Ohr wargenommen werden kann. (Siehe Kapitel ``Menschliches Ohr'').
+Die Frequenzen der jeweiligen Funktionen wurden so gewählt, dass sie in einem Frequenzbereich liegen der vom menschlichen Ohr wargenommen werden kann. (Siehe Unterkapitel ``\ref{}'' im Kapitel ``\ref{}).
 
 \begin{figure} [ht]
 \centering
@@ -40,12 +40,12 @@ Quelle: Eigene Darstellung mit Matlab
 In Beispiel 1 (siehe Abbildung \ref{fig:beispiel1})  wurden folgende Signale verwendet:
 
 \begin{lstlisting}[mathescape]
-Trägersignal: 		$y(t) = \sin(2 \pi 600*t)$
+Trägersignal: 		$y(t) = \,\;\;\sin(2 \pi 600*t)$
 Modulator:		$y(t) =5 \sin(2 \pi 75*t)$
-Gesamtfunktion: 	$y(t) = \sin(2 \pi 600*t + 5 \sin(2 \pi 75*t))$
+Gesamtfunktion: 	$y(t) = \,\;\;\sin(2 \pi 600*t + 5 \sin(2 \pi 75*t))$
 \end{lstlisting}
 
-Konkrete Bedeutung der Werte: Die Trägerfrequenz von 600 Hz bedeutet, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel ``\nameref{technisches}'') immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulatur den Funktionswert 0 hat.
+Konkrete Bedeutung der Werte: Die Trägerfrequenz von 600 Hz bedeutet, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel ``\nameref{technisches}'') immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulator den Funktionswert 0 hat.
 
 \begin{figure} [ht]
 \centering
