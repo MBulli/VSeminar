@@ -88,23 +88,42 @@ s_{FM}(t)=A*sin(\omega_0t-\frac{k_{FM}}{\omega_m}*cos(\omega_m t))
 Mathematisch gesehen, unterscheidet sich diese Formel zu einer Phasenmodulation. Genauer gesagt, ergibt sich durch die Integration eine Verschiebung von einer Phase, da ein negativer Kosinus genau eine Phase verschoben zu einem Sinus ist. Wie bereits erwähnt, nimmt das Gehör jedoch keine Phasenverschiebungen wahr, sondern nur Frequenzen. Unter dieser Annahme, kann der negative Kosinus mit einem positiven Sinus ausgetauscht werden, ohne eine hörbare Veränderung des Tons zu erzeugen.
 \begin{equation*}
 e(t)=A*sin(\omega_0t+\frac{k_{FM}}{\omega_m}*sin(\omega_m t))
+\label{eq:FM_Chowning}
 \end{equation*}
 Die dadurch gewonnene Formel entspricht somit der von Chowning vorgestellten Formel für eine Frequenzmodulation und ist im Kontext der Akustik korrekt.
 
 \subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
-Was sind SFB?
-Warum sind sie wichtig? (Ton Charakter etc)
-Warum treten sie auf?
-Wie berechnet man sie (Fourier Analyse/Bessel Funktion)
-
-Frequenz allein reicht nicht aus um Töne zu unterscheiden. Obertöne sind ausschlaggebend 
-
 Ein Ton wird durch eine einfache Sinusschwingung erzeugt. Die Tonstärke, also die Lautstärke eines Tones, hängt von der Amplitude der Schwingung ab. Je größer die Amplitude desto lauter wirkt der Ton. Die Frequenz einer Schwingung empfindet der Mensch als Tonhöhe. Je größer die Frequenz der Schwingung desto höher wird der Ton empfunden. 
 Ein natürlicher Klang setzt sich nicht aus einer einzigen Frequenz zusammen, sondern aus mehreren Teiltönen. Jeder Teilton entspricht einem Sinuston mit einer bestimmten Frequenz, welche ein ganzzahliges Vielfaches des tiefsten Teiltones ist. Der tiefste Teilton, also der Teilton mit der niedrigsten Frequenz, wird als Grundton bezeichnet. \cite[S. 87]{borucki} 
 Dabei kann das menschliche Gehör die Tonhöhe bestimmen, auch wenn der Grundton schwach ausgeprägt oder nicht vorhanden ist. \cite[S. 4]{zwicker} Des Weiteren nehmen wir neben der Tonhöhe und Lautstärke eines Tones etwas weiteres war. Das Spektrum eines Tones gibt uns ein Gefühl für unterschiedliche Klänge. Dieses Empfinden wird als Klangfarbe bezeichnet und lässt uns z.B. zwischen verschiedenen Instrumenten unterscheiden. \cite[S. 5]{zwicker} \cite[S. 226]{raichel}
-Warum die Teiltöne entscheidend für den Klangcharakter sind erkennt man an der Funktionsweise des menschlichen Ohr. Die Schallwellen eines Klangs versetzten im Ohr, genauer in der Gehörschnecke, eine Flüssigkeit in Schwingung. Dadurch, dass die Gehörschnecke sich verengt, treffen die unterschiedlichen Frequenzen an unterschiedlichen Stellen auf Sinneshaare, welche die entsprechenden elektrischen Signale an das Gehirn weiterleiten. \cite[S. 87 f.]{zwicker} Um daher das Klangbild eines synthetisieren Tones zu bestimmen, reicht es nicht aus die berechnete Kurve zu betrachten, welche eine Funktion der Zeit ist. Ein Frequenzspektrum enthält viel mehr Informationen um das Klangbild zu beurteilen. Ein Frequenzspektrum berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz.
+Warum die Teiltöne entscheidend für den Klangcharakter sind erkennt man an der stark vereinfachten Funktionsweise des menschlichen Ohr. Die Schallwellen eines Klangs versetzten im Ohr, genauer in der Gehörschnecke, eine Flüssigkeit in Schwingung. Dadurch, dass die Gehörschnecke sich verengt, treffen die unterschiedlichen Frequenzen in Kombination mit der Amplitude, an unterschiedlichen Stellen auf Sinneshaare, welche die entsprechenden elektrischen Signale an das Gehirn weiterleiten. \cite[S. 87 f.]{zwicker}
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.5\textwidth]{GeigenTon.png}
+\caption{oben: Schalldruck eines Geigenklangs; unten: Frequenzspektrum dieses Klanges}
+\label{fig:geige}
+Quelle: \cite[S. 4]{zwicker}
+\end{figure}
 
 
+Um daher einen ungefähren Eindruck eines synthetisieren Tones zu bekommen, reicht es nicht aus die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden dargestellt werden. \cite[S. 33]{raichel} Durch mathematische Umformungen, kann die FM Synthese Formel \ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
+
+\begin{lstlisting}[mathescape]
+$s(t)=A*\{ $
+	$\;\;\;J_0(I)\sin(\omega_c t)$
+	$+J_1(I)[\sin(\omega_c+ \;\;  \omega_m)t-\sin(\omega_c-\;\, \omega_m)]$
+	$+J_2(I)[\sin(\omega_c + 2\omega_m)t+\sin(\omega_c-2\omega_m)]$
+	$+J_3(I)[\sin(\omega_c+3\omega_m)t-\sin(\omega_c-3\omega_m)]$
+	$+....\}$
+\end{lstlisting}
+
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{ChowningBessel.png}
+\caption{Besselfunktion $J_0$ bis $J_1$ und Modulationsindex von 0 bis 20. }
+\label{fig:bessel3D}
+Quelle: \cite{chowningPaper}
+\end{figure}
 
 Durch die zeitliche Änderung der Frequenz bei der Frequenzmodulation entstehen Seitenfrequenzbänder.
 
