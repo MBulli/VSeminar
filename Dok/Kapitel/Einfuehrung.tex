@@ -15,7 +15,7 @@ Abbildung \ref{fig:vergleichSignale} veranschaulicht die Frequenzmodulation eine
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.95\textwidth]{Signalbeispiel.png}
+  \includegraphics[width=0.95\textwidth,frame]{Prinzip.png}
 \caption{Vergleich Träger/Modulator}
 \label{fig:vergleichSignale}
 Quelle: Eigene Darstellung mit Matlab
@@ -27,11 +27,11 @@ Praktisch gesehen kann die Frequenzmodulations-Synthese dazu verwendet werden, u
 
 \subsection{Beispiele}
 In diesem Kapitel werden einige konkrete Beispiele der FM-Synthese anhand von Träger- und Modulationsfunktion sowie der daraus resultierenden Funktion aufgezeigt. Die Grafiken zeigen jeweils Plots von allen drei Signalen, welche mit Matlab erzeugt wurden.
-Die Frequenzen der Träger- und Modulationsfunktion wurden sehr tief gewählt, tiefer als normalerweiße bei der Anwendung der FM-Synthese üblich, damit die Kurven gut mit einer kleinen Zeit-Skala auf der X-Achse geplottet werden können. Sie dienen so lediglich der Veranschaulichung und liegen außerhalb des vom Menschen hörbaren Frequenzbereiches.
+Die Frequenzen der Träger- und Modulationsfunktion wurden so gewählt, dass sie in einem Frequenzbereich liegen, der vom menschlichen Ohr wargenommen werden kann. (Siehe Kapitel ``Menschliches Ohr'').
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.95\textwidth]{Carrier_Modulator.png}
+  \includegraphics[width=0.95\textwidth,frame]{Beispiel1.png}
 \caption{Beispiel 1}
 \label{fig:beispiel1}
 Quelle: Eigene Darstellung mit Matlab
@@ -40,22 +40,28 @@ Quelle: Eigene Darstellung mit Matlab
 In Beispiel 1 (siehe Abbildung \ref{fig:beispiel1})  wurden folgende Signale verwendet:
 
 \begin{lstlisting}[mathescape]
-Trägersignal: 		$y(t) = \sin(2 \pi 1*t)$
-Modulator:		$y(t) =5 \sin(2 \pi 0.125*t)$
-Gesamtfunktion: 	$y(t) = \sin(2 \pi 1*t + 5 \sin(2 \pi 0.125*t))$
+Trägersignal: 		$y(t) = \sin(2 \pi 600*t)$
+Modulator:		$y(t) =5 \sin(2 \pi 75*t)$
+Gesamtfunktion: 	$y(t) = \sin(2 \pi 600*t + 5 \sin(2 \pi 75*t))$
 \end{lstlisting}
 
-Konkrete Bedeutung der Werte: Die Trägerfrequenz von 1 Hz bedeutet, dass die Trägerfunktion ein mal pro Sekunde schwingt, d.h. eine Periode ist genau eine Sekunde lang. Der Modulator hat eine Frequenz von 0.125 Hz, wodurch er 1/8 Schwingung pro Sekunde macht und eine Periode dann acht Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel ``\nameref{technisches}'') immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In diesem Beispiel ist das bei null Sekunden, vier Sekunden, acht Sekunden usw. der Fall, also immer am Anfang bzw. Ende einer Periode und deren Mitte.
+Konkrete Bedeutung der Werte: Die Trägerfrequenz von 600 Hz bedeutet, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel ``\nameref{technisches}'') immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulatur den Funktionswert 0 hat.
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.95\textwidth]{beispiel2.png}
+  \includegraphics[width=0.95\textwidth,frame]{Beispiel2.png}
 \caption{Beispiel 2}
 \label{fig:beispiel2}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Das zweite Beispiel in Abbildung \ref{fig:beispiel2} zeigt eine Frequenzmodulation, bei der sich auch die Amplitude des Signals ändert. Dies geschieht rein durch die Phasenverschiebung des äußeren Sinus durch den Modulator, die tatsächliche Amplitude der Funktion bleibt dabei unangetastet. Der Träger hat in diesem Beispiel eine Frequenz von 0.5 Hz, der Modulator 0.2 Hz. Der Modulationsindex beträgt wieder 5. An diesem Beispiel kann man bereits bei recht kleinen Parametern gut erkennen, dass die FM-Synthese mit wenig Aufwandt komplexe Signale erzeugen kann, diese jedoch schlecht kontrollierbar bzw. erklärbar sind.
+Das zweite Beispiel in Abbildung \ref{fig:beispiel2} zeigt eine Frequenzmodulation, bei der sich auch die Amplitude des Signals ändert. Dies geschieht rein durch die Phasenverschiebung des äußeren Sinus durch den Modulator, die tatsächliche Amplitude der Funktion bleibt dabei unangetastet. Der Träger hat in diesem Beispiel eine Frequenz von 300 Hz, der Modulator 120 Hz. Der Modulationsindex beträgt wieder 5. Die Formel des Modulierten Signals sieht wie folgt aus:
+
+\[
+y(t) = \sin(2 \pi 300*t + 5 \sin(2 \pi 120*t))
+\]
+
+An diesem Beispiel kann man sehr gut erkennen, dass die FM-Synthese mit wenig Aufwandt komplexe Signale erzeugen kann, diese jedoch schlecht kontrollierbar bzw. erklärbar sind.
 
 Als gute akustische Beispiele für die Anwendung der FM-Synthese in der Musikwelt können die Stücke ``Sabelith'' und ``Turenas'' von John Chowning selbst genannt werden. Beide Stücke wurden ausschließlich mit FM-Synthese erzeugt und beinhalten viele verschiedene Klangarten sowie Instrumente.
 

@@ -33,8 +33,9 @@ $\cos(\pi) = \frac{\text{anliegende Seite}}{\text{Hypotenuse}} = \frac{b}{c} = \
 Quelle: \url{http://www.ulrich-rapp.de/stoff/mathematik/Sinus_Einheitskreis.gif}
 \end{figure}
 
-Die Sinusfunktion erhält man, wenn man auf der y-Achse lediglich die Funktionswerte des Kreises betrachtet und den Winkel im Einheitskreis als x-Werte der Funktion nimmt. Bei einer Schwingung wird für x dann die Zeit t eingesetzt. Eine Periode ist genau $2\pi$ Einheiten auf der Horizontalen Achse lang ($\pi$ ist die Kreiszahl), was im Einheitskreis einem Winkel von 360\degree  entspricht. Daher spricht man auch von Winkelfunktionen, denn man kann den Funktionswert der Sinus- und Kosinusfunktion auch anhand des Winkels im Einheitskreis angeben. 
-Eine Veranschaulichung des Zusammenhangs zwischen den Einheitskreis und der Sinusfunktion zeigt Abbildung \ref{fig:unitcircleToSinus}.
+Der aktuelle Winkel im Einheitskreis kann auch im sogenannten Bogenmaß angegeben werden. Das Bogenmaß beschreibt, wie weit man den Bogen des Einheitskreises im Uhrzeigersinn abgelaufen ist. Dabei ist $\pi$ die sogenannte Kreiszahl und ein Bogenmaß von $2\pi$ gibt eine ganze Umdrehung im Einheitskreis an bzw. $\pi$ dann eine halbe Umdrehung. Um nun auf eine Sinusfunktion überzuleiten, muss das Bogenmaß in Abhängigkeit von der Zeit t angegeben werden, die Formel lautet also dann $\sin(2\pi*t)$. Damit festgelegt werden kann, wie oft der Einheitskreis in einer Sekunde abgelaufen wird, multipliziert man das Bogenmaß $2\pi$ mit dem Faktor $f$. Dabei entspricht $f$ der Frequenz der Funktion, also wie viele Schwingungen in einer Sekunde durchlaufen werden. Der Wert $2\pi * f$ wird auch als Kreisfrequenz bezeichnet.
+Man spricht bei Sinus- und Kosinusfunktion auch von Winkelfunktionen, denn man kann den Funktionswert der Funktion auch anhand des Winkels (in Bogenmaß) im Einheitskreis angeben. 
+Eine Veranschaulichung des Zusammenhangs zwischen dem Einheitskreis und der Sinusfunktion zeigt Abbildung \ref{fig:unitcircleToSinus}.
 
 Der Unterschied von der Kosinusfunktion zur Sinusfunktion ist, dass der Kosinus bei dem Funktionswert 1 beginnt und Sinus bei Funktionswert 0. Aus diesem Zusammenhang lassen sich folgende Beziehungen (Auch: Komplementärformeln) zwischen Sinus und Kosinus feststellen:\\
 
@@ -45,18 +46,20 @@ $\cos(\frac {\pi}{2} – x) = \sin(x)$
 
 Überträgt man diese mathematischen Erkenntnisse nun auf einen Ton, so kann man dessen Funktion wie folgt beschreiben: 		$y(t) = y_0 * \sin(2 \pi f * t)$
 
-Um 90\degree oder pi/2 verschoben gilt: 		$y(t) = y_0*\cos(2 \pi f*t)$
+Um 90\degree oder $\frac{\pi}{2}$ verschoben gilt: 		$y(t) = y_0*\cos(2 \pi f*t)$
 
 Bei $y_0$ handelt es sich um die Amplitude des Tons, also dessen Lautstärke. Alle Funktionswerte der Funktion werden mit diesem Faktor multipliziert und dadurch größer oder kleiner.
 
-F ist die Frequenz des Tons. Sie gibt die Anzahl der Schwingungen (Perioden) pro Sekunde an und wird in $f=\frac{1}{T}$ angegeben, wobei T die Periodendauer ist. Die Einheit ist Hertz(Hz).
+F ist wie oben bereits beschrieben die Frequenz des Tons. Sie gibt die Anzahl der Schwingungen (Perioden) pro Sekunde an und wird in $f=\frac{1}{T}$ angegeben, wobei T die Periodendauer ist. Die Einheit ist Hertz(Hz).
 Je größer die Frequenz eines Tones ist, desto höher klingt er für das Ohr.
 
-Für das menschliche Ohr hören sich beide Schwingungen gleich an, da diese lediglich um $\frac{1}{4}$ der Periode verschoben sind. 
+Physikalisch gesehen ist ein Ton eine periodische Änderung des Luftdruckt, also Luftmoleküle die um ihre Ruhelage in Schwingung versetzt werden\cite{EinfAkustik}. Als Medium kann jedoch auch etwas anderer als Luft dienen, zum Beispiel Wasser.
 
-\subsubsection{Erklärung: Trägerfrequenz, Modulationsfrequenz, Modulationsindex}
+Für das menschliche Ohr hören sich Sinus- und Cosinusschwingungen gleich an, da diese lediglich um $\frac{1}{4}$ der Periode verschoben sind. 
 
-In diesem Kapitel wird auf die unterschiedlichen Parameter eingegangen, welche in der Formel der einfachen Frequenzmodulation vorkommen. Zudem wird deren Funktion im Einzelnen beschrieben.
+\subsubsection{Erklärung: Parameter der FM-Synthese nach Chowning}
+
+In diesem Kapitel wird auf die unterschiedlichen Parameter eingegangen, welche in der Formel der einfachen Frequenzmodulation von John Chowning vorkommen. Zudem wird deren Funktion im Einzelnen beschrieben.
 
 Die Parameter werden mit der Gleichung in Sinus-Darstellung vorgestellt, d.h. Trägersignal und Modulator sind Sinusfunktionen. Dieselbe Erklärung funktioniert jedoch analog dazu auch mit Cosinus-Funktionen für den Träger und den Modulator.
 Die Gleichung für eine frequenzmodulierte Welle lautet wie folgt:
@@ -65,15 +68,16 @@ Die Gleichung für eine frequenzmodulierte Welle lautet wie folgt:
 \begin{lstlisting}[mathescape]
 - $ e(t) $ beschreibt die Amplitude des Modulierten Signals zum Zeitpunkt t
 - A stellt die höchste Amplitude des modulierten Signals dar
-- $ \alpha $ ist die Frequenz des Trägersignals in Hertz (Schwingungen pro Sekunde)
-- $ \beta $ ist die Frequenz des Modulators in Hertz
+- $ \alpha $ ist die Kreisfrequenz des Trägersignals in $\frac{1}{s}$
+- $ \beta $ ist die Kreisfrequenz des Modulators in $\frac{1}{s}$
 - I stellt den Modulationsindex dar. Dieser setzt sich wie folgt zusammen: $ I = \frac{d}{m} $ mit:
 	= d: Frequenzhub der Modulation, d.h. der größte momentane Unterschied zwischen der Frequenz des Trägers und der des modulierten Signals
 	Auch: Frequenzänderung, welche durch die Modulation der Trägerfrequenz verursacht wird
-	= m: Frequenz des Modulators
+	= m: Kreisfrequenz des Modulators
 \end{lstlisting} \cite{chowningPaper}
 
 Der Modulationsindex beschreibt also das Verhältnis des Frequenzhubs zur Modulationsfrequenz.
 Man kann anhand der Formel bereits erkennen, dass bei einem Modulationsindex von 0 keine Modulation stattfindet. Dabei wird der Frequenzhub der Modulation auch gleich 0, da $ I=\frac{d}{m} $ und somit $ d = 0*m = 0 $ gilt. 
 \[ e(t) = A \sin(\alpha t + 0 \sin(\beta t))  \Rightarrow  e(t) = a \sin(\alpha t) \]
+Die Frequenz in Hz (Schwingungen pro Sekunde) ergibt sich, wenn man die Kreisfrequenz (siehe oben) durch $2\pi$ teilt.
 Anhand der Frequenz des Modulators kann man sehen, wie oft der oben beschriebene Frequenzhub pro Sekunde durchlaufen wird. Beispiel: Bei einer Modulationsfrequenz von 440 Hz wird der Frequenzhub 440 mal pro Sekunde durchlaufen.
