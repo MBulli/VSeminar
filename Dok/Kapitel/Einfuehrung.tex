@@ -2,7 +2,7 @@
 
 \FloatBarrier
 \subsection{Prinzip der FM-Synthese}
-Die Frequenzmodulationssynthese ist eine für die Musikwelt sehr wichtige Anwendung der Frequenzmodulation (FM), welche bereits aus der Nachrichtentechnik bekannt ist. Generell wird dabei die Frequenz eines Trägersignals durch ein weiteres Modulationssignal verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
+Die \textbf{Frequenzmodulationssynthese} ist eine für die Musikwelt sehr wichtige Anwendung der \textbf{Frequenzmodulation (FM)}, welche bereits aus der Nachrichtentechnik bekannt ist. Generell wird dabei die Frequenz eines Trägersignals durch ein weiteres Modulationssignal verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
 
 Die momentane Amplitude des modulierten Signals lässt sich durch folgende Formel beschreiben:
 
@@ -28,7 +28,7 @@ Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um
 
 \subsection{Beispiele}
 In diesem Kapitel werden einige konkrete Beispiele der FM-Synthese anhand von Träger- und Modulationsfunktion sowie der daraus resultierenden Funktion aufgezeigt. Die Grafiken zeigen jeweils Plots von allen drei Signalen, welche mit Matlab erzeugt wurden.
-Die Frequenzen der jeweiligen Funktionen wurden so gewählt, dass sie in einem Frequenzbereich liegen der vom menschlichen Ohr wargenommen werden kann. (Siehe Unterkapitel ``\nameref{bulli:ohrToeneUndFrequenzen}'').
+Die Frequenzen der jeweiligen Funktionen wurden so gewählt, dass sie in einem Frequenzbereich liegen der vom menschlichen Ohr wargenommen werden kann. (Siehe Unterkapitel ``\ref{bulli:ohrToeneUndFrequenzen} - \nameref{bulli:ohrToeneUndFrequenzen}'').
 
 \begin{figure} [ht]
 \centering
@@ -46,7 +46,7 @@ Modulator:		$y(t) =5 \sin(2 \pi 75*t)$
 Gesamtfunktion: 	$y(t) = \,\;\;\sin(2 \pi 600*t + 5 \sin(2 \pi 75*t))$
 \end{lstlisting}
 
-Konkrete Bedeutung der Werte: Die Trägerfrequenz von 600 Hz bedeutet, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel ``\nameref{technisches}'') immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulator den Funktionswert 0 hat.
+Konkrete Bedeutung der Werte: Die Trägerfrequenz von 600 Hz bedeutet, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel ``\ref{chowningparameter} - \nameref{chowningparameter}'') immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulator den Funktionswert 0 hat.
 
 \begin{figure} [ht]
 \centering
