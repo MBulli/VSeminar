@@ -120,12 +120,14 @@ Quelle: \cite[S. 4]{zwicker}
 
 Um daher einen ungefähren Eindruck eines synthetisieren Tones zu bekommen, reicht es nicht aus die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen, kann die Formel der FM-Synthese \ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
 
+% TODO siehe matze
+
 \begin{equation}
 \begin{split}
-s(t)=A*\{\; & J_0(I)\sin(\omega_c t)  \\
-         +&J_1(I)[\sin(\omega_c + \;\,\omega_m)t-\sin(\omega_c-\;\,\omega_m)] \\
-         +&J_2(I)[\sin(\omega_c + 2\omega_m)t+\sin(\omega_c-2\omega_m)] \\
-         +&J_3(I)[\sin(\omega_c + 3\omega_m)t-\sin(\omega_c-3\omega_m)] \\
+s(t)=A*\{\; & J_0(I)*\sin(\omega_c t)  \\
+         +&J_1(I)*[\sin(t*(\omega_c + \;\,\omega_m))-\sin(t*(\omega_c-\;\,\omega_m))] \\
+         +&J_2(I)*[\sin(t*(\omega_c + 2\omega_m))+\sin(t*(\omega_c-2\omega_m))] \\
+         +&J_3(I)*[\sin(t*(\omega_c + 3\omega_m))-\sin(t*(\omega_c-3\omega_m))] \\
          +&....\}
 \end{split}
 \label{eq:chowningAddition}
@@ -144,7 +146,7 @@ Quelle: Eigene Darstellung mit MATLAB
 \FloatBarrier
 
 
-Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung. Bei der FM-Synthese treten sie in Erscheinung sobald die Formel \ref{eq:FM_Chowning} der FM-Synthese als Fourier Reihe darstellt wird. Eine Fourier Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung, soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss. [TODO CITE] \cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
+Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung. Bei der FM-Synthese treten sie in Erscheinung sobald die Formel \ref{eq:FM_Chowning} der FM-Synthese als Fourier Reihe dargestellt wird. Eine Fourier Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung, soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss. [TODO CITE] \cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
 
 
 Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude des Grundtones lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel \ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung \ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel \ref{eq:chowningAddition} auf die Grundschwingung $1*sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht.
