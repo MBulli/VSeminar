@@ -119,21 +119,18 @@ Quelle: \cite[S. 4]{zwicker}
 
 Um daher einen ungefähren Eindruck eines synthetisieren Tones zu bekommen, reicht es nicht aus die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen, kann die Formel der FM-Synthese \ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
 
-% TODO Mittig & richtige formel wegen label
-\begin{center}
+\begin{equation}
+\begin{split}
+s(t)=A*\{\; & J_0(I)\sin(\omega_c t)  \\
+         +&J_1(I)[\sin(\omega_c + \;\,\omega_m)t-\sin(\omega_c-\;\,\omega_m)] \\
+         +&J_2(I)[\sin(\omega_c + 2\omega_m)t+\sin(\omega_c-2\omega_m)] \\
+         +&J_3(I)[\sin(\omega_c + 3\omega_m)t-\sin(\omega_c-3\omega_m)] \\
+         +&....\}
+\end{split}
 \label{eq:chowningAddition}
-\begin{lstlisting}[mathescape]
-$s(t)=A*\{ $
-	$\;\;\;J_0(I)\sin(\omega_c t)$
-	$+J_1(I)[\sin(\omega_c+ \;\;  \omega_m)t-\sin(\omega_c-\;\, \omega_m)]$
-	$+J_2(I)[\sin(\omega_c + 2\omega_m)t+\sin(\omega_c-2\omega_m)]$
-	$+J_3(I)[\sin(\omega_c+3\omega_m)t-\sin(\omega_c-3\omega_m)]$
-	$+....\}$
-\end{lstlisting}
-\end{center}
+\end{equation}
 
 Hier bezieht sich $J_\nu(x)$ auf die Bessel Funktionen erster Ordnung. Bessel Funktionen zweiter Ordnung können dazu verwendet werden Lösungen für nicht ganzzahlige $\nu$ Werte zu finden. Im Zusammenhang mit der FM-Synthese werden jedoch nur ganzzahlige $\nu$ Werte benötigt, daher genügt die Bessel Funktion erster Ordnung und $\nu$ wird mit $n$ angegeben. [TODO CITE; Temme] Abbildung \ref{fig:bessel2D} stellt die ersten drei Bessel Funktionen dar.
-
 
 \begin{figure} [ht]
 \centering
