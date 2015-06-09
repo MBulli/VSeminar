@@ -4,9 +4,10 @@ Die bisherige Darstellung der Soundsynthese durch Frequenzmodulation (FM) hat si
 
 \subsection{Parallelschaltung}
 
-\subsubsection{Parallele Träger mit jeweils eigenem unabhängigen Modulator 0,5 S}
+\subsubsection{Parallele Träger mit jeweils eigenem unabhängigen Modulator}
 
 Zur Vollständigkeit soll die simpelste Erweiterung der einfachen FM nicht unerwähnt bleiben, und zwar die Situation zweier paralleler Träger, denen je ein eigener Modulator zugeordnet ist (Abb 1). Dabei handelt es sich streng genommen noch um keine komplexe FM, da die Signalpfade beider Träger erst auf der Ebene des Gesamtausgangssignals gemischt werden und sich ansonsten nicht weiter beeinflussen. Jedes Träger-Modulator-Paar, also T1 mit M1 sowie T2 mit M2, folgt für sich genommen den Prinzipien der einfachen FM, so dass für jedes Paar die Lage der Seitenfrequenzbänder gesondert bestimmt und addiert werden kann. Lage und Amplitude der Seitenfrequenzbänder folgen direkt aus der gewählten Funktion für die Frequenzmodulation, auch wenn die Herleitung nichttrivial ist und Kenntnis der Eigenschaften der sogenannten \textit{Besselfunktion} voraussetzt. Alle Spektren und Wellenformen in Kapitel 3 dieser Seminararbeit wurden auf Basis folgender Funktion für die FM modelliert:
+\label{matze:simplefm}
 \begin{equation}\label{eq:SimpleFM}
 f_{FM}(t) = \sin(w_ct + I\sin(w_mt)) \quad \text{mit} \quad w_ct \quad \text{als Träger-} \quad \text{und} \quad w_mt \quad \text{als Modulationsfreq.}
 \end{equation}
@@ -27,8 +28,15 @@ Eingesetzt in \ref{eq:BesselZwischenform} können alle auftretende Terme der For
 \sin(w_ct + I\sin(w_mt)) \\ &\quad = J_0(I)\sin(w_ct) \\ &\quad + J_1(I)\left(\sin(w_ct + w_mt) - \sin(w_ct - w_mt)\right) \\ &\quad + J_2(I)\left(\sin(w_ct + 2w_mt)+\sin(w_ct-2w_mt)\right) \\ &\quad  + J_3(I)\left(\sin(w_ct + 3w_mt) - \sin(w_ct - 3w_mt)\right) \\ &\quad  + ...
 \end{split}
 \end{equation}
-Dies kann übersichtlich zusammengefasst werden zu (KREH)
-\begin{equation}
+Zieht man die Besselkoeffizienten in die Klammer, so sieht man exakt, wie das Frequenzspektrum liegen muss:
+\begin{equation}\label{eq:FormelinchenBessel}
+\begin{split}
+\sin(w_ct + I\sin(w_mt)) \\ &\quad = J_0(I)\sin(w_ct) \\ &\quad + J_1(I)\sin(w_ct + w_mt) \quad\enspace - J_1(I)\sin(w_ct - w_mt) \\ &\quad + J_2(I)\sin(w_ct + 2w_mt) \quad + J_2(I)\sin(w_ct-2w_mt)\right) \\ &\quad  + J_3(I)\sin(w_ct + 3w_mt) \quad - J_3(I)\sin(w_ct - 3w_mt) \\ &\quad  + ...
+\end{split}
+\end{equation}
+Die erste Zeile zeigt nun die Lage des Basisfrequenzbandes an, während jede folgende Zeile stets die Lage des Seitenfrequenzbands im positiven Bereich angibt (erster Term) sowie das dazugehörige Seitenfrequenzband im negativen Bereich (zweiter Term). Man sieht in dieser Darstellung am Vorzeichen des jeweiligen Terms auch sehr schön, dass ungerade Besselkoeffizienten zu negativen Amplitudenwerten des jeweiligen negativen Seitenfrequenzbandes führt. Da negative Frequenzen einer Phasenverschiebung um 180° entsprechen, ist zu beachten, dass die endgültigen, akustisch wahrgenommenen Frequenzen bekommt, wenn alle negativen Frequenzen einmal je an X- und Y-Achse gespiegelt werden.
+Die Formel \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden zu (KREH)
+\begin{equation}\label{esq:Besselbabymonster}
 \sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
 \end{equation}
 Das Frequenzspektrum für die einfache FM weist nun an der Frequenz \begin{math} w_c \end{math} sowie im positiven Bereich als auch im negativen Bereich stets im Abstand \begin{math} w_m \end{math} Seitenbänder mit einer Amplitude auf, wie sie die Besselfunktion als Koeffizient des entsprechenden Terms zurückliefert. Der Verlauf der Besselfunktion gibt dabei ab einem Modulationsindex größer ca. 2,5 auch negative Vorzeichen für die Seitenfrequenzen (ABB CHOW). Die für beide Träger-Modulatorenpaare nach obiger Formel jeweils ermittelten Frequenzspektren können in einem abschließenden Schritt einfach aufaddiert werden und bilden in Summe das Frequenzspektrum dieser Form der Parallelschaltung. Dies lässt sich in Matlab komfortabel visualisieren. Zunächst das erste Paar T1 und M1 (220:440,1):
@@ -44,28 +52,55 @@ Teilen sich zwei Träger T1 und T2 denselben Modulator M, kann das Frequenzspekt
 
 Zum Vergleich Wellenform und Frequenzspektrum für zwei Träger (220 und 370), die sich denselben Modulator teilen (440, 3):
 
-\subsubsection{Einzelner Träger mit parallel geschaltetem Modulatorenpaar 1 S}
+\subsubsection{Einzelner Träger mit parallel geschaltetem Modulatorenpaar}
 
 Wird ein einzelner Träger T von zwei parallel geschalteten Modulatoren M1 und M2 moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden, da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen und zahlreiche \textit{Kombinationsseitenfrequenzen} (CHOWNING)oder \textit{Intermodulationsfrequenzen]} (SCHOTTSTAEDT) entstehen. Das ist bereits aus der Formel für diese Spielart des FM direkt ersichtlich, die analog zu \ref{eq:SimpleFM} wie folgt lautet:
 \begin{equation}
 f_{FMmodpar}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t))
 \end{equation}
-Nach mehrmaliger Anwendung der trigonometrischen Additionstheoreme zeigt sich bereits, dass diese Formel eine Vielzahl zusätzlicher Terme mit sich bringt:
+Nach mehrmaliger Anwendung der trigonometrischen Additionstheoreme zeigt sich im Vergleich mit \ref{eq:BesselZwischenform} bereits, dass diese Formel eine Vielzahl zusätzlicher Terme mit sich bringt:
 \begin{equation}
 \begin{split}
 \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\ &\quad = \sin(w_ct)\cos(I_1\sin(w_{m1}t))\cos(I\sin(w_{m2}t)) \\ &\quad + \cos(w_ct)\sin(I_1\sin(w_{m1}t))\cos(I\sin(w_{m2}t)) \\ &\quad +\cos(w_ct)\cos(I_1\sin(w_{m1}t))\sin(I\sin(w_{m2}t)) \\ &\quad -\sin(w_ct)\sin(I_1\sin(w_{m1}t))\sin(I\sin(w_{m2}t))
 \end{split}
 \end{equation}
-Substituiert man hier mit \ref{eq:Besselsin} und \ref{eq:Besselcos}, und wendet erneut die Additionstheoreme an, so ergibt sich übersichtlich:
+Substituiert man auch hier jedes \begin{math} \sin(I\sin(w_{mx}t) \end{math} mit \ref{eq:Besselsin} und \begin{math} \cos(I\sin(w_{mx}t)) \end{math}) mit \ref{eq:Besselcos} und wendet erneut die trigonometrischen Additionstheoreme an, so ergibt sich übersichtlich:
 \begin{equation}
 \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) = \sum_{i=-\infty}^{\infty}\sum_{k=-\infty}^{\infty}J_i(I_1)J_k(I_2)\sin(w_ct + iw_{m1}t + kw_{m2}t)
 \end{equation}
+Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 ganze 25 verschiedene Terme (16 für die Kombinationsmöglichkeiten von 1 und 2 sowie den Vorzeichen + und -; weitere 9 für die Kombinationen von 1 und 0 sowie 2 und 0 inklusive der beiden Vorzeichen sowie die Kombination von 0 mit sich selbst) und somit individuelle Frequenzbänder entstehen. Die entsprechenden Additionsterme sind wie folgt:
+\begin{equation}
+\begin{split}
+\sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
+&= J_0(I_1)J_0(I_2)\sin(w_ct) \\
+&+ J_0(I_1)J_1(I_2)\sin(w_ct + w_{m2}t) - J_0(I_1)J_1(I_2)\sin(w_ct - w_{m2}t) \\
+&+ J_0(I_1)J_2(I_2)\sin(w_ct + 2w_{m2}t) + J_0(I_1)J_1(I_2)\sin(w_ct - 2w_{m2}t) \\
+&+ J_1(I_1)J_0(I_2)\sin(w_ct + w_{m1}t) - J_1(I_1)J_0(I_2)\sin(w_ct - w_{m1}t) \\
+&+ J_1(I_1)J_1(I_2)\sin(w_ct + w_{m1}t + w_{m2}t) - J_1(I_1)J_1(I_2)\sin(w_ct + w_{m1}t - w_{m2}t) \\
+&- J_1(I_1)J_1(I_2)\sin(w_ct - w_{m1}t + w_{m2}t) + J_1(I_1)J_1(I_2)\sin(w_ct - w_{m1}t - w_{m2}t) \\
+&+ J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t + 2w_{m2}t) + J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \\
+&- J_1(I_1)J_2(I_2)\sin(w_ct - w_{m1}t + 2w_{m2}t) - J_1(I_1)J_2(I_2)\sin(w_ct - w_{m1}t - 2w_{m2}t) \\
+&+ J_2(I_1)J_0(I_2)\sin(w_ct + 2w_{m1}t) + J_2(I_1)J_0(I_2)\sin(w_ct - 2w_{m1}t) \\
+&+ J_2(I_1)J_1(I_2)\sin(w_ct + 2w_{m1}t + w_{m2}t) + J_2(I_1)J_1(I_2)\sin(w_ct + 2w_{m1}t - w_{m2}t) \\
+&+ J_2(I_1)J_1(I_2)\sin(w_ct - 2w_{m1}t + w_{m2}t) - J_2(I_1)J_1(I_2)\sin(w_ct - 2w_{m1}t - w_{m2}t) \\
+&+ J_2(I_1)J_2(I_2)\sin(2w_ct + 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(I_2)\sin(2w_ct + 2w_{m1}t - 2w_{m2}t) \\
+&+ J_2(I_1)J_2(I_2)\sin(2w_ct - 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(I_2)\sin(2w_ct - 2w_{m1}t - 2w_{m2}t) \\
+&+ ... 
+\end{split}
+\end{equation}
+Es lässt sich somit bereits durch nur einen Träger und zwei unabhängige Modulatoren eine gewaltige Fülle von Frequenzspektren erzeugen. Im folgenden finden sich die Spektren desselben Trägers, einmal moduliert durch einen Modulator mit Einstellungen blablubb,
+einmal moduliert durch einen Modulator mit Einstellungen onkonk.
 
+Zum Vergleich die Anwendung beider Modulatoren mit unveränderten Einstellungen, wieder auf denselben Träger. Es fällt auf, dass das komplexe Spektrum dieser Form der Parallelschaltung die individuellen Beiträge beider Modulatoren kaum noch erkennen lässt.
 
 
 \subsection{Kaskadenschaltung}
 
+Die bisher betrachteten Schaltungen war gemeinsam, dass unabhängig davon, ob ein Träger, mehrere Träger, ein Modulator oder mehrere Modulatoren verwendet worden sind, in keinem der Fälle ein Modulator selbst durch einen weiteren Modulator moduliert worden ist. Diese Kombinationsmöglichkeit eines Trägers sowie zweier Modulatoren stellt jedoch ein weiteres mächtiges Instrument der FM dar und soll im folgenden untersucht werden.
+
 \subsubsection{Einzelner Träger mit in Reihe geschaltetem Modulatorenpaar 2 S}
+
+
 
 \subsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
 
