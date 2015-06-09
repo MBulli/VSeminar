@@ -67,6 +67,7 @@ fluteFM = fluteFM+(HighfeedbackNoise.*A*0.5);
 
 %% create figure
 figure(3);
+[fluteOrig,fs2] = audioread('fluteOrigG4.wav');
 fluteFM = [fluteFM, zeros(1,11025), fluteOrig(:,1)'];
 
 

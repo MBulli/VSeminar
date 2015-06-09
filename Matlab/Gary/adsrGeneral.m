@@ -1,9 +1,11 @@
-t = 0:1/44100:1.3;
+length = 1.3;       %length of the tone
+fs = 44100;
+t = 0:1/fs:length;  %timecode for each sample
 
 attackTime = [0,0.1];
 decayTime = [0.1,0.2];
-sustainTime = [0.2,1.1];
-releaseTime = [1.1,1.3];
+sustainTime = [0.2,1.2];
+releaseTime = [1.2,1.3];
 attackValue = [0,0.3];
 decayValue = [0.3,0.25];
 sustainValue = [0.25,0.23];
@@ -25,5 +27,10 @@ Release = (cos(2*pi*(1/((releaseTime(2)-releaseTime(1))*2))*(ReleaseTimes-releas
 
 A = [Attack,Decay,Sustain,Release];
 
-plot(t,A);
-set(gca, 'XLim', [0 1.3]);
+plot(A);
+set(gca, 'XTick', 0:4410:length*fs);
+set(gca, 'XTickLabel', 0:4410/fs:length);
+set(gca, 'XLim', [0, length*fs]);
+xlabel('Sekunden'); 
+ylabel('Amplitude');
+title('ADSR-Hüllkurve Querflöte Allgemein');

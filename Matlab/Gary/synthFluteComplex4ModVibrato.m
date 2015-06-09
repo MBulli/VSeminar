@@ -4,7 +4,7 @@ length = 1.3;       %length of the tone
 t = 0:1/fs:length;  %timecode for each sample
 
 fc = 796.75;        %carrier frequency G5
-fm = fc;%+1.5;        %modulation frequency
+fm = fc+2.5;        %modulation frequency
 fm1 = fm;
 fm2 = fm;
 fm3 = fm;

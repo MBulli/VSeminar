@@ -1,6 +1,8 @@
 function A = adsrComplex(t)
 % length = 1.3;       %length of the tone
-% t = 0:1/44100:length;  %timecode for each sample
+% fs = 44100;
+% t = 0:1/fs:length;  %timecode for each sample
+
 
 attackTime = [0,0.1];
 decayTime = [0.1,0.2];
@@ -34,4 +36,10 @@ Release = (cos(2*pi*(1/((releaseTime(2)-releaseTime(1))*2))*(ReleaseTimes-releas
 A = [Attack,Decay,Sustain1,Sustain2,Sustain3,Release];
 
 % plot(A);
+% set(gca, 'XTick', 0:4410:length*fs);
+% set(gca, 'XTickLabel', 0:4410/fs:length);
+% set(gca, 'XLim', [0, length*fs]);
+% xlabel('Sekunden'); 
+% ylabel('Amplitude');
+% title('ADSR-Hüllkurve Querflöte Komplex');
 end
