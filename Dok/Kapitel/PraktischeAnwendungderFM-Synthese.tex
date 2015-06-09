@@ -4,6 +4,9 @@
 Da es bei der FM Synthese schwer ist im Vorfeld zu wissen was für ein Spektrum durch die Synthese erzeugt wird, ist es schwer und benötigt einige Experimente um mit dieser Technik ein echt wirkendes Instrument nachzubilden.
 Trotzdem gibt es einige Methoden den generierten Klang natürlicher wirken zu lassen. Diese werden im weiteren Verlauf diese Kapitels vorgestellt und anschließend versucht den Klang eines Tones einer Querflöte nachzubilden.
 
+\FloatBarrier
+\subsubsection{Theoretisches Vorgehen}
+
 Da bei vielen Instrumenten die Lautstärke während der Laufzeit eines Tones variiert, und ein abruptes Ein oder Ausschalten des Tones nicht realistisch klingt, ist die Nutzung einer ADSR-Hüllkurve ein wichtiger Bestandteil der Nachbildung eines Instrumentes. ADSR steht für die einzelnen Phasen eines Tones: Attack, Decay, Sustain und Release. Diese Phasen sollen hier vereinfacht erklärt werden. Beim Drücken einer Taste wird der Ton angeschlagen und die Lautstärke des Tones steigt schnell bis zu einem maximal Wert an. Diese Phase wird Attack-Phase genannt. Nachdem die maximale Lautstärke erreicht wurde, startet die Decay Phase. In dieser Phase sinkt die Lautstärke schnell auf einen geringeren Wert ab. Danach befindet sich der Ton in der Sustain Phase und die Lautstärke bleibt gleich, solange der Ton gespielt wird. Sobald die Taste losgelassen wird, nimmt die Lautstärke wieder bis zu ihrem minimal Wert ab. In Abbildung \ref{fig:defaultADSR} ist der Verlauf der Lautstärke einer Standard ADSR-Hüllkurve noch einmal grafisch dargestellt.
 
 \begin{figure} [ht]
@@ -52,7 +55,8 @@ Einschwingvorgang
 Jedes Instrument hat seine eigene charakteristische Einschwingphase, bei vielen Instrumenten ist es eine kurze Hold Phase, die mittels ADSR-Hüllkurve realisiert werden kann.
 
 
-Beispiel Querflöte
+\FloatBarrier
+\subsubsection{Nachbildung eines Tones einer Querflöte mittels FM-Synthese}
 
 Im Laufe dieses Kapitels soll ein Ton einer Querflöte mittels FM-Synthese erzeugt und mit den oben beschriebenen Techniken verfeinert werden. Alle Beispiele sind in Matlab erstellt und können mit den beiliegenden Dateien nachgestellt werden. In Abbildung \ref{fig:plotFluteOrig} sind Spektrogram, Waveform und Spektrum des Originalen Querflöten Tones abgebildet. Mit den Information aus den vorliegenden Grafiken wird versucht, diesen spezifischen Ton nachzubilden.
 
@@ -64,7 +68,7 @@ Im Laufe dieses Kapitels soll ein Ton einer Querflöte mittels FM-Synthese erzeu
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Anhand des Spektrums können wir bereits einige Erkenntnisse für unsere FM-Synthese auslesen. Zunächst ist zu erkennen das die am stärksten ausgeprägte Frequenz bei etwa 800 Hz liegt. Bei genauerer Betrachtung wird sichtbar das die Frequenz nicht exakt bei 800 Hz sondern bei 796.75 Hz ihren maximalen Ausschlag erreicht. Dies entspricht am ehesten einem G5 mit 784 Hz \cite[S. 181]{borucki}. Diese Frequenz (796.75 Hz) werden wir bei der FM-Synthese als Träger Frequenz nutzen. Im Spektrum sind außerdem noch mehrere Seitenfrequenzen zu sehen. Die erste dieser Seitenfrequenzen befindet sich bei etwa dem doppelten der Grundfrequenz. Bei genauerer Betrachtung wird sichtbar das sie ihren maximalen Amplitudenwert wirklich genau bei dem doppeltem der Grundfrequenz (1593.5 Hz) hat. Das bedeutet der Abstand zwischen Grundfrequenz und erster Seitenfrequenz ist genauso groß wie der Abstand von 0 Hz bis zur Grundfrequenz, hierbei ist zu bemerken das der Abstand von einem ganzzahligen Multiplikator mit der Grundfrequenz typisch für einen harmonischen Ton ist \cite[S. 528]{chowningPaper}. Die nächsten Seitenfrequenzen haben jeweils wieder den selben Abstand von 796.75 Hz zur jeweiligen vorangegangenen Seitenfrequenz. Aus dieser Beobachtung können wir unsere Modulationsfrequenz von 796.75 Hz schließen. Anhand der Anzahl der sichtbaren Seitenfrequenzen im Spektrum können wir eine ungefähre Abschätzung unseres Modulationsindexes wagen. Da zwischen Modulationsindex und Anzahl der Seitenfrequenzen etwa gilt I+2 = n (bla) wird als Modulationsindex fürs erste einmal 0.5 angenommen. 
+Anhand des Spektrums können bereits einige Erkenntnisse für die FM-Synthese auslesen werden. Zunächst ist zu erkennen das die am stärksten ausgeprägte Frequenz bei etwa 800 Hz liegt. Bei genauerer Betrachtung wird sichtbar das die Frequenz nicht exakt bei 800 Hz sondern bei 796.75 Hz ihren maximalen Ausschlag erreicht. Dies entspricht am ehesten einem G5 mit 784 Hz \cite[S. 181]{borucki}. Diese Frequenz (796.75 Hz) werden wir bei der FM-Synthese als Träger Frequenz nutzen. Im Spektrum sind außerdem noch mehrere Seitenfrequenzen zu sehen. Die erste dieser Seitenfrequenzen befindet sich bei etwa dem doppelten der Grundfrequenz. Bei genauerer Betrachtung wird sichtbar das sie ihren maximalen Amplitudenwert wirklich genau bei dem doppeltem der Grundfrequenz (1593.5 Hz) hat. Das bedeutet der Abstand zwischen Grundfrequenz und erster Seitenfrequenz ist genauso groß wie der Abstand von 0 Hz bis zur Grundfrequenz, hierbei ist zu bemerken das der Abstand von einem ganzzahligen Multiplikator mit der Grundfrequenz typisch für einen harmonischen Ton ist \cite[S. 528]{chowningPaper}. Die nächsten Seitenfrequenzen haben jeweils wieder den selben Abstand von 796.75 Hz zur jeweiligen vorangegangenen Seitenfrequenz. Aus dieser Beobachtung können wir unsere Modulationsfrequenz von 796.75 Hz schließen. Anhand der Anzahl der sichtbaren Seitenfrequenzen im Spektrum können wir eine ungefähre Abschätzung unseres Modulationsindexes wagen. Da zwischen Modulationsindex und Anzahl der Seitenfrequenzen etwa gilt I+2 = n (bla) wird als Modulationsindex fürs erste einmal 0.5 angenommen. 
 
 \begin{figure} [ht]
 \centering
@@ -122,23 +126,22 @@ Quelle: Eigene Darstellung mit Matlab
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Nachdem Vibrato und ADSR-Hüllkurve hinzugefügt wurden, hat sich das Spektrogram zur Abbildung \ref{fig:plotFMSyntheseKomplex4Mod} kaum geändert. Es wird nur der Vibrato durch die etwas breiteren Seitenfrequenzen und die ADSR-Hüllkurve durch ansteigen des Spektrums zu Beginn des Tones und Abfallen des Spektrums nach 1.2 Sekunden sichtbar. Der Ton hört sich von der Tonhöhe und der Intensität schon stark nach dem Original Querflöten Ton an. Allerdings fehlen noch die Typischen Blas- und Luftverwirblungsgeräusche sowie das sehr starke Anblasgeräusch.
+Nachdem Vibrato und ADSR-Hüllkurve hinzugefügt wurden, hat sich das Spektrogram zur Abbildung \ref{fig:plotFMSyntheseKomplex4Mod} kaum geändert. Es wird nur der Vibrato durch die etwas breiteren Seitenfrequenzen und die ADSR-Hüllkurve durch ansteigen des Spektrums zu Beginn des Tones und Abfallen des Spektrums nach 1.2 Sekunden sichtbar. Der Ton hört sich von der Tonhöhe und der Intensität schon stark nach dem Originalen Querflötenton an. Allerdings fehlen noch die Typischen Blas- und Luftverwirblungsgeräusche sowie das sehr starke Anblasgeräusch. Um die typischen Blasgeräusche zu erzeugen wird zunächst ein FM Feedback Generator mit hohem Modulationsindex erzeugt. Dieser erzeugt ein Rauschen ähnlich dem weißen Rauschen. Würde das Rauschen ohne weitere Arbeitsschritte dem synthetisiertem Signal hinzugefügt, könnte das Rauschen stark herausgehört werden. Um dies zu verhindern muss das Rauschen vorerst gefiltert werden. Hierzu wird ein Multibandpassfilter über alle möglichen Seitenfrequenzen erstellt. Das Gefilterte Rauschen wird anschließend noch mit einer ADSR-Hüllkurve veredelt, da während der Attack-Phase des Original Tones, wie im Spektrogram in Abbildung \ref{fig:plotFluteOrig} zu sehen, das Rauschen durch das Anblasen des Instrumentes sehr scharf heraus sticht. Zusätzlich kann noch ein sehr leises Rauschen des Feedback FM-Generators ohne Filter über das ganze Frequenzspektrum gelegt werden um auch in den höheren Frequenzen einen leichten Ausschlag im Spektrogram kenntlich zu machen. In Abbildung \ref{fig:} wird das Spektrogram des synthetisierten Tones für alle bisherigen Veränderungen gezeigt.
+
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.5\textwidth]{spektrogramFMSyntheseComplex4ModVibratoADSRNoise.png}
+\caption{Plot des Spektrograms der FM-Synthese mit 4 Modulatoren, ADSR-Hüllkurve, Vibrato und Rauschen}
+\label{fig:spektrogramFMSyntheseComplex4ModVibratoADSRNoise}
+Quelle: Eigene Darstellung mit Matlab
+\end{figure}
+
+
 
 \FloatBarrier
+\subsubsection{FM Parametrisierung mittels Genetischer Algorithmen}
 
-FM Parametrisierung mittels Genetischer Algorithmen
-
-Mittels genetischer Algorithmen ist es möglich Parameter der FM Synthese herauszufinden, die nötig sind um einen Ton zu erzeugen der nach einem echten Instrument klingt. Diese Algorithmen zerlegen einen echten Ton eines Instrumentes mittels Schneller Fourier Transformation in seine einzelnen Bestandteile und versucht verschiedene Parameter für die Synthese aus, zerlegt das entstandene Signal wieder mittels Schneller Fourier Transformation und vergleicht die Ergebnisse. Mit diesem Verfahren können recht zuverlässig realistisch Synthetisierte Töne erzeugt werden, die von einem Originalen Instrument kaum zu unterscheiden sind. Da für die Implementierung eines solchen Algorithmus allerdings die Zeit fehlt, wird dieses Thema in dieser Arbeit nicht weiter vertieft. Eine Ausführliche Erklärung der FM Parametrisierung mittels Genetischer Algorithmen kann in Andrew Horners Artikel "Nested Modulator and Feedback FM Matching of Instrument Tones" nachgelesen werden.
-
-
-Doppel Modulator FM
-x(t) = w(t) sin[2*pi*fc*t + Im1*sin(2*pi*fm1*t) + Im2*sin(2*pi*fm2*t)];
-
-Geschachtelte FM Modulation
-x(t) = w(t)*sin{2*pi*fc*t + Im1*sin[2*pi*fm1*t + Im2*sin(2*pi*fm2*t)]}
-
-Feedback FM 
-xn = wn *sin[(2*pi*f1n/SR)+(B*xn-1/wn-1)]
+Mittels genetischer Algorithmen ist es möglich Parameter der FM Synthese herauszufinden, die nötig sind um einen Ton zu erzeugen der einem echten Instrument nachempfunden ist. Diese Algorithmen zerlegen einen echten Ton eines Instrumentes mittels Schneller Fourier Transformation in seine einzelnen Bestandteile und versucht verschiedene Parameter für die Synthese aus, zerlegt das entstandene Signal wieder mittels Schneller Fourier Transformation und vergleicht die Ergebnisse. Mit diesem Verfahren können recht zuverlässig realistisch Synthetisierte Töne erzeugt werden, die von einem Originalen Instrument kaum zu unterscheiden sind. Da für die Implementierung eines solchen Algorithmus allerdings die Zeit fehlt, wird dieses Thema in dieser Arbeit nicht weiter vertieft. Eine Ausführliche Erklärung der FM Parametrisierung mittels Genetischer Algorithmen kann in Andrew Horners Artikel "Nested Modulator and Feedback FM Matching of Instrument Tones" nachgelesen werden.
 
 \FloatBarrier
 \subsection{Modulationsframework (Theorie -> Praxis)}
