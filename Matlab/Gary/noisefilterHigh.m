@@ -11,8 +11,8 @@ function Hd = noisefilterHigh
 Fs = 44100;  % Sampling Frequency
 
 N   =4;      % Order
-Fc1 = 10200;  % First Cutoff Frequency
-Fc2 = 11800;  % Second Cutoff Frequency
+Fc1 = 11200;  % First Cutoff Frequency
+Fc2 = 12200;  % Second Cutoff Frequency
 
 % Construct an FDESIGN object and call its BUTTER method.
 h  = fdesign.bandpass('N,F3dB1,F3dB2', N, Fc1, Fc2, Fs);

@@ -1,7 +1,7 @@
 \subsection{Besonderheiten der FM-Synthese}
-
+\FloatBarrier
 \subsubsection{Phasenmodulation als FM}
-Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben. Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung, da er in seinem Artikel eine Formel beschreibt die einer PM gleicht und ein MUSIC V Patch der eine FM beschreibt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM Synthesizer entnommen werden, dass Yamaha ihre FM Synthese über eine PM erzeugt. \cite{oya1987electronic} 
+Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben. Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung, da er in seinem Artikel eine Formel beschreibt die einer PM gleicht und ein MUSIC V Patch der eine FM beschreibt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM-Synthesizer entnommen werden, dass Yamaha ihre FM-Synthese über eine PM erzeugte. \cite{oya1987electronic} 
 
 Wie der Name Winkelmodulation andeutet wird der Phasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. Die Amplitude \(A\) bleibt während der Modulation konstant. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden:
 \begin{equation}
@@ -72,7 +72,7 @@ Draus ergibt sich für ein gemeinsames Modulationssignal \(m(t)\) folgender Zusa
 Da \({d\varphi(t)}/{dt}\) die Ableitung und somit die Änderung von \(\varphi(t)\) ist, ändert sich \(\varphi(t)\) wenn die Ableitung sich ändert und umgekehrt. PM und FM treten also immer gleichzeitig auf.
 
 Bisher wurde nur das modulierte Signal betrachtet und dessen Abhängigkeit von den allgemeinen Modulationssignalen \(p(t)\) bzw. \(f(t)\). Für die bisherigen Erkenntnisse war es einfach nicht notwendig, sich auf eine spezifische Modulationssignale festzulegen. Diese allgemeine Betrachtung ist jedoch mehr für die Nachrichtentechnik interessant als für einen FM Synthesizer.
-Daher werden die folgenden Formeln im Kontext der Akustik betrachtet und weniger streng mathematisch wie bisher. So kann zum Beispiel das menschliche Gehör keine Phasenverschiebungen wahrnehmen. Dies erlaubt Umformungen von Termen die mathematisch nicht korrekt sind, jedoch am Ergebnis, also dem hörbaren Klang, keine Auswirkung haben. Des Weiteren wird im Folgenden ein sinusförmiges Signal als Modulator verwendet, welches sowohl für die PM als auch die FM verwendet wird und wie folgt definiert ist
+Daher werden die folgenden Formeln im Kontext der Akustik betrachtet und weniger streng mathematisch wie bisher. So kann zum Beispiel das menschliche Gehör keine initiale Phasenverschiebungen wahrnehmen. Dies erlaubt Umformungen von Termen die mathematisch nicht korrekt sind, jedoch am Ergebnis, also dem hörbaren Klang, keine Auswirkung haben. Deshalb ist es auch korrekt bei den obigen Umformungen den initialen Phasenwinkel $\varphi_0$ zu ignorieren. Des Weiteren wird im Folgenden ein sinusförmiges Signal als Modulator verwendet, welches sowohl für die PM als auch die FM verwendet wird und wie folgt definiert ist
 \begin{equation}
 m(t)=f(t)=p(t)=sin(\omega_m t)
 \end{equation}
@@ -85,50 +85,100 @@ Die von Chowning vorgestellte Formel gleicht der Formel für eine PM. \cite{chow
 \begin{equation*}
 s_{FM}(t)=A*sin(\omega_0t-\frac{k_{FM}}{\omega_m}*cos(\omega_m t))
 \end{equation*}
-Mathematisch gesehen, unterscheidet sich diese Formel zu einer Phasenmodulation. Genauer gesagt, ergibt sich durch die Integration eine Verschiebung von einer Phase, da ein negativer Kosinus genau eine Phase verschoben zu einem Sinus ist. Wie bereits erwähnt, nimmt das Gehör jedoch keine Phasenverschiebungen wahr, sondern nur Frequenzen. Unter dieser Annahme, kann der negative Kosinus mit einem positiven Sinus ausgetauscht werden, ohne eine hörbare Veränderung des Tons zu erzeugen.
+Mathematisch gesehen, unterscheidet sich diese Formel zu einer Phasenmodulation. Genauer gesagt, ergibt sich durch die Integration eine Verschiebung von einer Phase, da ein negativer Kosinus genau eine Phase verschoben zu einem Sinus ist. Wie bereits erwähnt, nimmt das Gehör jedoch keine initiale Phasenverschiebungen wahr. Unter dieser Annahme, kann der negative Kosinus mit einem positiven Sinus ausgetauscht werden, ohne eine hörbare Veränderung des Tons zu erzeugen.
 \begin{equation*}
 e(t)=A*sin(\omega_0t+\frac{k_{FM}}{\omega_m}*sin(\omega_m t))
-\label{eq:FM_Chowning}
 \end{equation*}
-Die dadurch gewonnene Formel entspricht somit der von Chowning vorgestellten Formel für eine Frequenzmodulation und ist im Kontext der Akustik korrekt.
+Die dadurch gewonnene Formel ähnelt in der Struktur der von Chowning vorgestellten Formel schon sehr. Jedoch ist in der obigen Formel der Modulationsindex $I$ nicht direkt ersichtlich. Dieser ist bei Chowning als $I=d/\beta$ definiert. Wobei $d$ dem Frequenzhub entspricht und $\beta$ der Modulationsfrequenz $\omega_m$. Für den Frequenzhub $\Delta f$ gilt: \cite[S. 219]{lathi}
+\begin{equation*}
+\Delta f = k_{FM}*[\dot f(t)]_{\max}
+\end{equation*}
+Da unser $f(t)$ eine Sinusfunktion darstellt, entspricht die Ableitung $\dot f(t)$ einer Kosinusfunktion und somit ist ihr Maximum gleich $1$ und entfällt in der obigen Formel. Somit reduziert sich der Frequenzhub zu $\Delta f=k_{FM}$ und kann in die obige Formel eingesetzt werden. Dadurch kann nun $\Delta f / \omega_m$ durch den Modulationsindex $I$ substituiert werden und es ergibt sich die originale Formel nach Chowning:
+\begin{equation}
+e(t)=A*sin(\omega_0t+I*sin(\omega_m t))
+\label{eq:FM_Chowning}
+\end{equation}
+Diese Formel entspricht somit der von Chowning vorgestellten Formel für eine FM-Synthese und ist im Kontext der Akustik korrekt.
 
+
+
+\FloatBarrier
+\label{bulli:ohrToeneUndFrequenzen}
 \subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
 Ein Ton wird durch eine einfache Sinusschwingung erzeugt. Die Tonstärke, also die Lautstärke eines Tones, hängt von der Amplitude der Schwingung ab. Je größer die Amplitude desto lauter wirkt der Ton. Die Frequenz einer Schwingung empfindet der Mensch als Tonhöhe. Je größer die Frequenz der Schwingung desto höher wird der Ton empfunden. 
 Ein natürlicher Klang setzt sich nicht aus einer einzigen Frequenz zusammen, sondern aus mehreren Teiltönen. Jeder Teilton entspricht einem Sinuston mit einer bestimmten Frequenz, welche ein ganzzahliges Vielfaches des tiefsten Teiltones ist. Der tiefste Teilton, also der Teilton mit der niedrigsten Frequenz, wird als Grundton bezeichnet. \cite[S. 87]{borucki} 
-Dabei kann das menschliche Gehör die Tonhöhe bestimmen, auch wenn der Grundton schwach ausgeprägt oder nicht vorhanden ist. \cite[S. 4]{zwicker} Des Weiteren nehmen wir neben der Tonhöhe und Lautstärke eines Tones etwas weiteres war. Das Spektrum eines Tones gibt uns ein Gefühl für unterschiedliche Klänge. Dieses Empfinden wird als Klangfarbe bezeichnet und lässt uns z.B. zwischen verschiedenen Instrumenten unterscheiden. \cite[S. 5]{zwicker} \cite[S. 226]{raichel}
+Dabei kann das menschliche Gehör die Tonhöhe bestimmen, auch wenn der Grundton schwach ausgeprägt oder nicht vorhanden ist. \cite[S. 4]{zwicker} Abbildung \ref{fig:geige} zeigt die Wellenform eines Geigentones und dem dazu gehörigen Frequenzspektrums. Obwohl der Grundton wenig dominiert, die ersten acht Frequenzen sind in etwa gleichstark, würde das Ohr die Tonhöhe richtig erkennen. Des Weiteren nehmen wir neben der Tonhöhe und Lautstärke eines Tones etwas Weiteres war. Das Spektrum eines Tones gibt uns ein Gefühl für unterschiedliche Klänge. Dieses Empfinden wird als Klangfarbe bezeichnet und lässt uns z.B. zwischen verschiedenen Instrumenten unterscheiden. \cite[S. 5]{zwicker} \cite[S. 226]{raichel}
 Warum die Teiltöne entscheidend für den Klangcharakter sind erkennt man an der stark vereinfachten Funktionsweise des menschlichen Ohr. Die Schallwellen eines Klangs versetzten im Ohr, genauer in der Gehörschnecke, eine Flüssigkeit in Schwingung. Dadurch, dass die Gehörschnecke sich verengt, treffen die unterschiedlichen Frequenzen in Kombination mit der Amplitude, an unterschiedlichen Stellen auf Sinneshaare, welche die entsprechenden elektrischen Signale an das Gehirn weiterleiten. \cite[S. 87 f.]{zwicker}
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{GeigenTon.png}
-\caption{oben: Schalldruck eines Geigenklangs; unten: Frequenzspektrum dieses Klanges}
+  \includegraphics[width=0.95\textwidth]{GeigenTon.png}
+\caption{Links: Schalldruck eines Geigenklangs; Rechts: Frequenzspektrum dieses Klanges}
 \label{fig:geige}
 Quelle: \cite[S. 4]{zwicker}
 \end{figure}
+\FloatBarrier
+
+Um daher einen ungefähren Eindruck eines synthetisieren Tones zu bekommen, reicht es nicht aus die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen, kann die Formel der FM-Synthese \ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
+
+\begin{equation}
+\begin{split}
+s(t)=A*\{\; & J_0(I)\sin(\omega_c t)  \\
+         +&J_1(I)[\sin(\omega_c + \;\,\omega_m)t-\sin(\omega_c-\;\,\omega_m)] \\
+         +&J_2(I)[\sin(\omega_c + 2\omega_m)t+\sin(\omega_c-2\omega_m)] \\
+         +&J_3(I)[\sin(\omega_c + 3\omega_m)t-\sin(\omega_c-3\omega_m)] \\
+         +&....\}
+\end{split}
+\label{eq:chowningAddition}
+\end{equation}
+
+Hier bezieht sich $J_\nu(x)$ auf die Bessel Funktionen erster Ordnung. Bessel Funktionen zweiter Ordnung können dazu verwendet werden Lösungen für nicht ganzzahlige $\nu$ Werte zu finden. Im Zusammenhang mit der FM-Synthese werden jedoch nur ganzzahlige $\nu$ Werte benötigt, daher genügt die Bessel Funktion erster Ordnung und $\nu$ wird mit $n$ angegeben. [TODO CITE; Temme] Abbildung \ref{fig:bessel2D} stellt die ersten drei Bessel Funktionen dar.
+
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.80\textwidth]{Bessel2D.png}
+\caption{2D-Plot der Bessel Funktionen $J_0$, $J_1$ und $J_2$.}
+\label{fig:bessel2D}
+Quelle: Eigene Darstellung mit MATLAB
+\end{figure}
+
+\FloatBarrier
 
 
-Um daher einen ungefähren Eindruck eines synthetisieren Tones zu bekommen, reicht es nicht aus die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden dargestellt werden. \cite[S. 33]{raichel} Durch mathematische Umformungen, kann die FM Synthese Formel \ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
+Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung. Bei der FM-Synthese treten sie in Erscheinung sobald die Formel \ref{eq:FM_Chowning} der FM-Synthese als Fourier Reihe darstellt wird. Eine Fourier Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung, soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss. [TODO CITE] \cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
 
-\begin{lstlisting}[mathescape]
-$s(t)=A*\{ $
-	$\;\;\;J_0(I)\sin(\omega_c t)$
-	$+J_1(I)[\sin(\omega_c+ \;\;  \omega_m)t-\sin(\omega_c-\;\, \omega_m)]$
-	$+J_2(I)[\sin(\omega_c + 2\omega_m)t+\sin(\omega_c-2\omega_m)]$
-	$+J_3(I)[\sin(\omega_c+3\omega_m)t-\sin(\omega_c-3\omega_m)]$
-	$+....\}$
-\end{lstlisting}
+
+Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude des Grundtones lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel \ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung \ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel \ref{eq:chowningAddition} auf die Grundschwingung $1*sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht.
+
+\label{bulli:besselModIndexZusammenahang}
+Wird nun der Modulationsindex stetig erhöht, wird Energie aus der Grundfrequenz genommen und auf die Seitenbänder verteilt. Dies lässt sich wieder an Abbildung \ref{fig:bessel2D} erkennen. Wird $I$ größer fällt die Amplitude von $J_0(I)$ ab und die restlichen Bessel Funktionen steigen an. $J_0(I)$ durchläuft den Nullpunkt bei $\approx2,5$, das bedeutet bei einem Modulationsindex von ungefähr $2,5$ ist der Grundton nicht im Frequenzspektrum vorhanden, sondern nur noch Seitenfrequenzen. In Abbildung \ref{fig:chowningEnergieVerteilung} wird der Modulationsindex von $0$ bis $4$ inkrementiert. Es wird ersichtlich, wie immer mehr Seitenfrequenzen entstehen und dabei die Grundfrequenz abnimmt. In Abbildung \ref{fig:chowningEnergieVerteilung} wird der Betrag der Amplitude dargestellt, somit wird die Grundfrequenz für $I=3$ im Vergleich zu $I=2$ wieder größer, da die Bessel Funktion den Nullpunkt durchlaufen hat und im negativen Bereich größer wird, bis das lokale Minimum erreicht wird und der Betrag wieder bis $0$ abnimmt.
+
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.5\textwidth]{Chowning_EnergieVerteilung.png}
+\caption{Beispiel zur Veranschaulichung der zunehmender Bandbreite in Abhängigkeit eines wachsenden Modulationsindex. $c$ entspricht der Trägerfrequenz, $c\pm n*m$ entspricht der n-ten Seitenfrequenz.}
+\label{fig:chowningEnergieVerteilung}
+Quelle: \cite{chowningPaper}
+\end{figure}
+
+
 
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth]{ChowningBessel.png}
-\caption{Besselfunktion $J_0$ bis $J_1$ und Modulationsindex von 0 bis 20. }
+\caption{Besselfunktion $J_0$ bis $J_{15}$ und Modulationsindex $I$ von 0 bis 20. }
 \label{fig:bessel3D}
 Quelle: \cite{chowningPaper}
 \end{figure}
+
+
 
 Durch die zeitliche Änderung der Frequenz bei der Frequenzmodulation entstehen Seitenfrequenzbänder.
 
 
 Das Frequenzspektrum eines natürlichen Tons ist selten statisch sondern variiert mit der Zeit. Diese Änderung der Teiltöne lässt das menschliche Ohr Töne unterschiedlich wahrnehmen. Durch die FM-Synthese lassen sich, im Vergleich zu anderen Syntheseverfahren, auf einfachen Weg komplexe und vielfältige Frequenzspektren künstlich erzeugen.
 
-
+\FloatBarrier
 \subsubsection{Harmonische Frequenzverhältnisse(Inkl. Vibrato)}
+
+
+\FloatBarrier
