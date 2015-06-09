@@ -1,10 +1,10 @@
-\subsection{Prinzipien der komplexen Frequenzmodulation}
+\section{Prinzipien der komplexen FM-Synthese}
 
 Die bisherige Darstellung der Soundsynthese durch Frequenzmodulation (FM) hat sich auf die \textit{einfache} FM konzentriert, d.h. auf die Modulation eines einzigen Trägers durch einen einzelnen Modulator. Dadurch konnten die Prinzipien der Einflussnahme auf die Sounderzeugung über die Parameter von Trägerfrequenz, Modulationsfrequenz sowie den Modulationsindex analytisch klar isoliert werden. In der Praxis ist diese Limitation nicht notwendig, so dass zur Erzeugung komplexer Klangspektren auf den gleichzeitigen Einsatz mehrerer Träger und Modulatoren zurückgegriffen wird. Diese können dabei flexibel miteinander verschaltet werden. Man spricht in diesem Zusammenhang von der \textit{komplexen} FM. Im folgenden werden die Prinzipien der komplexen FM näher beleuchtet. Auch hier wird zunächst mit einer künstlichen Limitation gearbeitet und der bisher betrachtete Fall entweder um einen weiteren Träger erweitert oder um einen weiteren Modulator. Denkbar sind unter diesen Bedingungen zwei grundsätzliche Verschaltungsmuster, und zwar zum einen eine Parallelschaltung, zum anderen eine Reihenschaltung. Anschließend wird am Beispiel des digitalen Synthesizers \textit{FM 8} des deutschen Herstellers \textit{Native Instruments} beispielhaft gezeigt, inwiefern moderne Software die Klangerzeugung durch komplexe FM für den Benutzer handhabbar macht. 
 
-\subsubsection{Parallelschaltung}
+\subsection{Parallelschaltung}
 
-\paragraph{Parallele Träger mit jeweils eigenem unabhängigen Modulator 0,5 S}$\;$
+\subsubsection{Parallele Träger mit jeweils eigenem unabhängigen Modulator 0,5 S}
 
 Zur Vollständigkeit soll die simpelste Erweiterung der einfachen FM nicht unerwähnt bleiben, und zwar die Situation zweier paralleler Träger, denen je ein eigener Modulator zugeordnet ist (Abb 1). Dabei handelt es sich streng genommen noch um keine komplexe FM, da die Signalpfade beider Träger erst auf der Ebene des Gesamtausgangssignals gemischt werden und sich ansonsten nicht weiter beeinflussen. Jedes Träger-Modulator-Paar, also T1 mit M1 sowie T2 mit M2, folgt für sich genommen den Prinzipien der einfachen FM, so dass für jedes Paar die Lage der Seitenfrequenzbänder gesondert bestimmt und addiert werden kann. Lage und Amplitude der Seitenfrequenzbänder folgen direkt aus der gewählten Funktion für die Frequenzmodulation, auch wenn die Herleitung nichttrivial ist und Kenntnis der Eigenschaften der sogenannten \textit{Besselfunktion} voraussetzt. Alle Spektren und Wellenformen in Kapitel 3 dieser Seminararbeit wurden auf Basis folgender Funktion für die FM modelliert:
 \begin{equation}\label{eq:SimpleFM}
@@ -38,13 +38,13 @@ Nun das zweite Paar T2 und M2 (230:500,1):
 Bei beiden einfachen FM sieht man sehr gut, dass sich die Seitenfrequenzbänder in Abständen der Modulationsfrequenz um die Trägerfrequenz nach beiden Seiten ausbreiten. Und schließlich in der Parallelschaltung. Man sieht sehr gut, dass sich die Einzelspektren aufaddieren. 
 
 
-\paragraph{Parallele Träger mit einem gemeinsamen Modulator}$\;$
+\subsubsection{Parallele Träger mit einem gemeinsamen Modulator}
 
 Teilen sich zwei Träger T1 und T2 denselben Modulator M, kann das Frequenzspektrum ebenfalls als Summe zweier unabhängiger einfacher FM betrachtet werden. Hierzu kann einfach das Frequenzspektrum des einen Trägers T1 mit der Frequenz und dem Modulationsindex des Modulators M berechnet werden. Anschließend berechnet man das Frequenzspektrum für den zweiten Träger T2, wobei wieder Frequenz und Modulationsindex vom einzigen Modulator M bezogen werden. Aufsummiert ergibt sich dann das Gesamtspektrum. Das Interessante an dieser Form der Parallelschaltung  besteht in der Möglichkeit, für mehrere evtl. vorhandene Träger, deren Modulatoren dieselbe Modulationsfrequenz aufweisen, nur einen einzigen Modulator zu verwenden. Dadurch können diese anderen Modulatoren für andere Zwecke verwendet werden, z.B. um einen der Träger durch zwei Modulatoren zu modulieren (siehe das nächste Kapitel) oder sogar zum Modulieren des bereits eingesetzten Modulators (was dann der Kaskadenschaltung entspräche, siehe das übernächste Kapitel). Die Möglichkeit, denselben Modulator für verschiedene Träger zu verwenden bedeutet jedoch, dass die individuelle Modulierbarkeit beider Träger aufgegeben wird, da sich Änderungen an den Einstellungen von M zwangsläufig sowohl auf T1 als auch auf T2 auswirken. Die gleiche Mächtigkeit zweier paralleler Träger mit demselben Modulator im Vergleich zum Setup mit mehreren Trägern, die jeweils ihren eigenen Modulator, jedoch mit gleicher Frequenz und gleichem Modulationsindex, sei im Folgenden illustriert. Hier sehen wir das Spektrum zweier Träger, die jeweils von eigenen Modulatoren moduliert werden (220:440,3); (370:440,3):
 
 Zum Vergleich Wellenform und Frequenzspektrum für zwei Träger (220 und 370), die sich denselben Modulator teilen (440, 3):
 
-\paragraph{Einzelner Träger mit parallel geschaltetem Modulatorenpaar 1 S}$\;$
+\subsubsection{Einzelner Träger mit parallel geschaltetem Modulatorenpaar 1 S}
 
 Wird ein einzelner Träger T von zwei parallel geschalteten Modulatoren M1 und M2 moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden, da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen und zahlreiche \textit{Kombinationsseitenfrequenzen} (CHOWNING)oder \textit{Intermodulationsfrequenzen]} (SCHOTTSTAEDT) entstehen. Das ist bereits aus der Formel für diese Spielart des FM direkt ersichtlich, die analog zu \ref{eq:SimpleFM} wie folgt lautet:
 \begin{equation}
@@ -63,13 +63,13 @@ Substituiert man hier mit \ref{eq:Besselsin} und \ref{eq:Besselcos}, und wendet 
 
 
 
-\subsubsection{Kaskadenschaltung}
+\subsection{Kaskadenschaltung}
 
-\paragraph{Einzelner Träger mit in Reihe geschaltetem Modulatorenpaar 2 S}
+\subsubsection{Einzelner Träger mit in Reihe geschaltetem Modulatorenpaar 2 S}
 
-\subsubsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
+\subsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
 
-\paragraph{Die FM-Matrix 1,5 S}
+\subsubsection{Die FM-Matrix 1,5 S}
 
 
-\paragraph{ADSR-Hüllkurven-Generator 0,5 S}
+\subsubsection{ADSR-Hüllkurven-Generator 0,5 S}
