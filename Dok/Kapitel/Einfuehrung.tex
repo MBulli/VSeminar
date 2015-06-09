@@ -1,7 +1,8 @@
 \section{Einführung}
 
+\FloatBarrier
 \subsection{Prinzip der FM-Synthese}
-Die Frequenzmodulationssynthese ist eine für die Musikwelt sehr wichtige Anwendung der Frequenzmodulation, welche bereits aus der Nachrichtentechnik bekannt ist. Generell wird dabei die Frequenz eines Trägersignals durch ein weiteres Modulationssignal verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
+Die Frequenzmodulationssynthese ist eine für die Musikwelt sehr wichtige Anwendung der Frequenzmodulation (FM), welche bereits aus der Nachrichtentechnik bekannt ist. Generell wird dabei die Frequenz eines Trägersignals durch ein weiteres Modulationssignal verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
 
 Die momentane Amplitude des modulierten Signals lässt sich durch folgende Formel beschreiben:
 
@@ -21,9 +22,9 @@ Abbildung \ref{fig:vergleichSignale} veranschaulicht die Frequenzmodulation eine
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Die Frequenzmodulationssynthese ist in ihren Grundzügen recht einfach zu verstehen und man kann mit geringem Aufwand bereits sehr komplexe, wenn auch oft unkontrollierbare Signale mit komplexen Klangspektren (bzw. Frequenzspektren) erzeugen. Wie sich im Folgenden jedoch noch herausstellen wird, ist es dagegen sehr schwierig und erfordert viel Zeit und Aufwand, durch die FM-Synthese gezielt Signale zu erzeugen und diese zu kontrollieren.
+Die Frequenzmodulationssynthese ist in ihren Grundzügen recht einfach zu verstehen und man kann mit geringem Aufwand bereits sehr komplexe, wenn auch oft unkontrollierbare Signale mit komplexen Klangspektren (bzw. Frequenzspektren) erzeugen. Wie sich im Folgenden jedoch noch herausstellen wird, ist es dagegen sehr schwierig und erfordert viel Zeit und Aufwand durch die FM-Synthese gezielt Signale zu erzeugen und diese zu kontrollieren.
 
-Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum Einen Klangbilder echter Instrumente digital nachzubilden, jedoch auch um ganz neue Töne zu erzeugen, die so in der realen Welt nicht vorkommen.
+Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum Einen Klangbilder echter Instrumente nachzubilden, jedoch auch um ganz neue Töne zu erzeugen die so in der realen Welt nicht vorkommen.
 
 \subsection{Beispiele}
 In diesem Kapitel werden einige konkrete Beispiele der FM-Synthese anhand von Träger- und Modulationsfunktion sowie der daraus resultierenden Funktion aufgezeigt. Die Grafiken zeigen jeweils Plots von allen drei Signalen, welche mit Matlab erzeugt wurden.
@@ -65,8 +66,9 @@ An diesem Beispiel kann man sehr gut erkennen, dass die FM-Synthese mit wenig Au
 
 Als gute akustische Beispiele für die Anwendung der FM-Synthese in der Musikwelt können die Stücke ``Sabelith'' und ``Turenas'' von John Chowning selbst genannt werden. Beide Stücke wurden ausschließlich mit FM-Synthese erzeugt und beinhalten viele verschiedene Klangarten sowie Instrumente.
 
+\FloatBarrier
 \subsection{Geschichte der FM-Synthese}
-Die Grundlegende Technik hinter der FM-Synthese stammt, wie bereits erwähnt, aus der Nachrichtentechnik. Dort wird das Verfahren ``Frequenzmodulation'' genannt. Prof. Dr. John Chowning selbst gibt als Quelle zu seiner Entdeckung das Buch ``Radio Engineering'' von Frederick Emmons Terman aus dem Jahre 1947 an \cite[s. xy]{soundofinnovation}. Im Jahr 1967 entdeckte John Chowning eine neue Eigenschaft der Frequenzmodulation. Während er mit unterschiedlichen Modulationsfrequenzen experimentierte und dabei verschiedene Vibrato erzeugte (unter Vibrato versteht man einen schwingenden Ton, d.h. eine pulsierende Änderung des Tons), verschwand der Vibrato plötzlich bei höheren Modulationsfrequenzen und Obertöne wurden hörbar, die sich vom eigentlichen Trägersignal abhebten.\cite{fatherofdigitalmusik}
+Die grundlegende Technik hinter der FM-Synthese stammt, wie bereits erwähnt, aus der Nachrichtentechnik. Dort wird das Verfahren ``Frequenzmodulation'' genannt. Prof. Dr. John Chowning selbst gibt als Quelle zu seiner Entdeckung das Buch ``Radio Engineering'' von Frederick Emmons Terman aus dem Jahre 1947 an \cite[s. xy]{soundofinnovation}. Im Jahr 1967 entdeckte John Chowning eine neue Eigenschaft der Frequenzmodulation. Während er mit unterschiedlichen Modulationsfrequenzen experimentierte und dabei verschiedene Vibrato erzeugte (unter Vibrato versteht man einen schwingenden Ton, d.h. eine pulsierende Änderung der Tonhöhe), verschwand das Vibrato plötzlich bei höheren Modulationsfrequenzen und Obertöne wurden hörbar, die sich vom eigentlichen Trägersignal abhebten.\cite{fatherofdigitalmusik}
 
 Chowning selbst war sehr erstaunt über die entstandenen Töne. In einem Interview von 2005 sagte er dazu: 
 
@@ -79,16 +81,19 @@ Um die Stärken seiner neuen Technik zu demonstrieren, verwandelt Chowning beisp
 \centering
   \includegraphics[width=0.95\textwidth]{chowning_CCRMA.png}
 \caption{John Chowning am CCRMA}
-Quelle: \url{http://arts.mit.edu/wp-content/uploads/2014/07/ChowningYamaha.jpg}
+\label{fig:chowningdx7}
+Quelle: \url{ http://arts.mit.edu/wp-content/uploads/2014/07/ChowningYamaha.jpg} \\Stand 09.06.2015
 \end{figure}
  
 Da Prof. Chowning seine Entdeckung nicht auf eigenes Risiko hin patentieren lassen wollte, lies er dies durch das OTL (Stanford Office of Technology Licensing) durchführen. Er selbst sagte dazu:
 
 ``I didn’t want to deal with lawyers — I wanted to do my music. I didn’t care about the money as much as I cared for my compositions. It was natural for me to say, `Please take it.' ''\cite{fatherofdigitalmusik}
 
- Seine neue Entdeckung war jedoch zu Beginn nicht sehr angesehen und auch viele der Firmen, welchen das neue Patent angeboten wurde, wussten nichts damit anzufangen und lehnten ab. Andy Moorer, ein Kollege Chownings in Stanford und später Mitgründer des CCRMA, sagte dazu: ``[...] It was really discouraging. John was so proud of having put this damn thing together and people didn't really get he idea of spatializing the sound.''\cite[s. xy]{soundofinnovation}
+ Seine neue Entdeckung war jedoch zu Beginn nicht sehr angesehen und auch viele der Firmen, welchen das neue Patent angeboten wurde, wussten nichts damit anzufangen und lehnten ab. Andy Moorer, ein Kollege Chownings in Stanford und später Mitgründer des CCRMA, sagte dazu: 
 
-Offiziell veröffentlichte John Chowning seine neue Entdeckung der Frequenzmodulations-Synthese in einem Paper, welches 1973 im ``Journal of the Audio Engineering Society'' unter dem Titel ``The Synthesis of Complex Audio Spectra by Means of Frequenzy Modulation'' erschien.
+``[...] It was really discouraging. John was so proud of having put this damn thing together and people didn't really get he idea of spatializing the sound.''\cite[s. xy]{soundofinnovation}
+
+Offiziell veröffentlichte John Chowning seine neue Entdeckung der Frequenzmodulationssynthese in einem Paper, welches 1973 im ``Journal of the Audio Engineering Society'' unter dem Titel ``The Synthesis of Complex Audio Spectra by Means of Frequenzy Modulation'' erschien.
 
 Erst im Jahr 1974, als ein junger Ingeneur namens Kazukiyo Ishimura von der Firma Yamaha zu einer Vorstellung des Verfahren geschickt wurde, erkannte dieser binner wenigen Minuten, welches Potenzial hinter dieser neuen Anwendung der Frequentmodulation steckt. Yamaha Lizensierte das Verfahren noch im gleichen Jahr. Ishimura wurde später Chef des Yamaha Konzerns \cite{fatherofdigitalmusik}.
 
@@ -111,6 +116,7 @@ Nachdem Yamaha die Technik der FM-Synthese lizenziert hatte, brachten die Firma 
 \caption{Yamaha DX7}
 \label{fig:dx7}
 Quelle: \url{http://www.electricdruid.net/images/interface/larger/YamahaDX7.jpg}
+\\Stand 09.06.2015
 \end{figure}
 
 Durch den großen Erfolg des DX7 konnte Yamaha in den nachfolgenden Jahren viele Weiterentwicklungen auf den Markt bringen. In den Jahren 1983 bis 1989 brachte Yamaha über 20 weitere digitale Synthesizer heraus. Über die Zeit wurden jedoch andere Syntheseverfahren günstiger und für den Markt besser geeignet, weshalb Yamaha 1990 mit dem SY77 Synthesizer ein Gerät entwickelte, das FM-Synthese und ein anderes digitales Klangsyntheseverfahren namens Sampling in einem vereinte.\cite{fmGS1}
