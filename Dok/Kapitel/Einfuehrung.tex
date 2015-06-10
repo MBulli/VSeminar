@@ -7,7 +7,7 @@ Die \textbf{Frequenzmodulationssynthese} ist eine für die Musikwelt sehr wichti
 Die momentane Amplitude des modulierten Signals lässt sich durch folgende Formel beschreiben:
 
 \[
-\bm{e(t) = A\sin(\alpha t + I\sin(\beta t))} \cite{chowningPaper}
+\bm{e(t) = A\sin(\pmb{\alpha} t + I\sin(\pmb{\beta} t))} \cite{chowningPaper}
 \]
 
 Bei der äußeren Sinusfunktion handelt es sich um das Trägersignal, welches in seiner Frequenz durch das Modulationssignal (Innerer Sinus) moduliert wird.
@@ -69,14 +69,14 @@ Als gute akustische Beispiele für die Anwendung der FM-Synthese in der Musikwel
 
 \FloatBarrier
 \subsection{Geschichte der FM-Synthese}
-Die grundlegende Technik hinter der FM-Synthese stammt, wie bereits erwähnt, aus der Nachrichtentechnik. Dort wird das Verfahren ``Frequenzmodulation'' genannt. Prof. Dr. John Chowning selbst gibt als Quelle zu seiner Entdeckung das Buch ``Radio Engineering'' von Frederick Emmons Terman aus dem Jahre 1947 an \cite[s. xy]{soundofinnovation}. Im Jahr 1967 entdeckte John Chowning eine neue Eigenschaft der Frequenzmodulation. Während er mit unterschiedlichen Modulationsfrequenzen experimentierte und dabei verschiedene Vibrato erzeugte (unter Vibrato versteht man einen schwingenden Ton, d.h. eine pulsierende Änderung der Tonhöhe), verschwand das Vibrato plötzlich bei höheren Modulationsfrequenzen und Obertöne wurden hörbar, die sich vom eigentlichen Trägersignal abhebten.\cite{fatherofdigitalmusik}
+Die grundlegende Technik hinter der FM-Synthese stammt, wie bereits erwähnt, aus der Nachrichtentechnik. Dort wird das Verfahren ``Frequenzmodulation'' genannt. Prof. Dr. John Chowning selbst gibt als Quelle zu seiner Entdeckung das Buch ``Radio Engineering'' von Frederick Emmons Terman aus dem Jahre 1947 an \cite[S. 35]{soundofinnovation}. Im Jahr 1967 entdeckte John Chowning eine neue Eigenschaft der Frequenzmodulation. Während er mit unterschiedlichen Modulationsfrequenzen experimentierte und dabei verschiedene Vibrato erzeugte (unter Vibrato versteht man einen schwingenden Ton, d.h. eine pulsierende Änderung der Tonhöhe), verschwand das Vibrato plötzlich bei höheren Modulationsfrequenzen und Obertöne wurden hörbar, die sich vom eigentlichen Trägersignal abhebten.\cite{fatherofdigitalmusik}
 
 Chowning selbst war sehr erstaunt über die entstandenen Töne. In einem Interview von 2005 sagte er dazu: 
 
-\textit{``I was experimenting with just a sinusoid and kept increasing the vibrato rate, so all of a sudden it didn't sound like listening to a change in pitch in time, but rather i began to hear timbral differences. So the vibratio became very, very fast, hundreds of times per second, and very, very deep, as if the violinist had a different fingerboard, and the finger was whipping up and down at very high rates and very great distances. That would be sort of a physical metaphor for this.''}\cite[s. xy]{soundofinnovation}
+\textit{``I was experimenting with just a sinusoid and kept increasing the vibrato rate, so all of a sudden it didn't sound like listening to a change in pitch in time, but rather i began to hear timbral differences. So the vibratio became very, very fast, hundreds of times per second, and very, very deep, as if the violinist had a different fingerboard, and the finger was whipping up and down at very high rates and very great distances. That would be sort of a physical metaphor for this.''}\cite[S. 34f.]{soundofinnovation}
 
 Es dauerte weitere 3 Jahre, bis Chowning die mathematischen Zusammenhänge hinter seiner Entdeckung vollständig ergründet hatte. Bis dahin war er außerdem bereits in der Lage, verschiedene Instrumente wie Trommeln oder Blasinstrumente nachzubilden. Da Chowning selbst leidenschaftlicher Komponist war, veröffentlichte er im Jahre 1971 sein erstes, rein durch FM-Synthese generiertes Stück mit dem namen ``Sabelithe''. Sein zweites Stück, ``Turenas',' folgte ein Jahr später.
-Um die Stärken seiner neuen Technik zu demonstrieren, verwandelt Chowning beispielsweise in ``Sabelithe'' den Klang einer Trommel in den einer Trompete.\cite[s. xy]{soundofinnovation}
+Um die Stärken seiner neuen Technik zu demonstrieren, verwandelt Chowning beispielsweise in ``Sabelithe'' den Klang einer Trommel in den einer Trompete.\cite[S. 39]{soundofinnovation}
  
 \begin{figure} [ht]
 \centering
@@ -86,13 +86,11 @@ Um die Stärken seiner neuen Technik zu demonstrieren, verwandelt Chowning beisp
 Quelle: \url{ http://arts.mit.edu/wp-content/uploads/2014/07/ChowningYamaha.jpg} \\Stand 09.06.2015
 \end{figure}
  
-Da Prof. Chowning seine Entdeckung nicht auf eigenes Risiko hin patentieren lassen wollte, lies er dies durch das OTL (Stanford Office of Technology Licensing) durchführen. Er selbst sagte dazu:
-
-\textit{``I didn’t want to deal with lawyers — I wanted to do my music. I didn’t care about the money as much as I cared for my compositions. It was natural for me to say, `Please take it.' ''}\cite{fatherofdigitalmusik}
+Chowning war, wie auch seine Kollegen, eher Komponist statt Erfinder. Aus diesem Grund waren sie mehr an der musikalischen Seite der Erfindung interessiert als an kommerziellem Erfolg. Obwohl er das Potenzial seiner Erfindung zu dieser Zeit noch nicht überblicken konnte, wendete sich Chowning an das OTL (Office of Technology Licensing) in Stanford. Er hoffte, dass es in der Musikindustrie eine sinnvolle Anwendung seiner Entdeckung gab.\cite[S. 42]{soundofinnovation}
 
  Seine neue Entdeckung war jedoch zu Beginn nicht sehr angesehen und auch viele der Firmen, welchen das neue Patent angeboten wurde, wussten nichts damit anzufangen und lehnten ab. Andy Moorer, ein Kollege Chownings in Stanford und später Mitgründer des CCRMA, sagte dazu: 
 
-\textit{``[...] It was really discouraging. John was so proud of having put this damn thing together and people didn't really get he idea of spatializing the sound.''}\cite[s. xy]{soundofinnovation}
+\textit{``[...] It was really discouraging. John was so proud of having put this damn thing together and people didn't really get he idea of spatializing the sound.''}\cite[S. 43]{soundofinnovation}
 
 Offiziell veröffentlichte John Chowning seine neue Entdeckung der Frequenzmodulationssynthese in einem Paper, welches 1973 im ``Journal of the Audio Engineering Society'' unter dem Titel ``The Synthesis of Complex Audio Spectra by Means of Frequenzy Modulation'' erschien.
 
@@ -106,7 +104,7 @@ Eine Fotografie der Gründer von CCRMA ist auf \textbf{Abbildung \ref{fig:founde
   \includegraphics[width=0.95\textwidth]{Founders_CCRMA.png}
 \caption{Gründer von CCRMA. Stehend von Links nach rechts: Leland Smith, John Grea, John Chowning und Loren Rush. Sitzend: Andy Moorer.}
 \label{fig:foundersCCRMA}
-Quelle: \cite{soundofinnovation} - Abbildung 4.1
+Quelle: \cite[S. 52]{soundofinnovation} - Abbildung 4.1
 \end{figure}
 
 Nachdem Yamaha die Technik der FM-Synthese lizenziert hatte, brachten die Firma nach einem Prototypen im Jahre 1980 den ersten digitalen FM-Synthesizer GS1 und zwei Jahre später mit dem GS2 eine kleinere und handlichere Version des GS1 heraus. Die Geräte kosteten um die 30.000 DM für den GS1 bzw. 16.000 DM für den GS2 und waren deshalb nur für ausgewählte Musiker gedacht. Der Durchbruch gelang im Jahre 1983 mit dem DX7. Dieser konnte parallel 16 Stimmen verarbeiten und kostete ca. 4.700 DM. Preislich ähnliche und damals übliche analoge subtraktive Synthesizer konnten lediglich 4 Stimmen verarbeiten \cite{fmGS1}. Ein Bild des DX7 ist in \textbf{Abbildung \ref{fig:dx7}} zu sehen.
