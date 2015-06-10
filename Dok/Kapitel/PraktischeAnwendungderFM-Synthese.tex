@@ -7,52 +7,45 @@ Trotzdem gibt es einige Methoden den generierten Klang natürlicher wirken zu la
 \FloatBarrier
 \subsubsection{Theoretisches Vorgehen}
 
-Da bei vielen Instrumenten die Lautstärke während der Laufzeit eines Tones variiert, und ein abruptes Ein oder Ausschalten des Tones nicht realistisch klingt, ist die Nutzung einer ADSR-Hüllkurve ein wichtiger Bestandteil der Nachbildung eines Instrumentes. ADSR steht für die einzelnen Phasen eines Tones: Attack, Decay, Sustain und Release. Diese Phasen sollen hier vereinfacht erklärt werden. Beim Drücken einer Taste wird der Ton angeschlagen und die Lautstärke des Tones steigt schnell bis zu einem maximal Wert an. Diese Phase wird Attack-Phase genannt. Nachdem die maximale Lautstärke erreicht wurde, startet die Decay Phase. In dieser Phase sinkt die Lautstärke schnell auf einen geringeren Wert ab. Danach befindet sich der Ton in der Sustain Phase und die Lautstärke bleibt gleich, solange der Ton gespielt wird. Sobald die Taste losgelassen wird, nimmt die Lautstärke wieder bis zu ihrem minimal Wert ab. In Abbildung \ref{fig:defaultADSR} ist der Verlauf der Lautstärke einer Standard ADSR-Hüllkurve noch einmal grafisch dargestellt.
+Da bei vielen Instrumenten die Lautstärke während der Laufzeit eines Tones variiert, und ein abruptes Ein oder Ausschalten des Tones nicht realistisch klingt, ist die Nutzung einer ADSR-Hüllkurve ein wichtiger Bestandteil der Nachbildung eines Instrumentes. ADSR steht für die einzelnen Phasen eines Tones: Attack, Decay, Sustain und Release. Diese Phasen sollen hier vereinfacht erklärt werden. Beim Drücken einer Taste wird der Ton angeschlagen und die Lautstärke des Tones steigt schnell bis zu einem maximal Wert an. Diese Phase wird Attack-Phase genannt. Nachdem die maximale Lautstärke erreicht wurde, startet die Decay Phase. In dieser Phase sinkt die Lautstärke schnell auf einen geringeren Wert ab. Danach befindet sich der Ton in der Sustain Phase und die Lautstärke bleibt gleich, solange der Ton gespielt wird. Sobald die Taste losgelassen wird, nimmt die Lautstärke wieder bis zu ihrem minimal Wert ab. In Abbildung \ref{fig:adsrDefault} ist der Verlauf der Lautstärke einer Standard ADSR-Hüllkurve noch einmal grafisch dargestellt.
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{standardadsr.png}
+  \includegraphics[width=0.5\textwidth]{adsrDefault.png}
 \caption{Standard ADSR-Hüllkurve}
-\label{fig:defaultADSR}
+\label{fig:adsrDefault}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Da allerdings bei vielen Instrumenten die Lautstärke in den einzelnen Phasen der ADSR-Hüllkurve nicht gleichmäßig steigt oder sinkt, ist es nötig die Kurven beliebig Komplex abbilden zu können. Zum Beispiel steigt bei vielen Instrumenten die Lautstärke in der Attack Phase exponentiell an und fällt in der Decay und Release Phase auch exponentiell ab. Manche Synthesizer bieten zusätzlich auch noch eine Hold Phase vor der Attack Phase, da manche Instrumente einige Zeit benötigen bis sie nach dem Anschlagen des Tones in die Attack Phase eintreten. In Abbildung \ref{fig:blechblasadsr} und \ref{fig:klavieradsr} wurden weitere für Instrumenten typische Hüllkurven dargestellt.
+Da allerdings bei vielen Instrumenten die Lautstärke in den einzelnen Phasen der ADSR-Hüllkurve nicht gleichmäßig steigt oder sinkt, ist es nötig die Kurven beliebig Komplex abbilden zu können. Zum Beispiel steigt bei vielen Instrumenten die Lautstärke in der Attack Phase exponentiell an und fällt in der Decay und Release Phase auch exponentiell ab. Manche Synthesizer bieten zusätzlich auch noch eine Hold Phase vor der Attack Phase, da es Instrumente gibt, die einige Zeit benötigen bis sie nach dem Anschlagen des Tones in die Attack Phase eintreten. In Abbildung \ref{fig:adsrBrass} und \ref{fig:adsrPiano} wurden weitere für Instrumenten typische Hüllkurven dargestellt.
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{blechblasadsr.png}
+  \includegraphics[width=0.5\textwidth]{adsrBrass.png}
 \caption{Typische ADSR-Hüllkurve eines Blechblasinstrumentes}
-\label{fig:blechblasadsr}
-Quelle: Eigene Darstellung mit Matlab
+\label{fig:adsrBrass}
+Quelle: Eigene Darstellung mit Matlab nach \cite{chowningPaper}
 \end{figure}
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{klavieradsr.png}
+  \includegraphics[width=0.5\textwidth]{adsrPiano.png}
 \caption{Typische ADSR-Hüllkurve eines Klaviers}
-\label{fig:klavieradsr}
+\label{fig:adsrPiano}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Auch wenn das Hinzufügen einer ADSR-Hüllkurve den Klang des synthetisierten Tones schon stark verbessert, hört sich der erzeugte Ton leider noch nicht wie ein echtes Instrument an. Eine weitere Möglichkeit den Ton weiter zu verbessern, stellt die Varrierung des Modulationsindex über die Zeit oder die Amplitude dar. Somit kann die Anzahl der Seitenfrequenzen verändert werden. Bei Blasinstrumenten wird der Modulationsindex typischerweise über die Amplitude (also mit der ADSR-Hüllkurve) variiert. \cite[S. 532]{chowningPaper}
+Auch wenn das Hinzufügen einer ADSR-Hüllkurve den Klang des synthetisierten Tones schon stark verbessert, hört sich der erzeugte Ton leider noch nicht wie ein echtes Instrument an. Eine weitere Möglichkeit ihn zu verbessern, stellt die Varrierung des Modulationsindex über die Zeit oder die Amplitude dar. Somit kann die Anzahl der Seitenfrequenzen verändert werden. Bei Blasinstrumenten wird der Modulationsindex typischerweise über die Amplitude (also mit der ADSR-Hüllkurve) variiert. \cite[S. 532]{chowningPaper}
 
-Abgesehen von der einfachen Frequenz Modulation ist es auch möglich mehrere Modulatoren zu verwenden. Diese können in reihe oder parallel geschaltet werden. Außerdem kann auch die sogenannte Feedback Frequenz Modulation genutzt werden, welche das vorran gegangene Signal moduliert. Feedback FM wird vorallem eingesetzt um rauschen zu erzeugen, es kann aber auch ein sehr komplexes Spektrum mit vielen Seitenfrequenzen erzeugen. Komplexe FM-Synthese findet Einsatz wenn die normale FM-Synthese nicht ausreichend komplexe Spektren erzeugt. Dies kann der Fall sein wenn mehrere stetig fallende Seitenfrequenzen erzeugt werden sollen. Wenn bei einfacher FM-Synthese der Modulationsindex erhöht wird um mehr Seitenfrequenzen zu erzeugen, nimmt die Stärke der Grundfrequenz - definiert durch die Bessel Funktion - immer weiter ab und verteilt sich auf die Seitenfrequenzen \ref{bulli:besselModIndexZusammenahang}. Um dies zu vermeiden können die Modulatoren verschachtelt werden - nachzulesen im Kapitel Komplexe Frequenzmodulation (bla)
+Abgesehen von der einfachen Frequenz Modulation ist es auch möglich mehrere Modulatoren zu verwenden. Diese können in reihe oder parallel geschaltet werden. Außerdem kann auch die sogenannte Feedback Frequenz Modulation genutzt werden, welche das vorran gegangene Signal moduliert. \cite[S. 399 f.]{hornerPaper} Feedback FM wird vorallem eingesetzt um rauschen zu erzeugen, es kann aber auch ein sehr komplexes Spektrum mit vielen Seitenfrequenzen erzeugen. Komplexe FM-Synthese findet Einsatz wenn die normale FM-Synthese nicht ausreichend komplexe Spektren erzeugt. Dies kann der Fall sein wenn mehrere stetig fallende Seitenfrequenzen erzeugt werden sollen. Wenn bei einfacher FM-Synthese der Modulationsindex erhöht wird um mehr Seitenfrequenzen zu erzeugen, nimmt die Stärke der Grundfrequenz - definiert durch die Bessel Funktion - immer weiter ab und verteilt sich auf die Seitenfrequenzen \ref{bulli:besselModIndexZusammenahang}. Um dies zu vermeiden können die Modulatoren verschachtelt werden - nachzulesen im Kapitel Komplexe Frequenzmodulation (bla)
 
-Eine reihe an Filtern kann genutzt werden um das von der FM Synthese erzeugte Signal zu verbessern. Diese Filter können mittels additive oder subtraktive Synthese das Signal manipulieren und so ungewollte Frequenzen herausfiltern. Typische Filter sind: Hochpassfilter, Tiefpassfilter, Bandpass und Bandsperre. 
-
-
+Eine reihe an Filtern kann genutzt werden um das von der FM Synthese erzeugte Signal zu verbessern. Diese Filter können mittels additive oder subtraktive Synthese das Signal manipulieren und so ungewollte Frequenzen herausfiltern. Typische Filter sind: Hochpassfilter, Tiefpassfilter, Bandpass und Bandsperre. \cite[S. 100-104]{stotz}
 
 Kein Instrument erzeugt einen hundertprozentigen Klang. Bei Luftverwirblungen und Unebenheiten des Instrumentes wird Rauschen erzeugt. Dieses Rauschen trägt zum typischen Klangbild eines Instrumentes bei und sollte auch nachgebildet werden. Ein Rauschen kann mittels FM Feedback Generator erzeugt werden, dafür muss der Modulationsindex der Feedback FM-Synthese sehr hoch angesetzt werden. Anschließend kann dieses Rauschen mittels Multibandpassfilter um die jeweiligen ausgeprägten Frequenzen gefiltert werden. Würde das Rauschen nicht gefiltert werden, würde man neben dem Ton, das Rauschen als solches wahrnehmen.
-
 
 Raumhall
 
 Um den Klang des Synthetisierten Tones noch realistischer zu machen, kann er mit einem Raumhall veredelt werden.
-
-Einschwingvorgang
-
-Jedes Instrument hat seine eigene charakteristische Einschwingphase, bei vielen Instrumenten ist es eine kurze Hold Phase, die mittels ADSR-Hüllkurve realisiert werden kann.
 
 
 \FloatBarrier

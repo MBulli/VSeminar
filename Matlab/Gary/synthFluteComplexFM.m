@@ -19,7 +19,9 @@ I4 = 1.5;
 
 
 %% generate signal
-fluteFM = A.*sin(2*pi*fc*t + I.*sin(2*pi*fm*t+I2*sin(2*pi*fm*t+I3*sin(2*pi*fm*t+I4*sin(2*pi*fm*t)))));
+%fluteFM = A.*sin(2*pi*fc*t - I.*cos(2*pi*fm*t - I2*cos(2*pi*fm*t - I3*cos(2*pi*fm*t - I4*cos(2*pi*fm*t)))));
+fluteFM = A.*sin(2*pi*fc*t + I.*sin(2*pi*fm*t + I2*sin(2*pi*fm*t + I3*sin(2*pi*fm*t + I4*sin(2*pi*fm*t)))));
+
 %fluteFM = 0.25*sin(2*pi*fc*t + I.*sin(2*pi*fm*t+I2*sin(2*pi*fm*t+I3*sin(2*pi*fm*t+I4*sin(2*pi*fm*t)))));
 %fluteFM = 0.25*sin(2*pi*fc*t + I.*sin(2*pi*fm*t));
 
@@ -123,3 +125,4 @@ set(gca, 'XLim', [700, 1800]);
 
 %% play sound
 sound(fluteFM,fs);
+%audiowrite('flutesin.wav',fluteFM,44100);

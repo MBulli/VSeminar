@@ -27,7 +27,7 @@ Release = (cos(2*pi*(1/((releaseTime(2)-releaseTime(1))*2))*(ReleaseTimes-releas
 
 A = [Attack,Decay,Sustain,Release];
 
-plot(A);
+plot(A, 'LineWidth',1);
 set(gca, 'XTick', 0:4410:length*fs);
 set(gca, 'XTickLabel', 0:4410/fs:length);
 set(gca, 'XLim', [0, length*fs]);
