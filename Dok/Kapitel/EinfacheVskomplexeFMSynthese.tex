@@ -158,11 +158,11 @@ Und nun das Gesamtspektrum der Kaskadenschaltung:
 
 Eine Spezialform der komplexen FM besteht darin, das Ausgangssignal des Trägers zur Modulation des Trägers anstelle eines Modulators wie in der einfachen FM heranzuziehen. Die Formel für eine Feedbackschaltung kann rekursiv wie folgt angegeben werden:
 \begin{equation}
-f_{FMfeedback}(t_{n+1}) = sin(w_{c}t_{n} + f_{FMfeedback}(t_{n})) \quad \text{mit} \quad f_{FMfeedback}(t_{0}) = 0
+f_{FMfeedback}(t_{n}) = sin(w_{c}t_{n} + If_{FMfeedback}(t_{n-1})) \quad \text{mit} \quad f_{FMfeedback}(t_{-1}) = 0
 \end{equation}
 Das Frequenzspektrum berechnet sich dabei nach:
 \begin{equation}
-\sum_{n=1}^{\infty}\frac{2}{nI}\sin{nw_{c}t}
+f_{FMfeedback}(t) = \sum_{n=1}^{\infty}\frac{2}{nI}\sin{nw_{c}t}
 \end{equation}
 
 \subsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
