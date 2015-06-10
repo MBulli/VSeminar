@@ -147,7 +147,7 @@ Quelle: Eigene Darstellung mit MATLAB
 
 
 Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung. Bei der FM-Synthese treten sie in Erscheinung sobald die Formel \ref{eq:FM_Chowning} der FM-Synthese als Fourier Reihe dargestellt wird. Eine Fourier Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung, soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss. [TODO CITE] \cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
-
+% aabramowitz s. 369??
 
 Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude des Grundtones lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel \ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung \ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel \ref{eq:chowningAddition} auf die Grundschwingung $1*sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht.
 
@@ -161,7 +161,9 @@ Wird nun der Modulationsindex stetig erhöht, wird Energie aus der Grundfrequenz
 \label{fig:chowningEnergieVerteilung}
 Quelle: \cite{chowningPaper}
 \end{figure}
+\FloatBarrier
 
+An Abbildung \ref{fig:chowningEnergieVerteilung} erkennt man auch, dass die Seitenfrequenzen sich symmetrisch in negativer und positiver Richtung zur Grundfrequenz ausbreiten. Dies erkennt man auch an Formel \ref{eq:chowningAddition}, der innere Teil vom Sinus entspricht der Seitenfrequenz, wobei $(\omega_c+n*\omega_m)$ der n-ten Oberschwinung entspricht und $(\omega_c-n*\omega_m)$ der n-ten Unterschwinung. $J_n(I)$ gibt die Amplitude der n-ten Unter- und Oberschwinung an.
 
 
 \begin{figure} [ht]
