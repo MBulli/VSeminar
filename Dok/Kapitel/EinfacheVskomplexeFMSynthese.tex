@@ -1,6 +1,6 @@
 \section{Prinzipien der komplexen FM-Synthese}
 
-Die bisherige Darstellung der Soundsynthese durch Frequenzmodulation (FM) hat sich auf die \textit{einfache} FM konzentriert, d.h. auf die Modulation eines einzigen Trägers durch einen einzelnen Modulator. Dadurch konnten die Prinzipien der Einflussnahme auf die Sounderzeugung über die Parameter von Trägerfrequenz, Modulationsfrequenz sowie den Modulationsindex analytisch klar isoliert werden. In der Praxis ist diese Limitation nicht notwendig, so dass zur Erzeugung komplexer Klangspektren auf den gleichzeitigen Einsatz mehrerer Träger und Modulatoren zurückgegriffen wird. Diese können dabei flexibel miteinander verschaltet werden. Man spricht in diesem Zusammenhang von der \textit{komplexen} FM. Im folgenden werden die Prinzipien der komplexen FM näher beleuchtet. Auch hier wird zunächst mit einer künstlichen Limitation gearbeitet und der bisher betrachtete Fall entweder um einen weiteren Träger erweitert oder um einen weiteren Modulator. Denkbar sind unter diesen Bedingungen zwei grundsätzliche Verschaltungsmuster, und zwar zum einen eine Parallelschaltung, zum anderen eine Reihenschaltung. Anschließend wird am Beispiel des digitalen Synthesizers \textit{FM 8} des deutschen Herstellers \textit{Native Instruments} beispielhaft gezeigt, inwiefern moderne Software die Klangerzeugung durch komplexe FM für den Benutzer handhabbar macht. 
+Die bisherige Darstellung der Soundsynthese durch Frequenzmodulation (FM) hat sich auf die \textit{einfache} FM konzentriert, d.h. auf die Modulation eines einzigen Trägers durch einen einzelnen Modulator. Dadurch konnten die Prinzipien der Einflussnahme auf die Sounderzeugung über die Parameter von Trägerfrequenz, Modulationsfrequenz sowie den Modulationsindex analytisch klar isoliert werden. In der Praxis ist diese Limitation nicht notwendig, so dass zur Erzeugung komplexer Klangspektren auf den gleichzeitigen Einsatz mehrerer Träger und Modulatoren zurückgegriffen wird. Diese können dabei flexibel miteinander verschaltet werden. Man spricht in diesem Zusammenhang von der \textit{komplexen} FM. Im folgenden werden die Prinzipien der komplexen FM näher beleuchtet. Auch hier wird zunächst mit einer künstlichen Limitation gearbeitet und der bisher betrachtete Fall entweder um einen weiteren Träger erweitert oder um einen weiteren Modulator. Denkbar sind unter diesen Bedingungen zwei grundsätzliche Verschaltungsmuster, und zwar zum einen eine Parallelschaltung, zum anderen eine Reihenschaltung. Anschließend wird am Beispiel des digitalen Synthesizers \textit{FM8} des deutschen Herstellers \textit{Native Instruments} beispielhaft gezeigt, inwiefern moderne Software die Klangerzeugung durch komplexe FM für den Benutzer handhabbar macht. 
 
 \subsection{Parallelschaltung}
 
@@ -69,7 +69,7 @@ Substituiert man auch hier jedes \begin{math} \sin(I\sin(w_{mx}t) \end{math} mit
 \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) = \sum_{i=-\infty}^{\infty}\sum_{k=-\infty}^{\infty}J_i(I_1)J_k(I_2)\sin(w_ct + iw_{m1}t + kw_{m2}t)
 \end{equation}
 Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 ganze 25 verschiedene Terme (16 für die Kombinationsmöglichkeiten von 1 und 2 sowie den Vorzeichen + und -; weitere 9 für die Kombinationen von 1 und 0 sowie 2 und 0 inklusive der beiden Vorzeichen sowie die Kombination von 0 mit sich selbst) und somit individuelle Frequenzbänder entstehen. Die entsprechenden Additionsterme sind wie folgt:
-\begin{equation}
+\begin{equation}\label{eq:wallofequations}
 \begin{split}
 \sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
 &= J_0(I_1)J_0(I_2)\sin(w_ct) \\
@@ -98,21 +98,72 @@ einmal moduliert durch einen Modulator mit Einstellungen onkonk.
 Zum Vergleich die Anwendung beider Modulatoren mit unveränderten Einstellungen, wieder auf denselben Träger. Es fällt auf, dass das komplexe Spektrum dieser Form der Parallelschaltung die individuellen Beiträge beider Modulatoren kaum noch erkennen lässt:
 
 
-\subsection{Kaskadenschaltung}
+\subsection{Kaskadenschaltung: Einzelträger mit Modulatorenpaar in Reihe}
 
-Die bisher betrachteten Schaltungen war gemein, dass unabhängig davon, ob ein Träger, mehrere Träger, ein Modulator oder mehrere Modulatoren verwendet worden sind, in keinem der Fälle ein Modulator selbst durch einen weiteren Modulator moduliert worden ist. Diese Kombinationsmöglichkeit eines Trägers sowie zweier Modulatoren stellt jedoch ein weiteres mächtiges Instrument der FM dar und soll im folgenden untersucht werden.
-
-\subsubsection{Einzelner Träger mit in Reihe geschaltetem Modulatorenpaar 2 S}
-
-Die Modulation eines Trägers durch einen Modulator, der selbst wiederum durch einen weiteren Modulator moduliert wird, lässt sich in die bisher gewählte Formel für die einfache FM,
-\begin{equation}
+Die bisher betrachteten Schaltungen war gemein, dass unabhängig davon, ob ein Träger, mehrere Träger, ein Modulator oder mehrere Modulatoren verwendet worden sind, in keinem der Fälle ein Modulator selbst durch einen weiteren Modulator moduliert worden ist. Diese Kombinationsmöglichkeit eines Trägers sowie zweier Modulatoren stellt jedoch ein weiteres mächtiges Instrument der FM dar und soll im folgenden beschrieben werden. Die Modulation eines Trägers durch einen Modulator, der selbst wiederum durch einen weiteren Modulator moduliert wird, also die Reihenschaltung T<-M1<-M2 lässt sich in die bisher gewählte Formel für die einfache FM,
+\begin{equation}\label{eq:fmsimplex}
 f_{FM}(t) = \sin(w_ct + I\sin(w_mt))
 \end{equation}
-wenig überraschend folgendermaßen integrieren:
-\begin{equation}
+wenig überraschend wie folgt integrieren:
+\begin{equation}\label{eq:fmkaskade}
 f_{FMkaskade}(t) = \sin(w_ct + I_1\sin(w_{m1}t + I_2\sin(w_{m2}t)))
 \end{equation}
-Bereits die Funktion zeigt den verschachtelten Charakter der Kaskadenschaltung: Es wird die Phase 
+Bereits an dieser Funktion erkennt man den verschachtelten Charakter der Kaskadenschaltung: Der Modulationswert $ I\sin(w_mt) $ wird bei der Kaskadenschaltung durch den Wert einer weiteren, kompletten Frequenzmodulation $ I_2\sin(w_{m1}t + I_2\sin(w_{m2}t)) $ ersetzt. Das Frequenzspektrum berechnet sich dabei wie folgt:
+\begin{equation}
+\sin(w_ct + I_1\sin(w_{m1}t + I_2\sin(w_{m2}t))) = \sum_{n=-\infty}^{\infty}\sum_{k=-\infty}^{\infty}J_i(I_1)J_k(nI_2)\sin(w_ct + nw_{m1}t + kw_{m2}t)
+\end{equation}
+Für die Herleitung brauchen keine ausschweifenden Umformungen durch Additionstheoreme mehr vorgenommen oder Eigenschaften der Besselfunktion ausgenutzt werden; hat man \ref{eq:fmsimplex} und \ref{eq:fmkaskade} bestimmt, so kann in der Formel für das Frequenzspektrum zu \ref{eq:fmsimplex}
+\begin{equation}\label{eq:freqfm}
+\sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
+\end{equation}
+einfach $ \sin(w_mt) $ durch $ \sin(w_{m1}t + I_2\sin(w_{m2}t)) $ ersetzt werden. Eine Reihe einfacher Umformungen führt dann zur Formel für das Frequenzsspektrum der Kaskadenschaltung:
+\begin{equation}
+\begin{split}
+& \quad \sum_{n=-\infty}^{\infty}J_n(I_1)sin(w_{c}t + nI_2(sin(w_{m2}t))) \\
+&= \sum_{n=-\infty}^{\infty}J_n(I_1)sin(w_{c}t+n(w_{m1}t + I_2(sin(w_{m2}t)))) \\
+&= \sum_{n=-\infty}^{\infty}J_n(I_1)sin((w_{c}t+nw_{m1}t) + (I_2n(sin(w_{m2}t))))
+\end{split}
+\end{equation}
+Da hier die beiden Klammern im Sinus exakt einer FM entsprechen, kann dort die Formel für ihr Spektrum \ref{eq:freqfm} substituiert werden. Es ergibt sich:
+\begin{equation}
+\sum_{n=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}J_n(I_1)J_n(nI_2)sin(w_{ct}+nw_{m1}t + kw_{m2}t)
+\end{equation}
+Damit entspricht die Formel für das Frequenzspektrum der Kaskadenschaltung exakt jener für die Parallelschaltung \ref{eq:ParallelKompakt}, wobei bei der Kaskadenschaltung zusätzlich der Modulationsindex $ I_2 $ des äußersten Modulators M2 der Reihenschaltung vor der Auswertung durch die Besselfunktion mit der Ordnung $ n $ des ersten Besselkoeffizienten multipliziert wird. Damit ändern sich auch bei den Additionstermen für das Spektrum im Vergleich zu jenen der Parallelschaltung \ref{eq:wallofequations} lediglich die Koeffizienten:
+\begin{equation}
+\begin{split}
+\sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
+&= J_0(I_1)J_0(\mathbf{0}I_2)\sin(w_ct) \\
+&+ J_0(I_1)J_1(\mathbf{0}I_2)\sin(w_ct + w_{m2}t) - J_0(I_1)J_1(I_2)\sin(w_ct - w_{m2}t) \\
+&+ J_0(I_1)J_2(\mathbf{0}I_2)\sin(w_ct + 2w_{m2}t) + J_0(I_1)J_1(I_2)\sin(w_ct - 2w_{m2}t) \\
+&+ J_1(I_1)J_0(\mathbf{1}I_2)\sin(w_ct + w_{m1}t) - J_1(I_1)J_0(I_2)\sin(w_ct - w_{m1}t) \\
+&+ J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct + w_{m1}t + w_{m2}t) - J_1(I_1)J_1(I_2)\sin(w_ct + w_{m1}t - w_{m2}t) \\
+&- J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct - w_{m1}t + w_{m2}t) + J_1(I_1)J_1(I_2)\sin(w_ct - w_{m1}t - w_{m2}t) \\
+&+ J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct + w_{m1}t + 2w_{m2}t) + J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \\
+&- J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct - w_{m1}t + 2w_{m2}t) - J_1(I_1)J_2(I_2)\sin(w_ct - w_{m1}t - 2w_{m2}t) \\
+&+ J_2(I_1)J_0(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t) + J_2(I_1)J_0(I_2)\sin(w_ct - 2w_{m1}t) \\
+&+ J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t + w_{m2}t) + J_2(I_1)J_1(I_2)\sin(w_ct + 2w_{m1}t - w_{m2}t) \\
+&+ J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct - 2w_{m1}t + w_{m2}t) - J_2(I_1)J_1(I_2)\sin(w_ct - 2w_{m1}t - w_{m2}t) \\
+&+ J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct + 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(I_2)\sin(2w_ct + 2w_{m1}t - 2w_{m2}t) \\
+&+ J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct - 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(I_2)\sin(2w_ct - 2w_{m1}t - 2w_{m2}t) \\
+&+ ... 
+\end{split}
+\end{equation}
+Man sieht sofort, dass damit die Trägerfrequenz ausschließlich durch $ I_1 $ definiert wird, da $ I_2 $ bei der Trägerfrequenz mit 0 multipliziert wird. Außerdem müssen sich für Besselkoeffizienten höherer Ordnung $ I_2 $ und damit auch die Kombinationsseitenfrequenzen höherer Ordnung im Vergleich zur Parallelmodulation stärker auf das resultierende Spektrum auswirken. Visualisiert in MATLAB zeigt sich, dass erwartungsgemäß um jedes Seitenband von T und M1 sich die Seitenbänder von M1 und M2 ausbreiten. Hier zunächst das Spektrum von T moduliert von M1:
+
+Nun das Spektrum von M1 moduliert durch M2 (zum nachstellen wurde ein Träger mit den Einstellungen von M1 moduliert durch einen Modulator mit den Einstellungen von M2):
+
+Und nun das Gesamtspektrum der Kaskadenschaltung:
+
+\subsection{Feedbackschaltung}
+
+Eine Spezialform der komplexen FM besteht darin, das Ausgangssignal des Trägers zur Modulation des Trägers anstelle eines Modulators wie in der einfachen FM heranzuziehen. Die Formel für eine Feedbackschaltung kann rekursiv wie folgt angegeben werden:
+\begin{equation}
+f_{FMfeedback}(t_{n+1}) = sin(w_{c}t_{n} + f_{FMfeedback}(t_{n})) \quad \text{mit} \quad f_{FMfeedback}(t_{0}) = 0
+\end{equation}
+Das Frequenzspektrum berechnet sich dabei nach:
+\begin{equation}
+\sum_{n=1}^{\infty}\frac{2}{nI}\sin{nw_{c}t}
+\end{equation}
 
 \subsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
 
@@ -120,4 +171,3 @@ Bereits die Funktion zeigt den verschachtelten Charakter der Kaskadenschaltung: 
 
 
 \subsubsection{ADSR-Hüllkurven-Generator 0,5 S}
-\
