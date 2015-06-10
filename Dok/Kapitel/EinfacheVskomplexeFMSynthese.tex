@@ -34,7 +34,7 @@ Zieht man die Besselkoeffizienten in die Klammer, so sieht man exakt, wie das Fr
 \sin(w_ct + I\sin(w_mt)) \\ &\quad = J_0(I)\sin(w_ct) \\ &\quad + J_1(I)\sin(w_ct + w_mt) \quad\enspace - J_1(I)\sin(w_ct - w_mt) \\ &\quad + J_2(I)\sin(w_ct + 2w_mt) \quad + J_2(I)\sin(w_ct-2w_mt) \\ &\quad  + J_3(I)\sin(w_ct + 3w_mt) \quad - J_3(I)\sin(w_ct - 3w_mt) \\ &\quad  + ...
 \end{split}
 \end{equation}
-Die erste Zeile zeigt nun die Lage des Basisfrequenzbandes an, während jede folgende Zeile stets die Lage des Seitenfrequenzbands im positiven Bereich angibt (erster Term) sowie das dazugehörige Seitenfrequenzband im negativen Bereich (zweiter Term). Man sieht in dieser Darstellung am Vorzeichen des jeweiligen Terms auch sehr schön, dass ungerade Besselkoeffizienten zu negativen Amplitudenwerten des jeweiligen negativen Seitenfrequenzbandes führt. Da negative Frequenzen einer Phasenverschiebung um 180 Grad entsprechen, ist zu beachten, dass die endgültigen, akustisch wahrgenommenen Frequenzen bekommt, wenn alle negativen Frequenzen einmal je an X- und Y-Achse gespiegelt werden.
+Die erste Zeile zeigt nun die Lage des Basisfrequenzbandes an, während jede folgende Zeile stets die Lage des Seitenfrequenzbands im positiven Bereich angibt (erster Term) sowie das dazugehörige Seitenfrequenzband im negativen Bereich (zweiter Term). Man sieht in dieser Darstellung am Vorzeichen des jeweiligen Terms auch sehr schön, dass ungerade Besselkoeffizienten zu negativen Amplitudenwerten des jeweiligen negativen Seitenfrequenzbandes führt. Da negative Frequenzen einer Phasenverschiebung um 180 Grad entsprechen, ist zu beachten, dass man die endgültigen, akustisch wahrgenommenen erst Frequenzen bekommt, wenn alle negativen Frequenzen einmal je an X- und Y-Achse gespiegelt werden, um so phasenverschoben (Spiegelung X-Achse) im positiven Bereich (Spiegelung Y-Achse) zu landen. Dabei kann es natürlich zur Auslöschung bzw. Addition der ursprünglich negativen Frequenzbänder beim aufeinandertreffen mit positiven Frequenzbändern kommen.
 Die Formel \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden zu (KREH)
 \begin{equation}\label{esq:Besselbabymonster}
 \sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
@@ -56,7 +56,7 @@ Zum Vergleich Wellenform und Frequenzspektrum für zwei Träger (220 und 370), d
 
 Wird ein einzelner Träger T von zwei parallel geschalteten Modulatoren M1 und M2 moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden, da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen und zahlreiche \textit{Kombinationsseitenfrequenzen} (CHOWNING)oder \textit{Intermodulationsfrequenzen]} (SCHOTTSTAEDT) entstehen. Das ist bereits aus der Formel für diese Spielart des FM direkt ersichtlich, die analog zu \ref{eq:SimpleFM} wie folgt lautet:
 \begin{equation}
-f_{FMmodpar}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t))
+f_{FMparallel}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t))
 \end{equation}
 Nach mehrmaliger Anwendung der trigonometrischen Additionstheoreme zeigt sich im Vergleich mit \ref{eq:BesselZwischenform} bereits, dass diese Formel eine Vielzahl zusätzlicher Terme mit sich bringt:
 \begin{equation}
@@ -88,7 +88,11 @@ Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 gan
 &+ ... 
 \end{split}
 \end{equation}
-Es lässt sich somit bereits durch nur einen Träger und zwei unabhängige Modulatoren eine gewaltige Fülle von Frequenzspektren erzeugen. Im folgenden finden sich die Spektren desselben Trägers, einmal moduliert durch einen Modulator mit Einstellungen blablubb,
+Es lässt sich somit bereits durch nur einen Träger und zwei unabhängige Modulatoren eine gewaltige Fülle von Frequenzspektren erzeugen. Eine Abkürzung, um auf die Additionsterme für das Spektrum zu gelangen, sei hier noch kurz präsentiert: Sieht man sich z.B. die beiden Zeilen mit den Besselkoeffizienten J_1J_2 an, so kann man sich vorstellen, dass diese beiden Zeilen zusammen die Kombinationen (1,2),(1,-2),(-1,2),(-1,-2) abdecken. Nun weiß man bereits, dass man 4 Terme braucht. Innerhalb jedes einzelnen Terms bekommt jeweils w_{m1} als Koeffizient die erste Vektorkomponente, w_{m2} die zweite Vektorkomponente. Für den Vektor (1,-2) lautet der Term somit J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t). Der gesamte Term bekommt als Vorzeichen noch das Produkt der Vorzeichen der Vektorkomponenten jeweils potenziert mit dem Betrag der jeweiligen Komponente. Für das gewählte Beispiel wäre das folglich (1)^1*(-1)^2 = 1; der Term bekommt also ein positives Vorzeichen. Die Bedingung des Potenzierens der Vorzeichen leitet sich dabei aus folgender Eigenschaft der Besselfunktion ab, deren Beweis hier (KREH) nachgelesen werden kann:
+\begin{equation}
+J_{-n}(x) = (-1)^nJ_n(x)
+\end{equation}
+Im folgenden finden sich die Spektren desselben Trägers, einmal moduliert durch einen Modulator mit Einstellungen blablubb,
 einmal moduliert durch einen Modulator mit Einstellungen onkonk.
 
 Zum Vergleich die Anwendung beider Modulatoren mit unveränderten Einstellungen, wieder auf denselben Träger. Es fällt auf, dass das komplexe Spektrum dieser Form der Parallelschaltung die individuellen Beiträge beider Modulatoren kaum noch erkennen lässt:
@@ -100,7 +104,15 @@ Die bisher betrachteten Schaltungen war gemein, dass unabhängig davon, ob ein T
 
 \subsubsection{Einzelner Träger mit in Reihe geschaltetem Modulatorenpaar 2 S}
 
-
+Die Modulation eines Trägers durch einen Modulator, der selbst wiederum durch einen weiteren Modulator moduliert wird, lässt sich in die bisher gewählte Formel für die einfache FM,
+\begin{equation}
+f_{FM}(t) = \sin(w_ct + I\sin(w_mt))
+\end{equation}
+wenig überraschend folgendermaßen integrieren:
+\begin{equation}
+f_{FMkaskade}(t) = \sin(w_ct + I_1\sin(w_{m1}t + I_2\sin(w_{m2}t)))
+\end{equation}
+Bereits die Funktion zeigt den verschachtelten Charakter der Kaskadenschaltung: Es wird die Phase 
 
 \subsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
 
