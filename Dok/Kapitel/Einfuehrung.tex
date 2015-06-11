@@ -24,17 +24,17 @@ Quelle: Eigene Darstellung mit MATLAB
 
 Die Frequenzmodulationssynthese ist in ihren Grundzügen recht einfach zu verstehen und man kann mit geringem Aufwand bereits sehr komplexe, wenn auch oft unkontrollierbare Signale mit komplexen Klangspektren (bzw. Frequenzspektren) erzeugen. Wie sich im Folgenden jedoch noch herausstellen wird, ist es dagegen sehr schwierig und erfordert viel Zeit und Aufwand durch die FM-Synthese gezielt Signale zu erzeugen und diese zu kontrollieren.
 
-Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum einen Klangbilder echter Instrumente nachzubilden, jedoch auch um ganz neue Töne zu erzeugen die so in der realen Welt nicht vorkommen.
+Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum einen Klangbilder echter Instrumente nachzubilden, jedoch auch um ganz neue Töne zu erzeugen die so in der Natur nicht vorkommen.
 
 \FloatBarrier
 \subsection{Beispiele}
-In diesem Kapitel werden einige konkrete Beispiele der FM-Synthese anhand von Träger- und Modulationsfunktion sowie der daraus resultierenden Funktion aufgezeigt. Die Grafiken zeigen jeweils Plots von allen drei Signalen, welche mit MATLAB erzeugt wurden.
+In diesem Kapitel werden einige konkrete Beispiele der FM-Synthese anhand von Träger- und Modulationssignal sowie der daraus resultierenden Signals aufgezeigt. Die Grafiken zeigen jeweils Plots von allen drei Signalen, welche mit MATLAB erzeugt wurden.
 Die Frequenzen der jeweiligen Funktionen wurden so gewählt, dass sie in einem Frequenzbereich liegen der vom menschlichen Ohr wargenommen werden kann. (Siehe Unterkapitel \textbf{``\ref{bulli:ohrToeneUndFrequenzen} - \nameref{bulli:ohrToeneUndFrequenzen}''}).
 
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth,frame]{Beispiel1.png}
-\caption{Beispiel 1}
+\caption{Beispiel 1. Darstellung einer Frequenzmodulation mit einer Trägerfrequenz von 600 Hz, einer Modulationsfrequenz von 75 Hz und einem Modulationsindex von 5 }
 \label{fig:beispiel1}
 Quelle: Eigene Darstellung mit MATLAB
 \end{figure}
@@ -42,22 +42,22 @@ Quelle: Eigene Darstellung mit MATLAB
 In Beispiel 1 (siehe \textbf{Abbildung \ref{fig:beispiel1}})  wurden folgende Signale verwendet:
 
 \begin{lstlisting}[mathescape]
-[*Trägersignal: 		$\bm{y(t) = \,\;\;\sin(2 \pmb{\pi} 600\cdot t)}$*]
-[*Modulator:		$\bm{y(t) =5 \sin(2 \pmb{\pi} 75\cdot t)}$*]
+Trägersignal: 		$y(t) = \,\;\;\sin(2 \pi 600\cdot t)$
+Modulator:		$y(t) =5 \sin(2 \pi 75\cdot t)$
 [*Gesamtfunktion: 	$\bm{y(t) = \,\;\;\sin(2 \pmb{\pi} 600\cdot t + 5 \sin(2 \pmb{\pi} 75\cdot t))}$*]
 \end{lstlisting}
 
-Konkrete Bedeutung der Werte: Die Trägerfrequenz von 600 Hz bedeutet, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel \textbf{``\ref{chowningparameter} - \nameref{chowningparameter}''}) immer dann Maximal ist (in positiver oder negativer Richtung), wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulator den Funktionswert 0 hat.
+Konkret bedeuted eine Trägerfrequenz von 600 Hz, dass die Trägerfunktion 600 mal pro Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde macht und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel \textbf{``\ref{chowningparameter} - \nameref{chowningparameter}''}) immer dann Maximal ist, wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik ist das immer dann der Fall, wenn der Modulator den Funktionswert 0 hat.
 
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth,frame]{Beispiel2.png}
-\caption{Beispiel 2}
+\caption{Beispiel 2. Darstellung einer Frequenzmodulation mit einer Trägerfrequenz von 300 Hz, einer Modulationsfrequenz von 120 Hz und einem Modulationsindex von 5}
 \label{fig:beispiel2}
 Quelle: Eigene Darstellung mit MATLAB
 \end{figure}
 
-Das zweite Beispiel in \textbf{Abbildung \ref{fig:beispiel2}} zeigt eine Frequenzmodulation, bei der sich auch die Amplitude des Signals ändert. Dies geschieht rein durch die Phasenverschiebung des äußeren Sinus durch den Modulator, die tatsächliche Amplitude der Funktion bleibt dabei unangetastet. Der Träger hat in diesem Beispiel eine Frequenz von 300 Hz, der Modulator 120 Hz. Der Modulationsindex beträgt wieder 5. Die Formel des Modulierten Signals sieht wie folgt aus:
+Das zweite Beispiel in \textbf{Abbildung \ref{fig:beispiel2}} zeigt eine Frequenzmodulation, bei der sich auch die Amplitude des Signals ändert. Dies geschieht rein durch die Phasenverschiebung des äußeren Sinus durch den Modulator, die tatsächliche Amplitude der Funktion bleibt dabei unangetastet. Die Formel des modulierten Signals sieht wie folgt aus:
 
 \[
 \bm{y(t) = \sin(2 \pmb{\pi} 300\cdot t + 5 \sin(2 \pmb{\pi} 120\cdot t))}
@@ -65,7 +65,7 @@ Das zweite Beispiel in \textbf{Abbildung \ref{fig:beispiel2}} zeigt eine Frequen
 
 An diesem Beispiel kann man sehr gut erkennen, dass die FM-Synthese mit wenig Aufwand komplexe Signale erzeugen kann, diese jedoch schlecht kontrollierbar bzw. erklärbar sind.
 
-Als gute akustische Beispiele für die Anwendung der FM-Synthese in der Musikwelt können die Stücke \textbf{``Sabelith''} und \textbf{``Turenas'}' von John Chowning, dem Erfinder der FM-Synthese, genannt werden. Beide Stücke wurden ausschließlich mit FM-Synthese erzeugt und beinhalten viele verschiedene Klangarten sowie Instrumente.
+Als gute akustische Beispiele für die Anwendung der FM-Synthese in der Musikwelt können die Stücke \textbf{``Sabelith''} und \textbf{``Turenas'}' von John Chowning, dem Erfinder der FM-Synthese, genannt werden. Beide Stücke wurden ausschließlich mit FM-Synthese erzeugt und beinhalten viele verschiedene Klangarten sowie synthetisierte Instrumente.
 
 \FloatBarrier
 \subsection{Geschichte der FM-Synthese}
@@ -75,7 +75,7 @@ Chowning selbst war sehr erstaunt über die entstandenen Töne. In einem Intervi
 
 \textit{``I was experimenting with just a sinusoid and kept increasing the vibrato rate, so all of a sudden it didn't sound like listening to a change in pitch in time, but rather i began to hear timbral differences. So the vibratio became very, very fast, hundreds of times per second, and very, very deep, as if the violinist had a different fingerboard, and the finger was whipping up and down at very high rates and very great distances. That would be sort of a physical metaphor for this.''}\cite[S. 34f.]{soundofinnovation}
 
-Es dauerte weitere 3 Jahre, bis Chowning die mathematischen Zusammenhänge hinter seiner Entdeckung vollständig ergründet hatte. Bis dahin war er außerdem bereits in der Lage, verschiedene Instrumente wie Trommeln oder Blasinstrumente nachzubilden. Da Chowning selbst leidenschaftlicher Komponist war, veröffentlichte er im Jahre 1971 sein erstes, rein durch FM-Synthese generiertes Stück mit dem namen ``Sabelithe''. Sein zweites Stück, ``Turenas',' folgte ein Jahr später.
+Es dauerte 3 Jahre, bis sich Chowning seiner Sache gewiss war und die mathematischen Zusammenhänge ausreichend begründen konnte. Zu diesem Zeitpunkt war er außerdem bereits in der Lage, verschiedene Instrumente wie Trommeln oder Blasinstrumente nachzubilden. Da Chowning selbst leidenschaftlicher Komponist war, veröffentlichte er im Jahre 1971 sein erstes, rein durch FM-Synthese generiertes Stück mit dem namen ``Sabelithe''. Sein zweites Stück, ``Turenas'', folgte ein Jahr später.
 Um die Stärken seiner neuen Technik zu demonstrieren, verwandelt Chowning beispielsweise in ``Sabelithe'' den Klang einer Trommel in den einer Trompete.\cite[S. 39]{soundofinnovation}
  
 \begin{figure} [ht]
@@ -94,9 +94,9 @@ Chowning war, wie auch seine Kollegen, eher Komponist statt Erfinder. Aus diesem
 
 Offiziell veröffentlichte John Chowning seine neue Entdeckung der Frequenzmodulationssynthese in einem Paper, welches 1973 im ``Journal of the Audio Engineering Society'' unter dem Titel ``The Synthesis of Complex Audio Spectra by Means of Frequenzy Modulation'' erschien.
 
-Erst im Jahr 1974, als ein junger Ingeneur namens Kazukiyo Ishimura von der Firma Yamaha zu einer Vorstellung des Verfahren geschickt wurde, erkannte dieser binnen wenigen Minuten, welches Potenzial hinter dieser neuen Anwendung der Frequenzmodulation steckt. Yamaha lizensierte das Verfahren noch im gleichen Jahr. Ishimura wurde später Chef des Yamaha Konzerns \cite{fatherofdigitalmusik}.
+Erst im Jahr 1974, als ein junger Ingenieur namens Kazukiyo Ishimura von der Firma Yamaha zu einer Vorstellung des Verfahren geschickt wurde, erkannte dieser binnen wenigen Minuten, welches Potenzial hinter dieser neuen Anwendung der Frequenzmodulation steckt. Yamaha lizensierte das Verfahren noch im gleichen Jahr. Ishimura wurde später Chef des Yamaha Konzerns \cite{fatherofdigitalmusik}.
 
-Im Jahr 1975, nach einiger Zeit Abwesenheit von Stanford, kehrte Chowning dorthin zurück und gründete zusammen mit einigen seiner Kollegen das CCRMA (Center for Computer Research in Music and Acoustics), welches sich auf Computermusik spezialisiert hat.
+Im Jahr 1975, nach einiger Zeit Abwesenheit von Stanford, kehrte Chowning dorthin zurück und gründete zusammen mit einigen seiner Kollegen das CCRMA (Center for Computer Research in Music and Acoustics), welches sich auf computergenerierte Musik spezialisiert hat.
 Eine Fotografie der Gründer von CCRMA ist auf \textbf{Abbildung \ref{fig:foundersCCRMA}} zu sehen.
 
 \begin{figure} [ht]
@@ -107,7 +107,7 @@ Eine Fotografie der Gründer von CCRMA ist auf \textbf{Abbildung \ref{fig:founde
 Quelle: \cite[S. 52]{soundofinnovation} - Abbildung 4.1
 \end{figure}
 
-Nachdem Yamaha die Technik der FM-Synthese lizenziert hatte, brachten die Firma nach einem Prototypen im Jahre 1980 den ersten digitalen FM-Synthesizer GS1 und zwei Jahre später mit dem GS2 eine kleinere und handlichere Version des GS1 heraus. Die Geräte kosteten um die 30.000 DM für den GS1 bzw. 16.000 DM für den GS2 und waren deshalb nur für ausgewählte Musiker gedacht. Der Durchbruch gelang im Jahre 1983 mit dem DX7. Dieser konnte parallel 16 Stimmen verarbeiten und kostete ca. 4.700 DM. Preislich ähnliche und damals übliche analoge subtraktive Synthesizer konnten lediglich 4 Stimmen verarbeiten \cite{fmGS1}. Ein Bild des DX7 ist in \textbf{Abbildung \ref{fig:dx7}} zu sehen.
+Nachdem Yamaha die Technik der FM-Synthese lizenziert hatte, brachte die Firma nach einem Prototypen im Jahre 1980 den ersten digitalen FM-Synthesizer GS1 und zwei Jahre später mit dem GS2 eine kleinere und handlichere Version des GS1 heraus. Die Geräte kosteten um die 30.000 DM für den GS1 bzw. 16.000 DM für den GS2 und waren deshalb nur für ausgewählte Musiker gedacht. Der Durchbruch gelang im Jahre 1983 mit dem DX7. Dieser konnte parallel 16 Stimmen verarbeiten und kostete ca. 4.700 DM. Preislich ähnliche und damals übliche analoge subtraktive Synthesizer konnten lediglich 4 Stimmen verarbeiten \cite{fmGS1}. Ein Bild des DX7 ist in \textbf{Abbildung \ref{fig:dx7}} zu sehen.
 
  \begin{figure} [ht]
 \centering
@@ -118,6 +118,6 @@ Quelle: \url{http://www.electricdruid.net/images/interface/larger/YamahaDX7.jpg}
 \\Stand 09.06.2015
 \end{figure}
 
-Durch den großen Erfolg des DX7 konnte Yamaha in den nachfolgenden Jahren viele Weiterentwicklungen auf den Markt bringen. In den Jahren 1983 bis 1989 brachte Yamaha über 20 weitere digitale Synthesizer heraus. Über die Zeit wurden jedoch andere Syntheseverfahren günstiger und für den Markt besser geeignet, weshalb Yamaha 1990 mit dem SY77 Synthesizer ein Gerät entwickelte, das FM-Synthese und ein anderes digitales Klangsyntheseverfahren namens Sampling in einem vereinte.\cite{fmGS1}
+Durch den großen Erfolg des DX7 konnte Yamaha in den nachfolgenden Jahren viele Weiterentwicklungen auf den Markt bringen. In den Jahren 1983 bis 1989 brachte Yamaha über 20 weitere digitale Synthesizer heraus. Über die Zeit wurden jedoch andere Syntheseverfahren günstiger und für den Markt besser geeignet, weshalb Yamaha 1990 mit dem SY77 Synthesizer ein Gerät entwickelte, das FM-Synthese und ein anderes digitales Klangsyntheseverfahren namens Sampling in Einem vereinte.\cite{fmGS1}
 
 Ab Mitte der 1990er wurden Personal Computer leistungsfähig genug, um Synthesizer ohne Verzögerung durch eine Midi Tastatur ansprechbar zu machen. Heutzutage findet digitale Audioverarbeitung nahezu ausschließlich softwareseitig statt, weshalb Hardwaresynthesizer wie der DX7 an Bedeutung verloren haben. Speziell dieser wurde jedoch durch die Firma Native Instruments in Form des FM7 und dessen Weiterentwicklung, dem FM8, in Software nachgebaut und findet heute noch Verwendung. Auch ist der DX7 heute bei Nostalgikern noch sehr beliebt.\cite{fmGS1}
