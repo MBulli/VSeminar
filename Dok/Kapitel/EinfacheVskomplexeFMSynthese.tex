@@ -11,7 +11,7 @@ Zur Vollständigkeit soll die simpelste Erweiterung der einfachen FM nicht unerw
 \begin{equation} \label{eq:SimpleFM}
 f_{FM}(t) = \sin(w_ct + I\sin(w_mt)) \quad \text{mit} \quad w_ct \quad \text{als Träger-} \quad \text{und} \quad w_mt \quad \text{als Modulationsfreq.}
 \end{equation}
-Expandiert man diese über das trigonometrische Additionstheorem \begin{math} \sin(a + b) = \sin(a)\cos(b)+\cos(a)\sin(b) \end{math}, so erhält man 
+Den Koeffizienten A, der üblicherweise für die Amplitude des gesamten Ausgangssignals vorne auf die Formel aufmultipliziert wird, wird im laufe der folgenden Ausführungen aus Gründen der Übersichtlichkeit stets weggelassen. Expandiert man diese über das trigonometrische Additionstheorem \begin{math} \sin(a + b) = \sin(a)\cos(b)+\cos(a)\sin(b) \end{math}, so erhält man 
 \begin{equation}\label{eq:BesselZwischenform}
 \sin(w_ct + I\sin(w_mt)) = \sin(w_ct)\cos(I\sin(w_mt)) + \cos(w_ct)\sin(I\sin(w_mt))
 \end{equation}
@@ -88,7 +88,7 @@ Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 gan
 &+ ... 
 \end{split}
 \end{equation}
-Es lässt sich somit bereits durch nur einen Träger und zwei unabhängige Modulatoren eine gewaltige Fülle von Frequenzspektren erzeugen. Eine Abkürzung, um auf die Additionsterme für das Spektrum zu gelangen, sei hier noch kurz präsentiert: Sieht man sich z.B. die beiden Zeilen mit den Besselkoeffizienten \begin{math} J_1J_2 \end{math} an, so kann man sich vorstellen, dass diese beiden Zeilen zusammen die Kombinationen (1,2),(1,-2),(-1,2),(-1,-2) abdecken. Nun weiß man bereits, dass man 4 Terme braucht. Innerhalb jedes einzelnen Terms bekommt jeweils \begin{math} w_{m1} \end{math} als Koeffizient die erste Vektorkomponente, \begin{math} w_{m2} \end{math} die zweite Vektorkomponente. Für den Vektor (1,-2) lautet der Term somit \begin{math} J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \end{math}. Der gesamte Term bekommt als Vorzeichen noch das Produkt der Vorzeichen der Vektorkomponenten jeweils potenziert mit dem Betrag der jeweiligen Komponente. Für das gewählte Beispiel wäre das folglich \begin{math} (1)^1*(-1)^2 = 1 \end{math}; der Term bekommt also ein positives Vorzeichen. Die Bedingung des Potenzierens der Vorzeichen leitet sich dabei aus folgender Eigenschaft der Besselfunktion ab, deren Beweis hier (KREH) nachgelesen werden kann:
+Sofern zwei Zeilen zur selben Kombination der Ordnungen der Besselfunktion gegeben sind, steht die ober Zeile für das obere Seitenfrequenzband, die Zeile darunter dem unteren Seitenfrequenzband, zumindest sofern die Modulationsfrequenz von M1 größer ist, als jene von M2 - in diesem Fall sind die linken Terme beider Zeilen das obere Frequenzband und die rechten das untere. Es lässt sich somit bereits durch nur einen Träger und zwei unabhängige Modulatoren eine gewaltige Fülle von Frequenzspektren erzeugen. Eine Abkürzung, um auf die Additionsterme für das Spektrum zu gelangen, sei hier noch kurz präsentiert: Sieht man sich z.B. die beiden Zeilen mit den Besselkoeffizienten \begin{math} J_1J_2 \end{math} an, so kann man sich vorstellen, dass diese beiden Zeilen zusammen die Kombinationen (1,2),(1,-2),(-1,2),(-1,-2) abdecken. Nun weiß man bereits, dass man 4 Terme braucht. Innerhalb jedes einzelnen Terms bekommt jeweils \begin{math} w_{m1} \end{math} als Koeffizient die erste Vektorkomponente, \begin{math} w_{m2} \end{math} die zweite Vektorkomponente. Für den Vektor (1,-2) lautet der Term somit \begin{math} J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \end{math}. Der gesamte Term bekommt als Vorzeichen noch das Produkt der Vorzeichen der Vektorkomponenten jeweils potenziert mit dem Betrag der jeweiligen Komponente. Für das gewählte Beispiel wäre das folglich \begin{math} (1)^1*(-1)^2 = 1 \end{math}; der Term bekommt also ein positives Vorzeichen. Die Bedingung des Potenzierens der Vorzeichen leitet sich dabei aus folgender Eigenschaft der Besselfunktion ab, deren Beweis hier (KREH) nachgelesen werden kann:
 \begin{equation}
 J_{-n}(x) = (-1)^nJ_n(x)
 \end{equation}
@@ -112,7 +112,7 @@ Bereits an dieser Funktion erkennt man den verschachtelten Charakter der Kaskade
 \begin{equation}
 \sin(w_ct + I_1\sin(w_{m1}t + I_2\sin(w_{m2}t))) = \sum_{n=-\infty}^{\infty}\sum_{k=-\infty}^{\infty}J_i(I_1)J_k(nI_2)\sin(w_ct + nw_{m1}t + kw_{m2}t)
 \end{equation}
-Für die Herleitung brauchen keine ausschweifenden Umformungen durch Additionstheoreme mehr vorgenommen oder Eigenschaften der Besselfunktion ausgenutzt werden; hat man \ref{eq:fmsimplex} und \ref{eq:fmkaskade} bestimmt, so kann in der Formel für das Frequenzspektrum zu \ref{eq:fmsimplex}
+Für die Herleitung brauchen keine ausschweifenden Umformungen durch Additionstheoreme mehr vorgenommen oder Eigenschaften der Besselfunktion ausgenutzt werden; hat man \ref{eq:fmsimplex}, \ref{eq:fmkaskade} sowie \ref{eq:freqfm} bereits bestimmt, so kann in der Formel für das Frequenzspektrum zu \ref{eq:fmsimplex}, also in
 \begin{equation}\label{eq:freqfm}
 \sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
 \end{equation}
@@ -126,9 +126,9 @@ einfach $ \sin(w_mt) $ durch $ \sin(w_{m1}t + I_2\sin(w_{m2}t)) $ ersetzt werden
 \end{equation}
 Da hier die beiden Klammern im Sinus exakt einer FM entsprechen, kann dort die Formel für ihr Spektrum \ref{eq:freqfm} substituiert werden. Es ergibt sich:
 \begin{equation}
-\sum_{n=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}J_n(I_1)J_n(nI_2)sin(w_{ct}+nw_{m1}t + kw_{m2}t)
+\sum_{n=-\infty}^{\infty}\sum_{n=-\infty}^{\infty}J_n(I_1)J_n(nI_2)sin(w_{c}t+nw_{m1}t + kw_{m2}t)
 \end{equation}
-Damit entspricht die Formel für das Frequenzspektrum der Kaskadenschaltung exakt jener für die Parallelschaltung \ref{eq:ParallelKompakt}, wobei bei der Kaskadenschaltung zusätzlich der Modulationsindex $ I_2 $ des äußersten Modulators M2 der Reihenschaltung vor der Auswertung durch die Besselfunktion mit der Ordnung $ n $ des ersten Besselkoeffizienten multipliziert wird. Damit ändern sich auch bei den Additionstermen für das Spektrum im Vergleich zu jenen der Parallelschaltung \ref{eq:wallofequations} lediglich die Koeffizienten:
+Damit entspricht die Formel für das Frequenzspektrum der Kaskadenschaltung exakt jener für die Parallelschaltung \ref{eq:ParallelKompakt}, mit einem kleinen Zusatz: Es wird bei der Kaskadenschaltung zusätzlich der Modulationsindex $ I_2 $ des äußersten Modulators M2 der Reihenschaltung vor der Auswertung durch die Besselfunktion mit der Ordnung $ n $ des ersten Besselkoeffizienten multipliziert. Damit ändern sich auch bei den Additionstermen für das Spektrum im Vergleich zu jenen der Parallelschaltung \ref{eq:wallofequations} lediglich die Koeffizienten:
 \begin{equation}
 \begin{split}
 \sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
@@ -148,7 +148,7 @@ Damit entspricht die Formel für das Frequenzspektrum der Kaskadenschaltung exak
 &+ ... 
 \end{split}
 \end{equation}
-Man sieht sofort, dass damit die Trägerfrequenz ausschließlich durch $ I_1 $ definiert wird, da $ I_2 $ bei der Trägerfrequenz mit 0 multipliziert wird. Außerdem müssen sich für Besselkoeffizienten höherer Ordnung $ I_2 $ und damit auch die Kombinationsseitenfrequenzen höherer Ordnung im Vergleich zur Parallelmodulation stärker auf das resultierende Spektrum auswirken. Visualisiert in MATLAB zeigt sich, dass erwartungsgemäß um jedes Seitenband von T und M1 sich die Seitenbänder von M1 und M2 ausbreiten. Hier zunächst das Spektrum von T moduliert von M1:
+Man sieht sofort, dass damit die Trägerfrequenz ausschließlich durch $ I_1 $ definiert wird, da $ I_2 $ bei der Trägerfrequenz mit 0 multipliziert wird und die Besselfunktion der nullter Ordnung für das Argument 0 einfach den Wert 1 zurückgibt. Zweitens müssen sich für Besselkoeffizienten höherer Ordnung der Modulationsindex für M2, also $ I_2 $, und damit auch die Kombinationsseitenfrequenzen höherer Ordnung im Vergleich zur Parallelmodulation stärker auf das resultierende Spektrum auswirken. Drittens entfallen die Nicht-Kombinationsseitenfrequenzen vollständig, da die erwähnte Multiplikation mit 0 als Argument für die Besselfunktionen höherer Ordnung als Null den Wert 0 zurückliefern (siehe \ref{fig:Bessel2D}). Visualisiert in MATLAB zeigt sich, dass erwartungsgemäß um jedes Seitenband von T und M1 sich die Seitenbänder von M1 und M2 ausbreiten. Hier zunächst das Spektrum von T moduliert von M1:
 
 Nun das Spektrum von M1 moduliert durch M2 (zum nachstellen wurde ein Träger mit den Einstellungen von M1 moduliert durch einen Modulator mit den Einstellungen von M2):
 
@@ -156,14 +156,20 @@ Und nun das Gesamtspektrum der Kaskadenschaltung:
 
 \subsection{Feedbackschaltung}
 
-Eine Spezialform der komplexen FM besteht darin, das Ausgangssignal des Trägers zur Modulation des Trägers anstelle eines Modulators wie in der einfachen FM heranzuziehen. Die Formel für eine Feedbackschaltung kann rekursiv wie folgt angegeben werden:
+Eine Spezialform der komplexen FM besteht darin, das Ausgangssignal des Trägers zur Modulation des Trägers heranzuziehen anstelle eines Modulators wie in der einfachen FM. Die Formel für eine Feedbackschaltung kann rekursiv wie folgt angegeben werden:
 \begin{equation}
 f_{FMfeedback}(t_{n}) = sin(w_{c}t_{n} + If_{FMfeedback}(t_{n-1})) \quad \text{mit} \quad f_{FMfeedback}(t_{-1}) = 0
 \end{equation}
+In MATLAB oder in einer beliebigen Programmiersprache kann diese Formel dann natürlich komfortabel iterativ oder rekursiv implementiert werden.
 Das Frequenzspektrum berechnet sich dabei nach:
 \begin{equation}
-f_{FMfeedback}(t) = \sum_{n=1}^{\infty}\frac{2}{nI}\sin{nw_{c}t}
+f_{FMfeedback}(t) = \sum_{n=1}^{\infty}\frac{2}{nI}J_n(nI)\sin{nw_{c}t}
 \end{equation}
+Man sieht sofort, dass die Einflussnahme auf die Feedbackschaltung durch den Modulationsindex, d.h. die Amplitude, mit man dem Ausgangssignal der Schaltung erlaubt, auf sich selbst zurückzuwirken, lediglich die Energie und die Steilheit des Abfallens der Energie von den näher am Träger liegenden Seitenbändern zu den weiter außen liegenden beeinflusst. Die Variable $n$ hängt jedoch nur von der Ordnung der Besselfunktion ab und durchläuft in jedem Fall ganzzahlig die Werte von 1 bis $\infty$. In jedem Fall ist die Lage der Seitenfrequenzbänder also immer ein ganzzahliges Vielfaches der Trägerfrequenz. Der Amplitudenabfall von Band zu Band erfolgt dabei bei konstantem Modulationsindex, und wenn man von der Einflussnahme durch $n$ auf den Wert der Besselfunktion absieht im Verhältnis $\frac{1}{2}$ zu $\frac{1}{3}$ zu $\frac{1}{4}$ zu $\frac{1}{5}$ etc. und weist damit Ähnlichkeit zum Spektrum einer Sägezahnwelle auf. Feedback-FM bietet damit die Möglichkeit, mit nur einem Operator Töne zu erzeugen, die einen rauen Charakter aufweisen. Im folgenden sehen wir das Spektrum einer einfachen FM eines Trägers mit den Einstellungen blablubb, moduliert durch einen Modulator mit denselben Einstellungen:
+
+Im Vergleich hier das Spektrum der Feedbackschaltung eines Trägers rückgekoppelt auf sich selbst mit den Einstellungen wie der Träger oben:
+
+Die Ähnlichkeit ist erwartungsgemäß recht hoch.
 
 \subsection{Komplexe Soundsynthese mit Native Instruments' \textit{FM8}}
 
