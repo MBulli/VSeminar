@@ -1,60 +1,121 @@
 \section{Prinzipien der komplexen FM-Synthese}
 
-Die bisherige Darstellung der Soundsynthese durch Frequenzmodulation (FM) hat sich auf die \textit{einfache} FM konzentriert, d.h. auf die Modulation eines einzigen Trägers durch einen einzelnen Modulator. Dadurch konnten die Prinzipien der Einflussnahme auf die Sounderzeugung über die Parameter von Trägerfrequenz, Modulationsfrequenz sowie den Modulationsindex analytisch klar isoliert werden. In der Praxis ist diese Limitation nicht notwendig, so dass zur Erzeugung komplexer Klangspektren auf den gleichzeitigen Einsatz mehrerer Träger und Modulatoren zurückgegriffen wird. Diese können dabei flexibel miteinander verschaltet werden. Man spricht in diesem Zusammenhang von der \textit{komplexen} FM. Im folgenden werden die Prinzipien der komplexen FM näher beleuchtet. Auch hier wird zunächst mit einer künstlichen Limitation gearbeitet und der bisher betrachtete Fall entweder um einen weiteren Träger erweitert oder um einen weiteren Modulator. Denkbar sind unter diesen Bedingungen zwei grundsätzliche Verschaltungsmuster, und zwar zum einen eine Parallelschaltung, zum anderen eine Reihenschaltung. Anschließend wird am Beispiel des digitalen Synthesizers \textit{FM8} des deutschen Herstellers \textit{Native Instruments} beispielhaft gezeigt, inwiefern moderne Software die Klangerzeugung durch komplexe FM für den Benutzer handhabbar macht. 
+Die bisherige Darstellung der Soundsynthese durch Frequenzmodulation (FM) hat sich auf die \textit{einfache} FM konzentriert, d.h. auf die Modulation eines einzelnen Trägers durch einen einzigen Modulator. Dadurch konnten die Prinzipien der Einflussnahme auf die Sounderzeugung über die Parameter von Trägerfrequenz, Modulationsfrequenz sowie den Modulationsindex analytisch klar isoliert werden. In der Praxis ist diese Limitation nicht notwendig, so dass zur Erzeugung komplexer Klangspektren auf den gleichzeitigen Einsatz mehrerer Träger und Modulatoren zurückgegriffen wird. Diese können dabei flexibel miteinander verschaltet werden. Man spricht in diesem Zusammenhang von der \textit{komplexen} FM. Im Folgenden werden die Prinzipien der komplexen FM näher beleuchtet. Auch hier wird zunächst mit einer künstlichen Limitation gearbeitet und der bisher betrachtete Fall entweder um einen weiteren Träger erweitert oder um einen weiteren Modulator. Denkbar sind unter diesen Bedingungen zwei grundsätzliche Verschaltungsmuster, und zwar zum einen eine Parallelschaltung, zum anderen eine Reihenschaltung. Als spezielle Form der Reihenschaltung kann die Rückkopplung des Trägersignals auf sich selbst gesehen werden; dieser Fall der Feedback-Schaltung wird ebenfalls vorgestellt. Anschließend wird am Beispiel des digitalen Synthesizers \textit{FM8} des deutschen Herstellers \textit{Native Instruments} beispielhaft gezeigt, inwiefern moderne Software die Klangerzeugung durch komplexe FM für den Benutzer handhabbar macht. 
 
 \subsection{Parallelschaltung}
 
 \subsubsection{Parallele Träger mit jeweils eigenem unabhängigen Modulator}
 
-Zur Vollständigkeit soll die simpelste Erweiterung der einfachen FM nicht unerwähnt bleiben, und zwar die Situation zweier paralleler Träger, denen je ein eigener Modulator zugeordnet ist (Abb 1). Dabei handelt es sich streng genommen noch um keine komplexe FM, da die Signalpfade beider Träger erst auf der Ebene des Gesamtausgangssignals gemischt werden und sich ansonsten nicht weiter beeinflussen. Jedes Träger-Modulator-Paar, also T1 mit M1 sowie T2 mit M2, folgt für sich genommen den Prinzipien der einfachen FM, so dass für jedes Paar die Lage der Seitenfrequenzbänder gesondert bestimmt und addiert werden kann. Lage und Amplitude der Seitenfrequenzbänder folgen direkt aus der gewählten Funktion für die Frequenzmodulation, auch wenn die Herleitung nichttrivial ist und Kenntnis der Eigenschaften der sogenannten \textit{Besselfunktion} voraussetzt. Alle Spektren und Wellenformen in Kapitel 3 dieser Seminararbeit wurden auf Basis folgender Funktion für die FM modelliert:
+Zur Vollständigkeit soll die simpelste Erweiterung der einfachen FM nicht unerwähnt bleiben, und zwar die Situation zweier paralleler Träger, denen je ein eigener Modulator zugeordnet ist (Abb 1). Dabei handelt es sich streng genommen noch um keine komplexe FM, da die Signalpfade beider Träger erst auf der Ebene des Gesamtausgangssignals gemischt werden und sich ansonsten nicht weiter beeinflussen. Jedes Träger-Modulator-Paar, also $T1$ mit $M1$ sowie $T2$ mit $M2$, folgt dabei für sich genommen den Prinzipien der einfachen FM, so dass für jedes Paar die Lage der Seitenfrequenzbänder gesondert bestimmt und addiert werden kann, womit sich das Ausgangssignal $T1<M1 + T2<M2$ insgesamt ergibt. Lage und Amplitude der Seitenfrequenzbänder folgen direkt aus der gewählten Funktion für die Frequenzmodulation, auch wenn die Herleitung nichttrivial ist und Kenntnis der Eigenschaften der Besselfunktion voraussetzt. \\
+Alle Spektren und Wellenformen in diesem Kapitel der Seminararbeit wurden auf Basis folgender Funktion für die FM modelliert. Auf einen Koeffizienten $A$, der üblicherweise für die Amplitude des gesamten Ausgangssignals vorne auf die Funktion aufmultipliziert wird, wird im Lauf der folgenden Ausführungen für verbesserte Übersichtlichkeit verzichtet:
 \label{matze:simplefm}
 \begin{equation} \label{eq:SimpleFM}
 f_{FM}(t) = \sin(w_ct + I\sin(w_mt)) \quad \text{mit} \quad w_ct \quad \text{als Träger-} \quad \text{und} \quad w_mt \quad \text{als Modulationsfreq.}
 \end{equation}
-Den Koeffizienten A, der üblicherweise für die Amplitude des gesamten Ausgangssignals vorne auf die Formel aufmultipliziert wird, wird im laufe der folgenden Ausführungen aus Gründen der Übersichtlichkeit stets weggelassen. Expandiert man diese über das trigonometrische Additionstheorem \begin{math} \sin(a + b) = \sin(a)\cos(b)+\cos(a)\sin(b) \end{math}, so erhält man 
+Um eine Funktion für das Frequenzspektrum zu erhalten, expandiert man diese über das trigonometrische Additionstheorem \begin{math} \sin(a + b) = \sin(a)\cos(b)+\cos(a)\sin(b) \end{math} und erhält
 \begin{equation}\label{eq:BesselZwischenform}
-\sin(w_ct + I\sin(w_mt)) = \sin(w_ct)\cos(I\sin(w_mt)) + \cos(w_ct)\sin(I\sin(w_mt))
+\sin(w_ct + I\sin(w_mt)) = \sin(w_ct)\cos(I\sin(w_mt)) + \cos(w_ct)\sin(I\sin(w_mt)).
 \end{equation}
-Die inneren Terme \begin{math} \cos(I\sin(w_mt)) \end{math} und \begin{math} \sin(I\sin(w_mt)) \end{math} können über die erzeugende Funktion der Besselfunktion wie folgt ausgedrückt werden (der Beweis findet sich hier KREH):
+Die inneren Terme \begin{math} \cos(I\sin(w_mt)) \end{math} und \begin{math} \sin(I\sin(w_mt)) \end{math} können nun über die Besselfunktion wie folgt ausgedrückt werden. Die Herleitung geschieht über die Erzeugerfunktion; siehe \cite[S.361, Satz~9.1.42 und Satz~9.1.43]{abramowitz}:
 \begin{equation}\label{eq:Besselsin}
 \sin(I\sin(w_mt)) = 2J_1(I)\sin(w_mt)+2J_3(I)\sin(3w_mt)+...+2J_{2n+1}(I)\sin((2n+1)w_mt)+...
 \end{equation}
 \begin{equation}\label{eq:Besselcos}
 \cos(I\sin(w_mt)) = J_0(I)+2J_2(I)\cos(2w_mt)+...+2J_{2n}(I)\cos(2nw_mt)+...
 \end{equation}
-Eingesetzt in \ref{eq:BesselZwischenform} können alle auftretende Terme der Form \begin{math} \sin(w_ct)\cos(2nw_mt) \end{math} über das Additionstheorem \begin{math} \sin(a)\cos(b) = \frac{1}{2}\left(\sin(x+y)+\sin(x-y)\right) \end{math} sowie alle Terme \begin{math} \cos(w_ct)\sin((2n+1)w_mt) \end{math} über  \begin{math} \cos(a)\sin(b) = \frac{1}{2}\left(\sin(x+y)-\sin(x-y)\right) \end{math} expandiert werden, so dass letztlich gilt (CHOW2): 
+Man setzt dies in \ref{eq:BesselZwischenform} ein und expandiert alle auftretende Terme der Form \begin{math} \sin(w_ct)\cos(2nw_mt) \end{math} über das Additionstheorem \begin{math} \sin(a)\cos(b) = \frac{1}{2}\left(\sin(x+y)+\sin(x-y)\right) \end{math} sowie alle Terme der Form \begin{math} \cos(w_ct)\sin((2n+1)w_mt) \end{math} über  \begin{math} \cos(a)\sin(b) = \frac{1}{2}\left(\sin(x+y)-\sin(x-y)\right) \end{math}. Letztlich gilt: 
 \begin{equation}
 \begin{split}
 \sin(w_ct + I\sin(w_mt)) \\ &\quad = J_0(I)\sin(w_ct) \\ &\quad + J_1(I)(\sin(w_ct + w_mt) - \sin(w_ct - w_mt)) \\ &\quad + J_2(I)(\sin(w_ct + 2w_mt)+\sin(w_ct-2w_mt)) \\ &\quad  + J_3(I)(\sin(w_ct + 3w_mt) - \sin(w_ct - 3w_mt)) \\ &\quad  + ...
 \end{split}
 \end{equation}
-Zieht man die Besselkoeffizienten in die Klammer, so sieht man exakt, wie das Frequenzspektrum liegen muss:
+(\cite[S.528]{chowningPaper}). Zieht man die Besselkoeffizienten in die Klammer, lässt sich die Lage der Seitenfrequenzbänder bereits aus der Funktion auslesen:
 \begin{equation}\label{eq:FormelinchenBessel}
 \begin{split}
 \sin(w_ct + I\sin(w_mt)) \\ &\quad = J_0(I)\sin(w_ct) \\ &\quad + J_1(I)\sin(w_ct + w_mt) \quad\enspace - J_1(I)\sin(w_ct - w_mt) \\ &\quad + J_2(I)\sin(w_ct + 2w_mt) \quad + J_2(I)\sin(w_ct-2w_mt) \\ &\quad  + J_3(I)\sin(w_ct + 3w_mt) \quad - J_3(I)\sin(w_ct - 3w_mt) \\ &\quad  + ...
 \end{split}
 \end{equation}
-Die erste Zeile zeigt nun die Lage des Basisfrequenzbandes an, während jede folgende Zeile stets die Lage des Seitenfrequenzbands im positiven Bereich angibt (erster Term) sowie das dazugehörige Seitenfrequenzband im negativen Bereich (zweiter Term). Man sieht in dieser Darstellung am Vorzeichen des jeweiligen Terms auch sehr schön, dass ungerade Besselkoeffizienten zu negativen Amplitudenwerten des jeweiligen negativen Seitenfrequenzbandes führt. Da negative Frequenzen einer Phasenverschiebung um 180 Grad entsprechen, ist zu beachten, dass man die endgültigen, akustisch wahrgenommenen erst Frequenzen bekommt, wenn alle negativen Frequenzen einmal je an X- und Y-Achse gespiegelt werden, um so phasenverschoben (Spiegelung X-Achse) im positiven Bereich (Spiegelung Y-Achse) zu landen. Dabei kann es natürlich zur Auslöschung bzw. Addition der ursprünglich negativen Frequenzbänder beim aufeinandertreffen mit positiven Frequenzbändern kommen.
-Die Formel \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden zu (KREH)
+Die erste Zeile zeigt hier die Lage der Trägerfrequenz an, während jede folgende Zeile stets die Lage eines oberen Seitenbands angibt (erster Term) sowie das dazugehörige untere Seitenband (zweiter Term). \\ 
+Man kann in dieser Darstellung am Vorzeichen des jeweiligen Terms ablesen, dass Besselkoeffizienten ungerader Ordnung zu negativen Amplitudenwerten des jeweiligen unteren Seitenbandes führen. Da negative Frequenzen einer Phasenverschiebung um 180 Grad entsprechen, erhält man die endgültigen, akustisch wahrgenommenen Frequenzen durch die Spiegelung der negativen Frequenzen je einmal an Abszisse und Ordinate. Dies enspricht einer Phasenverschiebung (Spiegelung Abszisse) im positiven Bereich (Spiegelung Ordinate). Dabei kann es natürlich zur Auslöschung oder Verstärkung von Bändern durch die Addition ursprünglich negativer Frequenzbänder auf bereits vorhandene im positiven Bereich kommen. \\
+Die Formel \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden (\cite{schottstaedtWeb}) zu 
 \begin{equation}\label{esq:Besselbabymonster}
 \sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
 \end{equation}
-Das Frequenzspektrum für die einfache FM weist nun an der Frequenz \begin{math} w_c \end{math} sowie im positiven Bereich als auch im negativen Bereich stets im Abstand \begin{math} w_m \end{math} Seitenbänder mit einer Amplitude auf, wie sie die Besselfunktion als Koeffizient des entsprechenden Terms zurückliefert. Der Verlauf der Besselfunktion gibt dabei ab einem Modulationsindex größer ca. 2,5 auch negative Vorzeichen für die Seitenfrequenzen (ABB CHOW). Die für beide Träger-Modulatorenpaare nach obiger Formel jeweils ermittelten Frequenzspektren können in einem abschließenden Schritt einfach aufaddiert werden und bilden in Summe das Frequenzspektrum dieser Form der Parallelschaltung. Dies lässt sich in Matlab komfortabel visualisieren. Zunächst das erste Paar T1 und M1 (220:440,1):
-
-Nun das zweite Paar T2 und M2 (230:500,1):
-
-Bei beiden einfachen FM sieht man sehr gut, dass sich die Seitenfrequenzbänder in Abständen der Modulationsfrequenz um die Trägerfrequenz nach beiden Seiten ausbreiten. Und schließlich in der Parallelschaltung. Man sieht sehr gut, dass sich die Einzelspektren aufaddieren. 
-
+Das Frequenzspektrum für die einfache FM weist nun im positiven als auch im negativen Bereich stets im Abstand \begin{math} w_m \end{math} um die Trägerfrequenz \begin{math} w_c \end{math} Seitenbänder auf. Die jeweiligen Amplituden werden dabei durch die Ordnung der Besselfunktion bestimmt in Abhängigkeit vom Modulationsindex, welcher als Argument an die Besselfunktion übergeben wird. Die Besselfunktion liefert dabei ab einem Modulationsindex größer ca. 2,5 auch negative Vorzeichen für die Seitenfrequenzen zurück, wie folgende grafischen Darstellung der Besselfunktion nach den Parametern Modulationsindex und Nummer des Seitenbands zeigt: \ref{fig:bessel3D}. \\
+Die für beide Paare $T1<M1 + T2<M2$ so ermittelten Frequenzspektren können für diese Form der Parallelschaltung in einem abschließenden Schritt einfach addiert werden und liefern so das gesamte Frequenzspektrum des gemischten Ausgangssignals. \\
+Dies lässt sich in MATLAB komfortabel visualisieren. Zunächst das erste Paar T1 und M1:
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT1M1.png}
+\caption{Einfache FM mit $f_c = 220$, $w_m = 440$, $I = 1$. }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
+Hier das Spektrum für T2 und M2:
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT2M2.png}
+\caption{Einfache FM mit $f_c = 330$, $w_m = 550$, $I = 2$. }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
+Bei den Spektren für beide einfachen FM sieht man sehr gut, dass sich die Seitenfrequenzbänder in Abständen der Modulationsfrequenz um die Trägerfrequenz nach beiden Seiten hin ausbreiten.\\
+Und hier nun das Spektrum für die Parallelschaltung beider Träger-Modulator-Paare. Man sieht sehr gut, dass sich die Einzelspektren der aus den beiden Plots oben aufaddieren: 
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT1M1T2M2.png}
+\caption{Parallele FM mit $f_{c1} = 220$, $f_{c2} = 330$, $w_{m1} = 440$, $w_{m2} = 550$, $I_1 = 1$, $I_2 = 2$. }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
 
 \subsubsection{Parallele Träger mit einem gemeinsamen Modulator}
 
-Teilen sich zwei Träger T1 und T2 denselben Modulator M, kann das Frequenzspektrum ebenfalls als Summe zweier unabhängiger einfacher FM betrachtet werden. Hierzu kann einfach das Frequenzspektrum des einen Trägers T1 mit der Frequenz und dem Modulationsindex des Modulators M berechnet werden. Anschließend berechnet man das Frequenzspektrum für den zweiten Träger T2, wobei wieder Frequenz und Modulationsindex vom einzigen Modulator M bezogen werden. Aufsummiert ergibt sich dann das Gesamtspektrum. Das Interessante an dieser Form der Parallelschaltung  besteht in der Möglichkeit, für mehrere evtl. vorhandene Träger, deren Modulatoren dieselbe Modulationsfrequenz aufweisen, nur einen einzigen Modulator zu verwenden. Dadurch können diese anderen Modulatoren für andere Zwecke verwendet werden, z.B. um einen der Träger durch zwei Modulatoren zu modulieren (siehe das nächste Kapitel) oder sogar zum Modulieren des bereits eingesetzten Modulators (was dann der Kaskadenschaltung entspräche, siehe das übernächste Kapitel). Die Möglichkeit, denselben Modulator für verschiedene Träger zu verwenden bedeutet jedoch, dass die individuelle Modulierbarkeit beider Träger aufgegeben wird, da sich Änderungen an den Einstellungen von M zwangsläufig sowohl auf T1 als auch auf T2 auswirken. Die gleiche Mächtigkeit zweier paralleler Träger mit demselben Modulator im Vergleich zum Setup mit mehreren Trägern, die jeweils ihren eigenen Modulator, jedoch mit gleicher Frequenz und gleichem Modulationsindex, sei im Folgenden illustriert. Hier sehen wir das Spektrum zweier Träger, die jeweils von eigenen Modulatoren moduliert werden (220:440,3); (370:440,3):
-
-Zum Vergleich Wellenform und Frequenzspektrum für zwei Träger (220 und 370), die sich denselben Modulator teilen (440, 3):
+Teilen sich zwei Träger $T1$ und $T2$ denselben Modulator $M$, kann das Frequenzspektrum ebenfalls als Summe zweier unabhängiger einfacher FM betrachtet werden. Hierzu berechnet man zunächst das Frequenzspektrum des einen Trägers $T1$ anhand Modulationsfrequenz und dem -index des Modulators M. Anschließend berechnet man das Frequenzspektrum für den zweiten Träger $T2$, wobei wieder Frequenz und Modulationsindex von Modulator $M$ bezogen werden. Aufsummiert ergibt sich das Gesamtspektrum. Das Interessante an dieser Form der Parallelschaltung besteht in der Möglichkeit, nur einen einzigen Modulator zur Modulation mehrerer vorhandener Träger, deren Modulatoren dieselbe Modulationsfrequenz aufweisen, zu verwenden. Dadurch können die freigewordenen Modulatoren für andere Zwecke verwendet werden, z.B. um einen der Träger durch zwei Modulatoren zu modulieren (siehe \ref{singlecarryparallelmod}) oder sogar zum Modulieren des bereits eingesetzten Modulators (was dann der Kaskadenschaltung entspräche, siehe \ref{cascade}). Die Möglichkeit, denselben Modulator für verschiedene Träger zu verwenden, bedeutet logischerweise, dass die \textit{individuelle} Modulierbarkeit beider Träger aufgegeben wird, da sich Änderungen an den Einstellungen von $M$ nun zwangsläufig sowohl auf $T1$ als auch auf $T2$ auswirken. Die gleiche Mächtigkeit zweier paralleler Träger mit demselben Modulator $M$ im Vergleich zum Setup mit mehreren Trägern, welche jeweils ihren eigenen Modulator mit denselben Einstellungen wie $M$ besitzen, sei im Folgenden illustriert. \\
+Zunächst das Spektrum zweier Träger, die jeweils von eigenen Modulatoren mit gleichen Einstellungen moduliert werden. Zuerst für den einen Träger:
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT1M1.png}
+\caption{Einfache FM mit $f_c = 220$, $w_m = 440$, $I = 1$. }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
+Nun für den zweiten Träger:
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT2M.png}
+\caption{Einfache FM mit $f_c = 550$, $w_m = 440$, $I = 1$. }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
+Die parallele Modulation von T1 durch M1 sowie von T2 durch M2 wobei M1 und M2 exakt dieselben Einstellungen besitzen:
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT1T2MM.png}
+\caption{Parallele FM mit $f_{c1} = 220$, $f_{c2} = 550$, $w_{m1} = 440$, $w_{m2} = 440$, $I_1 = 1$, $I_2 = 1$. }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
+Und abschließend zum Vergleich Wellenform und Frequenzspektrum für zweier Träger, die sich denselben Modulator teilen:
+\FloatBarrier
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.95\textwidth]{parT1T2SameM.png}
+\caption{Parallele FM mit $f_{c1} = 220$, $f_{c2} = 330$, $w_{m1} = 440$, $w_{m2} = 550$, $I_1 = 1$, $I_2 = 2$.  }
+Quelle: Eigene Darstellung in MATLAB
+\end{figure}
+\FloatBarrier
+Wie man sieht, sind die Spektren für die Modulation durch zwei verschiedene Modulatoren absolut identisch mit der Modulation durch denselben Modulator, sofern alle Modulatoren dieselben Einstellungen aufweisen.
 
 \subsubsection{Einzelner Träger mit parallel geschaltetem Modulatorenpaar}
-
-Wird ein einzelner Träger T von zwei parallel geschalteten Modulatoren M1 und M2 moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden, da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen und zahlreiche \textit{Kombinationsseitenfrequenzen} (CHOWNING)oder \textit{Intermodulationsfrequenzen]} (SCHOTTSTAEDT) entstehen. Das ist bereits aus der Formel für diese Spielart des FM direkt ersichtlich, die analog zu \ref{eq:SimpleFM} wie folgt lautet:
+\label{singlecarryparallelmod}
+Wird ein einzelner Träger T von zwei parallel geschalteten Modulatoren M1 und M2 moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden, da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen und zahlreiche \textit{Kombinationsseitenfrequenzen} (CHOWNING)oder \textit{Intermodulationsfrequenzen]} (SCHOTTSTAEDT) entstehen. Das ist bereits aus der Formel für diese Spielart des FM direkt ersichtlich, die analog zu \ref{eq:SimpleFM} wie folgt nach \cite[S.46]{schottstaedt}lautet:
 \begin{equation}
 f_{FMparallel}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t))
 \end{equation}
@@ -99,12 +160,13 @@ Zum Vergleich die Anwendung beider Modulatoren mit unveränderten Einstellungen,
 
 
 \subsection{Kaskadenschaltung: Einzelträger mit Modulatorenpaar in Reihe}
+\label{cascade}
 
 Die bisher betrachteten Schaltungen war gemein, dass unabhängig davon, ob ein Träger, mehrere Träger, ein Modulator oder mehrere Modulatoren verwendet worden sind, in keinem der Fälle ein Modulator selbst durch einen weiteren Modulator moduliert worden ist. Diese Kombinationsmöglichkeit eines Trägers sowie zweier Modulatoren stellt jedoch ein weiteres mächtiges Instrument der FM dar und soll im folgenden beschrieben werden. Die Modulation eines Trägers durch einen Modulator, der selbst wiederum durch einen weiteren Modulator moduliert wird, also die Reihenschaltung T<-M1<-M2 lässt sich in die bisher gewählte Formel für die einfache FM,
 \begin{equation}\label{eq:fmsimplex}
 f_{FM}(t) = \sin(w_ct + I\sin(w_mt))
 \end{equation}
-wenig überraschend wie folgt integrieren:
+wenig überraschend wie folgt integrieren (\cite[S.48]{schottstaedt}):
 \begin{equation}\label{eq:fmkaskade}
 f_{FMkaskade}(t) = \sin(w_ct + I_1\sin(w_{m1}t + I_2\sin(w_{m2}t)))
 \end{equation}
