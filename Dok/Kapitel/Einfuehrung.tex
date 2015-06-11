@@ -1,15 +1,13 @@
 \newpage
 \section{Einführung}
-Die \textbf{Frequenzmodulationssynthese} ist eine für die Musikwelt sehr wichtige Anwendung der \textbf{Frequenzmodulation (FM)}, welche bereits aus der Nachrichtentechnik bekannt ist. Als Motivation für diese Seminararbeit dient die Tatsache, dass die Musikwelt durch FM-Synthese eine Revolution erlebt hat und ohne diese Erfindung eine Vielzahl an Synthesizern niemals entstanden wären. Die Arbeit ist im Rahmen des Vertiefungsseminars I der Vertiefung Medieninformatik an der Hochschule für angewandte Wissenschaften Würzburg-Schweinfurt entstanden. %WIP, wer bock hat mag sich was besseres ausdenken :D
+Die \textbf{Frequenzmodulationssynthese} ist eine für die Musikwelt sehr wichtige Anwendung der \textbf{Frequenzmodulation (FM)}, welche bereits aus der Nachrichtentechnik bekannt ist. Als Motivation für diese Seminararbeit dient die Tatsache, dass die Musikwelt durch FM-Synthese eine Revolution erlebt hat und ohne diese Erfindung eine Vielzahl an Synthesizern niemals entstanden wäre. Die Arbeit ist im Rahmen des Vertiefungsseminars I der Vertiefung Medieninformatik an der Hochschule für angewandte Wissenschaften Würzburg-Schweinfurt entstanden. %WIP, wer bock hat mag sich was besseres ausdenken :D
 \FloatBarrier
 \subsection{Prinzip der FM-Synthese}
-Generell wird dabei die Frequenz eines \textbf{Trägersignals} durch ein weiteres \textbf{Modulationssignal} verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
-
-Die momentane Amplitude des modulierten Signals lässt sich durch folgende Formel beschreiben:
+Generell wird bei der Frequenzmodulation die Frequenz eines \textbf{Trägersignals} durch ein weiteres \textbf{Modulationssignal} verändert, die Amplitude bleibt jedoch unangetastet. Bei der FM-Synthese kann sich in besonderen Fällen jedoch auch die Amplitude des Modulierten Signals von dem ursprünglichen Trägersignals unterscheiden. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Trägersignal Informationen übertragen werden. 
+Die momentane Amplitude des modulierten Signals lässt sich bei der FM-Synthese durch folgende Formel beschreiben:
 \[
 \bm{e(t) = A\sin(\pmb{\alpha} t + I\sin(\pmb{\beta} t))} \cite{chowningPaper}
 \]
-
 Bei der äußeren Sinusfunktion handelt es sich um das Trägersignal, welches in seiner Frequenz durch das Modulationssignal (Innerer Sinus) moduliert wird.
 
 \textbf{Abbildung \ref{fig:vergleichSignale}} veranschaulicht die Frequenzmodulation eines Signals durch ein zweites Signal.
@@ -22,7 +20,6 @@ Bei der äußeren Sinusfunktion handelt es sich um das Trägersignal, welches in
 Quelle: Eigene Darstellung mit MATLAB
 \end{figure}
 \FloatBarrier
-
 Die Frequenzmodulationssynthese ist in ihren Grundzügen recht einfach zu verstehen und man kann mit geringem Aufwand bereits sehr komplexe, wenn auch oft unkontrollierbare Signale mit komplexen Klangspektren (bzw. Frequenzspektren) erzeugen. Wie sich im Folgenden jedoch noch herausstellen wird, ist es dagegen sehr schwierig und erfordert viel Zeit und Aufwand durch die FM-Synthese gezielt Signale zu erzeugen und diese zu kontrollieren.
 
 Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum einen Klangbilder echter Instrumente nachzubilden, jedoch auch um ganz neue Töne zu erzeugen die so in der Natur nicht vorkommen.
