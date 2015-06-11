@@ -37,7 +37,7 @@ Man setzt dies in \ref{eq:BesselZwischenform} ein und expandiert alle auftretend
 \end{equation}
 Die erste Zeile zeigt hier die Lage der Trägerfrequenz an, während jede folgende Zeile stets die Lage eines oberen Seitenbands angibt (erster Term) sowie das dazugehörige untere Seitenband (zweiter Term). \\ 
 Man kann in dieser Darstellung am Vorzeichen des jeweiligen Terms ablesen, dass Besselkoeffizienten ungerader Ordnung zu negativen Amplitudenwerten des jeweiligen unteren Seitenbandes führen. Da negative Frequenzen einer Phasenverschiebung um 180 Grad entsprechen, erhält man die endgültigen, akustisch wahrgenommenen Frequenzen durch die Spiegelung der negativen Frequenzen je einmal an Abszisse und Ordinate. Dies enspricht einer Phasenverschiebung (Spiegelung Abszisse) im positiven Bereich (Spiegelung Ordinate). Dabei kann es natürlich zur Auslöschung oder Verstärkung von Bändern durch die Addition ursprünglich negativer Frequenzbänder auf bereits vorhandene im positiven Bereich kommen. \\
-Die Formel \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden (\cite{schottstaedtWeb}) zu 
+Die Funktion \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden (\cite{schottstaedtWeb}) zu 
 \begin{equation}\label{esq:Besselbabymonster}
 \sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
 \end{equation}
@@ -74,7 +74,8 @@ Quelle: Eigene Darstellung in MATLAB
 
 \subsubsection{Parallele Träger mit einem gemeinsamen Modulator}
 
-Teilen sich zwei Träger $T1$ und $T2$ denselben Modulator $M$, kann das Frequenzspektrum ebenfalls als Summe zweier unabhängiger einfacher FM betrachtet werden. Hierzu berechnet man zunächst das Frequenzspektrum des einen Trägers $T1$ anhand Modulationsfrequenz und dem -index des Modulators M. Anschließend berechnet man das Frequenzspektrum für den zweiten Träger $T2$, wobei wieder Frequenz und Modulationsindex von Modulator $M$ bezogen werden. Aufsummiert ergibt sich das Gesamtspektrum. Das Interessante an dieser Form der Parallelschaltung besteht in der Möglichkeit, nur einen einzigen Modulator zur Modulation mehrerer vorhandener Träger, deren Modulatoren dieselbe Modulationsfrequenz aufweisen, zu verwenden. Dadurch können die freigewordenen Modulatoren für andere Zwecke verwendet werden, z.B. um einen der Träger durch zwei Modulatoren zu modulieren (siehe \ref{singlecarryparallelmod}) oder sogar zum Modulieren des bereits eingesetzten Modulators (was dann der Kaskadenschaltung entspräche, siehe \ref{cascade}). Die Möglichkeit, denselben Modulator für verschiedene Träger zu verwenden, bedeutet logischerweise, dass die \textit{individuelle} Modulierbarkeit beider Träger aufgegeben wird, da sich Änderungen an den Einstellungen von $M$ nun zwangsläufig sowohl auf $T1$ als auch auf $T2$ auswirken. Die gleiche Mächtigkeit zweier paralleler Träger mit demselben Modulator $M$ im Vergleich zum Setup mit mehreren Trägern, welche jeweils ihren eigenen Modulator mit denselben Einstellungen wie $M$ besitzen, sei im Folgenden illustriert. \\
+Teilen sich zwei Träger $T1$ und $T2$ denselben Modulator $M$, kann das Frequenzspektrum ebenfalls als Summe zweier unabhängiger einfacher FM betrachtet werden. Hierzu berechnet man zunächst das Frequenzspektrum des einen Trägers $T1$ anhand Modulationsfrequenz und dem -index des Modulators M. Anschließend berechnet man das Frequenzspektrum für den zweiten Träger $T2$, wobei wieder Frequenz und Modulationsindex von Modulator $M$ bezogen werden. Aufsummiert ergibt sich das Gesamtspektrum. Das Interessante an dieser Form der Parallelschaltung besteht in der Möglichkeit, nur einen einzigen Modulator zur Modulation mehrerer vorhandener Träger, deren Modulatoren dieselbe Modulationsfrequenz aufweisen, zu verwenden. Dadurch können die freigewordenen Modulatoren für andere Zwecke verwendet werden, z.B. um einen der Träger durch zwei Modulatoren zu modulieren (siehe \ref{singlecarryparallelmod}) oder sogar zum Modulieren des bereits eingesetzten Modulators (was dann der Kaskadenschaltung entspräche, siehe \ref{cascade}).  \\
+Die Möglichkeit, denselben Modulator für verschiedene Träger zu verwenden, bedeutet logischerweise, dass die \textit{individuelle} Modulierbarkeit beider Träger aufgegeben wird, da sich Änderungen an den Einstellungen von $M$ nun zwangsläufig sowohl auf $T1$ als auch auf $T2$ auswirken. Die gleiche Mächtigkeit zweier paralleler Träger mit demselben Modulator $M$ im Vergleich zum Setup mit mehreren Trägern, welche jeweils ihren eigenen Modulator mit denselben Einstellungen wie $M$ besitzen, sei im Folgenden illustriert. \\
 Zunächst das Spektrum zweier Träger, die jeweils von eigenen Modulatoren mit gleichen Einstellungen moduliert werden. Zuerst für den einen Träger:
 \FloatBarrier
 \begin{figure} [ht]
@@ -102,12 +103,12 @@ Die parallele Modulation von T1 durch M1 sowie von T2 durch M2 wobei M1 und M2 e
 Quelle: Eigene Darstellung in MATLAB
 \end{figure}
 \FloatBarrier
-Und abschließend zum Vergleich Wellenform und Frequenzspektrum für zweier Träger, die sich denselben Modulator teilen:
+Und abschließend zum Vergleich Wellenform und Frequenzspektrum zweier Träger, die sich denselben Modulator teilen:
 \FloatBarrier
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth]{parT1T2SameM.png}
-\caption{Parallele FM mit $f_{c1} = 220$, $f_{c2} = 330$, $w_{m1} = 440$, $w_{m2} = 550$, $I_1 = 1$, $I_2 = 2$.  }
+\caption{Parallele FM mit $f_{c1} = 220$, $f_{c2} = 550$, $w_{m} = 440$, $I = 1$.  }
 Quelle: Eigene Darstellung in MATLAB
 \end{figure}
 \FloatBarrier
@@ -115,21 +116,21 @@ Wie man sieht, sind die Spektren für die Modulation durch zwei verschiedene Mod
 
 \subsubsection{Einzelner Träger mit parallel geschaltetem Modulatorenpaar}
 \label{singlecarryparallelmod}
-Wird ein einzelner Träger T von zwei parallel geschalteten Modulatoren M1 und M2 moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden, da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen und zahlreiche \textit{Kombinationsseitenfrequenzen} (CHOWNING)oder \textit{Intermodulationsfrequenzen]} (SCHOTTSTAEDT) entstehen. Das ist bereits aus der Formel für diese Spielart des FM direkt ersichtlich, die analog zu \ref{eq:SimpleFM} wie folgt nach \cite[S.46]{schottstaedt}lautet:
+Wird ein einzelner Träger $T$ von zwei parallel geschalteten Modulatoren $M1$ und $M2$ gleichzeitig moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden. Da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen, entstehen zahlreiche \textit{Kombinationsseitenfrequenzen} (\cite[S.117]{fmtheory})oder \textit{Intermodulationsfrequenzen]} (\cite{schottiWeb}). Das ist bereits aus der Funktion für diese Art der Parallelmodulation ersichtlich. Mit \cite[S.46]{schottstaedt} wird \ref{eq:SimpleFM} wie folgt um einen weiteren Modulator erweitert:
 \begin{equation}
 f_{FMparallel}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t))
 \end{equation}
-Nach mehrmaliger Anwendung der trigonometrischen Additionstheoreme zeigt sich im Vergleich mit \ref{eq:BesselZwischenform} bereits, dass diese Formel eine Vielzahl zusätzlicher Terme mit sich bringt:
+Nach mehrmaliger Anwendung der trigonometrischen Additionstheoreme zeigt sich im Vergleich mit \ref{eq:BesselZwischenform} bereits, dass diese Formel eine Vielzahl zusätzlicher Terme generiert:
 \begin{equation}
 \begin{split}
 \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\ &\quad = \sin(w_ct)\cos(I_1\sin(w_{m1}t))\cos(I\sin(w_{m2}t)) \\ &\quad + \cos(w_ct)\sin(I_1\sin(w_{m1}t))\cos(I\sin(w_{m2}t)) \\ &\quad +\cos(w_ct)\cos(I_1\sin(w_{m1}t))\sin(I\sin(w_{m2}t)) \\ &\quad -\sin(w_ct)\sin(I_1\sin(w_{m1}t))\sin(I\sin(w_{m2}t))
 \end{split}
 \end{equation}
-Substituiert man auch hier jedes \begin{math} \sin(I\sin(w_{mx}t) \end{math} mit \ref{eq:Besselsin} und \begin{math} \cos(I\sin(w_{mx}t)) \end{math}) mit \ref{eq:Besselcos} und wendet erneut die trigonometrischen Additionstheoreme an, so ergibt sich übersichtlich:
+Substituiert man auch hier wieder jedes \begin{math} \sin(I\sin(w_{mx}t) \end{math} mit \ref{eq:Besselsin} und \begin{math} \cos(I\sin(w_{mx}t)) \end{math}) mit \ref{eq:Besselcos} und wendet erneut die trigonometrischen Additionstheoreme an, so ergibt sich übersichtlich:
 \begin{equation}\label{eq:ParallelKompakt}
 \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) = \sum_{i=-\infty}^{\infty}\sum_{k=-\infty}^{\infty}J_i(I_1)J_k(I_2)\sin(w_ct + iw_{m1}t + kw_{m2}t)
 \end{equation}
-Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 ganze 25 verschiedene Terme (16 für die Kombinationsmöglichkeiten von 1 und 2 sowie den Vorzeichen + und -; weitere 9 für die Kombinationen von 1 und 0 sowie 2 und 0 inklusive der beiden Vorzeichen sowie die Kombination von 0 mit sich selbst) und somit individuelle Frequenzbänder entstehen. Die entsprechenden Additionsterme sind wie folgt:
+Damit ergeben sich exakt $i\prodk$ Kombinationen der Besselfunktionskoeffizienten. Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 ganze 25 verschiedene Terme generiert werden: 16 für die Kombinationsmöglichkeiten von 1 und 2 jeweils mit positivem oder negativem Vorzeichen; weitere 9 für die Kombinationen von 0 mit 1 oder 2 inklusive beider Vorzeichen; schließlich noch die einzelne Kombination von 0 mit sich selbst. Nachdem jeder Term für ein Seitenband steht, kann man sich die Komplexität des resultierenden Spektrums leicht ausmalen. Die entsprechenden Additionsterme sind wie folgt:
 \begin{equation}\label{eq:wallofequations}
 \begin{split}
 \sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
@@ -149,12 +150,12 @@ Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 gan
 &+ ... 
 \end{split}
 \end{equation}
-Sofern zwei Zeilen zur selben Kombination der Ordnungen der Besselfunktion gegeben sind, steht die ober Zeile für das obere Seitenfrequenzband, die Zeile darunter dem unteren Seitenfrequenzband, zumindest sofern die Modulationsfrequenz von M1 größer ist, als jene von M2 - in diesem Fall sind die linken Terme beider Zeilen das obere Frequenzband und die rechten das untere. Es lässt sich somit bereits durch nur einen Träger und zwei unabhängige Modulatoren eine gewaltige Fülle von Frequenzspektren erzeugen. Eine Abkürzung, um auf die Additionsterme für das Spektrum zu gelangen, sei hier noch kurz präsentiert: Sieht man sich z.B. die beiden Zeilen mit den Besselkoeffizienten \begin{math} J_1J_2 \end{math} an, so kann man sich vorstellen, dass diese beiden Zeilen zusammen die Kombinationen (1,2),(1,-2),(-1,2),(-1,-2) abdecken. Nun weiß man bereits, dass man 4 Terme braucht. Innerhalb jedes einzelnen Terms bekommt jeweils \begin{math} w_{m1} \end{math} als Koeffizient die erste Vektorkomponente, \begin{math} w_{m2} \end{math} die zweite Vektorkomponente. Für den Vektor (1,-2) lautet der Term somit \begin{math} J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \end{math}. Der gesamte Term bekommt als Vorzeichen noch das Produkt der Vorzeichen der Vektorkomponenten jeweils potenziert mit dem Betrag der jeweiligen Komponente. Für das gewählte Beispiel wäre das folglich \begin{math} (1)^1*(-1)^2 = 1 \end{math}; der Term bekommt also ein positives Vorzeichen. Die Bedingung des Potenzierens der Vorzeichen leitet sich dabei aus folgender Eigenschaft der Besselfunktion ab, deren Beweis hier (KREH) nachgelesen werden kann:
+Sofern zwei Zeilen eine Kombination von Besselkoeffizienten derselben zwei Ordnungen aufweisen, steht die ober Zeile für das obere Seitenfrequenzband, die Zeile darunter für das untere Seitenfrequenzband - zumindest sofern die Modulationsfrequenz von M1 größer ist, als jene von M2, sonst stehen die linken Terme beider Zeilen für das obere Frequenzband und die rechten Terme für das untere. Die Lage eines Frequenzbands ergibt sich also stets durch den Abstand eines Vielfachen der ersten Modulatorfrequenz vom Träger nach beiden Seiten, und um diesen Punkt herum dann jeweils um ein Vielfaches der zweiten Modulatorfrequenz nach beiden Seiten versetzt. Die Amplitude des jeweiligen Bandes liefert das Produkt der Besselkoeffizienten. \\
+Eine Abkürzung, um auf die Additionsterme für das Spektrum oben zu gelangen, sei hier noch kurz präsentiert: Sieht man sich z.B. die beiden Zeilen mit den Besselkoeffizienten \begin{math} J_1J_2 \end{math} an, so kann man sich klarmachen, dass diese beiden Zeilen zusammen die Kombinationen der Ordnungen (1,2),(1,-2),(-1,2),(-1,-2) abdecken. Nun weiß man bereits, dass man 4 Terme braucht. Innerhalb jedes einzelnen Terms bekommt jeweils \begin{math} w_{m1} \end{math} als Koeffizient die erste Vektorkomponente, \begin{math} w_{m2} \end{math} die zweite Vektorkomponente. Für den Vektor (1,-2) lautet der Term somit \begin{math} J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \end{math}. Der gesamte Term erhält als Vorzeichen noch das Produkt der Vorzeichen der Vektorkomponenten jeweils potenziert mit dem Betrag der jeweiligen Komponente. Für das gewählte Beispiel wäre das folglich \begin{math} (1)^1*(-1)^2 = 1 \end{math} - der Term bekommt also ein positives Vorzeichen. Die Bedingung des Potenzierens der Vorzeichen leitet sich dabei aus folgender Eigenschaft der Besselfunktion (\cite[S.358, Satz~9.1.5]{abramowitz}) ab:
 \begin{equation}
 J_{-n}(x) = (-1)^nJ_n(x)
 \end{equation}
-Im folgenden finden sich die Spektren desselben Trägers, einmal moduliert durch einen Modulator mit Einstellungen blablubb,
-einmal moduliert durch einen Modulator mit Einstellungen onkonk.
+Im Folgenden finden sich die Spektren desselben Trägers, einmal moduliert durch einen Modulator $M1$, einmal moduliert durch einen Modulator $M2$ mit von $M1$ verschiedenen Einstellungen:
 
 Zum Vergleich die Anwendung beider Modulatoren mit unveränderten Einstellungen, wieder auf denselben Träger. Es fällt auf, dass das komplexe Spektrum dieser Form der Parallelschaltung die individuellen Beiträge beider Modulatoren kaum noch erkennen lässt:
 
@@ -162,7 +163,7 @@ Zum Vergleich die Anwendung beider Modulatoren mit unveränderten Einstellungen,
 \subsection{Kaskadenschaltung: Einzelträger mit Modulatorenpaar in Reihe}
 \label{cascade}
 
-Die bisher betrachteten Schaltungen war gemein, dass unabhängig davon, ob ein Träger, mehrere Träger, ein Modulator oder mehrere Modulatoren verwendet worden sind, in keinem der Fälle ein Modulator selbst durch einen weiteren Modulator moduliert worden ist. Diese Kombinationsmöglichkeit eines Trägers sowie zweier Modulatoren stellt jedoch ein weiteres mächtiges Instrument der FM dar und soll im folgenden beschrieben werden. Die Modulation eines Trägers durch einen Modulator, der selbst wiederum durch einen weiteren Modulator moduliert wird, also die Reihenschaltung T<-M1<-M2 lässt sich in die bisher gewählte Formel für die einfache FM,
+Die bisher betrachteten Schaltungen war gemein, dass unabhängig davon, ob ein Träger, mehrere Träger, ein Modulator oder mehrere Modulatoren verwendet worden sind, in keinem der Fälle ein Modulator selbst durch einen weiteren Modulator moduliert worden ist. Diese Kombinationsmöglichkeit eines Trägers sowie zweier Modulatoren stellt jedoch ein weiteres mächtiges Instrument der FM dar und soll im Folgenden beschrieben werden. Die Modulation eines Trägers durch einen Modulator, der selbst wiederum durch einen weiteren Modulator moduliert wird, also die Reihenschaltung T<-M1<-M2 lässt sich in die bisher gewählte Formel für die einfache FM,
 \begin{equation}\label{eq:fmsimplex}
 f_{FM}(t) = \sin(w_ct + I\sin(w_mt))
 \end{equation}
@@ -227,7 +228,7 @@ Das Frequenzspektrum berechnet sich dabei nach:
 \begin{equation}
 f_{FMfeedback}(t) = \sum_{n=1}^{\infty}\frac{2}{nI}J_n(nI)\sin{nw_{c}t}
 \end{equation}
-Man sieht sofort, dass die Einflussnahme auf die Feedbackschaltung durch den Modulationsindex, d.h. die Amplitude, mit man dem Ausgangssignal der Schaltung erlaubt, auf sich selbst zurückzuwirken, lediglich die Energie und die Steilheit des Abfallens der Energie von den näher am Träger liegenden Seitenbändern zu den weiter außen liegenden beeinflusst. Die Variable $n$ hängt jedoch nur von der Ordnung der Besselfunktion ab und durchläuft in jedem Fall ganzzahlig die Werte von 1 bis $\infty$. In jedem Fall ist die Lage der Seitenfrequenzbänder also immer ein ganzzahliges Vielfaches der Trägerfrequenz. Der Amplitudenabfall von Band zu Band erfolgt dabei bei konstantem Modulationsindex, und wenn man von der Einflussnahme durch $n$ auf den Wert der Besselfunktion absieht im Verhältnis $\frac{1}{2}$ zu $\frac{1}{3}$ zu $\frac{1}{4}$ zu $\frac{1}{5}$ etc. und weist damit Ähnlichkeit zum Spektrum einer Sägezahnwelle auf. Feedback-FM bietet damit die Möglichkeit, mit nur einem Operator Töne zu erzeugen, die einen rauen Charakter aufweisen. Im folgenden sehen wir das Spektrum einer einfachen FM eines Trägers mit den Einstellungen blablubb, moduliert durch einen Modulator mit denselben Einstellungen:
+Man sieht sofort, dass die Einflussnahme auf die Feedbackschaltung durch den Modulationsindex, d.h. die Amplitude, mit man dem Ausgangssignal der Schaltung erlaubt, auf sich selbst zurückzuwirken, lediglich die Energie und die Steilheit des Abfallens der Energie von den näher am Träger liegenden Seitenbändern zu den weiter außen liegenden beeinflusst. Die Variable $n$ hängt jedoch nur von der Ordnung der Besselfunktion ab und durchläuft in jedem Fall ganzzahlig die Werte von 1 bis $\infty$. In jedem Fall ist die Lage der Seitenfrequenzbänder also immer ein ganzzahliges Vielfaches der Trägerfrequenz. Der Amplitudenabfall von Band zu Band erfolgt dabei bei konstantem Modulationsindex, und wenn man von der Einflussnahme durch $n$ auf den Wert der Besselfunktion absieht im Verhältnis $\frac{1}{2}$ zu $\frac{1}{3}$ zu $\frac{1}{4}$ zu $\frac{1}{5}$ etc. und weist damit Ähnlichkeit zum Spektrum einer Sägezahnwelle auf. Feedback-FM bietet damit die Möglichkeit, mit nur einem Operator Töne zu erzeugen, die einen rauen Charakter aufweisen. Im Folgenden sehen wir das Spektrum einer einfachen FM eines Trägers mit den Einstellungen blablubb, moduliert durch einen Modulator mit denselben Einstellungen:
 
 Im Vergleich hier das Spektrum der Feedbackschaltung eines Trägers rückgekoppelt auf sich selbst mit den Einstellungen wie der Träger oben:
 
