@@ -1,13 +1,17 @@
 \section{Praktische Anwendung der FM-Synthese}
 \FloatBarrier
 \subsection{Nachbildung eines Instruments}
-Da es bei der FM Synthese schwer ist im Vorfeld zu wissen was für ein Spektrum durch die Synthese erzeugt wird, ist es schwer und benötigt einige Experimente um mit dieser Technik ein echt wirkendes Instrument nachzubilden.
+Bei der FM Synthese fällt es schwer vorauszusagen, was für ein Spektrum durch die Synthese erzeugt wird, dadurch ist es ein schwieriges Unterfangen mit dieser Technik ein echt wirkendes Instrument nachzubilden. Weitere Informationen hierzu in \ref{PrinzipFM} - \nameref{PrinzipFM}.
 Trotzdem gibt es einige Methoden den generierten Klang natürlicher wirken zu lassen. Diese werden im weiteren Verlauf diese Kapitels vorgestellt und anschließend versucht den Klang eines Tones einer Querflöte nachzubilden.
 
 \FloatBarrier
-\subsubsection{Theoretisches Vorgehen}
+\subsubsection{Methoden zur Generierung eines Instrumententones mittels FM-Synthese}
 
-Da bei vielen Instrumenten die Lautstärke während der Laufzeit eines Tones variiert, und ein abruptes Ein oder Ausschalten des Tones nicht realistisch klingt, ist die Nutzung einer ADSR-Hüllkurve ein wichtiger Bestandteil der Nachbildung eines Instrumentes. ADSR steht für die einzelnen Phasen eines Tones: Attack, Decay, Sustain und Release. Diese Phasen sollen hier vereinfacht erklärt werden. Beim Drücken einer Taste wird der Ton angeschlagen und die Lautstärke des Tones steigt schnell bis zu einem maximal Wert an. Diese Phase wird Attack-Phase genannt. Nachdem die maximale Lautstärke erreicht wurde, startet die Decay Phase. In dieser Phase sinkt die Lautstärke schnell auf einen geringeren Wert ab. Danach befindet sich der Ton in der Sustain Phase und die Lautstärke bleibt gleich, solange der Ton gespielt wird. Sobald die Taste losgelassen wird, nimmt die Lautstärke wieder bis zu ihrem minimal Wert ab. In Abbildung \ref{fig:adsrDefault} ist der Verlauf der Lautstärke einer Standard ADSR-Hüllkurve noch einmal grafisch dargestellt.
+Bei der Synthese eines Tones mittels FM-Synthese müssen zunächst die Parameter der FM-Synthese Formel festgelegt werden. Hierzu kann ein Frequenzspektrum des nachzubildenden Tones verwendet werden. Ausführliche Erklärung der einzelnen Parameter zu finden in Kapitel \ref{einfacheFM} - \nameref{einfacheFM}. Die Frequenz des größten Ausschlags im Spektrum (auch Grundfrequenz genannt) kann als Trägerfrequenz verwendet werden. Der Abstand der Grundfrequenz zur ersten Seitenfrequenz findet als Modulationsfrequenz Verwendung. Für den Modulationsindex kann nur eine grobe Schätzung vorgenommen werden, hierzu ist die Faustformel Modulationsindex + 2 = Anzahl der sichtbaren Seitenfrequenzen nützlich. Sollte mittels der normalen FM-Synthese kein zufriedenstellendes Ergebnis erzielt werden können, sollte mit der Komplexen FM-Synthese experimentiert werden. 
+
+Bei der Komplexen FM-Synthese finden mehrere Träger oder mehrere Modulatoren Verwendung. Diese können in reihe oder parallel geschaltet werden. Außerdem kann auch die so genannte Feedback Frequenz Modulation genutzt werden, welche das voran gegangene Signal moduliert. \cite[S. 399 f.]{hornerPaper} Feedback FM wird vor allem eingesetzt um Rauschen zu erzeugen. Sie kann aber auch ein sehr komplexes Spektrum mit vielen Seitenfrequenzen erzeugen. Komplexe FM-Synthese findet Einsatz wenn die normale FM-Synthese nicht ausreichend komplexe Spektren erzeugt. Dies kann zum Beispiel der Fall sein wenn mehrere stetig fallende Seitenfrequenzen erzeugt werden sollen. Wenn bei einfacher FM-Synthese der Modulationsindex erhöht wird um mehr Seitenfrequenzen zu erzeugen, nimmt die Stärke der Grundfrequenz - definiert durch die Bessel Funktion - immer weiter ab und verteilt sich auf die Seitenfrequenzen - nachzulesen im Kapitel \ref{bulli:besselModIndexZusammenahang} - \nameref{bulli:besselModIndexZusammenahang}. Um dies zu vermeiden können die Modulatoren verschachtelt werden - nachzulesen im Kapitel \ref{Kaskadenschaltung} - \nameref{Kaskadenschaltung}
+
+Eines der wichtigsten Grundbestandteile eines jeden Instrumententones ist die so genannte ADSR-Hüllkurve. Die Hüllkurve wird genutzt um die Amplitude des künstlich erzeugten Signals über den zeitlichen Verlauf festzulegen. ADSR steht für die einzelnen Phasen eines Tones: Attack, Decay, Sustain und Release. Diese Phasen sollen hier vereinfacht erklärt werden. Beim Drücken einer Taste wird der Ton angeschlagen und die Lautstärke des Tones steigt schnell bis zu einem maximal Wert an. Diese Phase wird Attack-Phase genannt. Nachdem die maximale Lautstärke erreicht wurde, startet die Decay Phase. In dieser Phase sinkt die Lautstärke schnell auf einen geringeren Wert ab. Danach befindet sich der Ton in der Sustain Phase und die Lautstärke bleibt gleich, solange der Ton gespielt wird. Sobald die Taste losgelassen wird, nimmt die Lautstärke wieder bis zu ihrem minimal Wert ab. In Abbildung \ref{fig:adsrDefault} ist der Verlauf der Lautstärke einer Standard ADSR-Hüllkurve noch einmal grafisch dargestellt.
 
 \begin{figure} [ht]
 \centering
@@ -17,43 +21,31 @@ Da bei vielen Instrumenten die Lautstärke während der Laufzeit eines Tones var
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Da allerdings bei vielen Instrumenten die Lautstärke in den einzelnen Phasen der ADSR-Hüllkurve nicht gleichmäßig steigt oder sinkt, ist es nötig die Kurven beliebig Komplex abbilden zu können. Zum Beispiel steigt bei vielen Instrumenten die Lautstärke in der Attack Phase exponentiell an und fällt in der Decay und Release Phase auch exponentiell ab. Manche Synthesizer bieten zusätzlich auch noch eine Hold Phase vor der Attack Phase, da es Instrumente gibt, die einige Zeit benötigen bis sie nach dem Anschlagen des Tones in die Attack Phase eintreten. In Abbildung \ref{fig:adsrBrass} und \ref{fig:adsrPiano} wurden weitere für Instrumenten typische Hüllkurven dargestellt.
+Da allerdings bei vielen Instrumenten die Lautstärke in den einzelnen Phasen der ADSR-Hüllkurve nicht gleichmäßig steigt oder sinkt, ist es nötig die Kurven beliebig Komplex abbilden zu können. Bei vielen Instrumenten steigt beispielsweise die Lautstärke in der Attack Phase exponentiell an und fällt in der Decay und Release Phase auch wieder exponentiell ab. Manche Synthesizer bieten zusätzlich auch noch eine Hold Phase vor der Attack Phase, da es Instrumente gibt, die einige Zeit benötigen bis sie nach dem Anschlagen des Tones in die Attack Phase eintreten. In Abbildung \ref{fig:adsrTypical} wurden weitere für Instrumenten typische Hüllkurven dargestellt um zu verdeutlichen, dass die ADSR-Hüllkurve bei Instrumenten beliebig komplexe Formen annehmen kann.
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{adsrBrass.png}
-\caption{Typische ADSR-Hüllkurve eines Blechblasinstrumentes}
-\label{fig:adsrBrass}
-Quelle: Eigene Darstellung mit Matlab nach \cite{chowningPaper}
-\end{figure}
-
-\begin{figure} [ht]
-\centering
-  \includegraphics[width=0.5\textwidth]{adsrPiano.png}
-\caption{Typische ADSR-Hüllkurve eines Klaviers}
-\label{fig:adsrPiano}
+  \includegraphics[width=1\textwidth]{adsrTypical.png}
+\caption{Typische ADSR-Hüllkurve eines Blechblasinstrumentes und eines Klaviers}
+\label{fig:adsrTypical}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Auch wenn das Hinzufügen einer ADSR-Hüllkurve den Klang des synthetisierten Tones schon stark verbessert, hört sich der erzeugte Ton leider noch nicht wie ein echtes Instrument an. Eine weitere Möglichkeit ihn zu verbessern, stellt die Varrierung des Modulationsindex über die Zeit oder die Amplitude dar. Somit kann die Anzahl der Seitenfrequenzen verändert werden. Bei Blasinstrumenten wird der Modulationsindex typischerweise über die Amplitude (also mit der ADSR-Hüllkurve) variiert. \cite[S. 532]{chowningPaper}
+Auch wenn das Hinzufügen einer ADSR-Hüllkurve den Klang des synthetisierten Tones schon natürlicher wirken lässt, hört sich der erzeugte Ton leider noch nicht wie ein echtes Instrument an. Eine weitere Möglichkeit ihn zu verbessern, stellt die Varrierung des Modulationsindex über die Zeit oder die Amplitude dar. Somit kann die Anzahl der Seitenfrequenzen verändert werden, was zu einem lebendigeren Klang führt. Bei Blasinstrumenten wird der Modulationsindex typischerweise über die Amplitude (also mit der ADSR-Hüllkurve) variiert. \cite[S. 532]{chowningPaper}
 
-Abgesehen von der einfachen Frequenz Modulation ist es auch möglich mehrere Modulatoren zu verwenden. Diese können in reihe oder parallel geschaltet werden. Außerdem kann auch die sogenannte Feedback Frequenz Modulation genutzt werden, welche das vorran gegangene Signal moduliert. \cite[S. 399 f.]{hornerPaper} Feedback FM wird vorallem eingesetzt um rauschen zu erzeugen, es kann aber auch ein sehr komplexes Spektrum mit vielen Seitenfrequenzen erzeugen. Komplexe FM-Synthese findet Einsatz wenn die normale FM-Synthese nicht ausreichend komplexe Spektren erzeugt. Dies kann der Fall sein wenn mehrere stetig fallende Seitenfrequenzen erzeugt werden sollen. Wenn bei einfacher FM-Synthese der Modulationsindex erhöht wird um mehr Seitenfrequenzen zu erzeugen, nimmt die Stärke der Grundfrequenz - definiert durch die Bessel Funktion - immer weiter ab und verteilt sich auf die Seitenfrequenzen \ref{bulli:besselModIndexZusammenahang}. Um dies zu vermeiden können die Modulatoren verschachtelt werden - nachzulesen im Kapitel Komplexe Frequenzmodulation (bla)
+Eine weitere Möglichkeit den Klang des Tones zu verbessern stellen Filter dar. Filter können genutzt werden um das von der FM Synthese erzeugte Signal zu manipulieren. Dabei werden ungewollte Frequenzen gedämpft bzw. komplett heraus gefiltert. Typische Vertreter von Filtern sind Hochpassfilter, Tiefpassfilter, Bandpass und Bandsperre. \cite[S. 100-104]{stotz}
 
-Eine reihe an Filtern kann genutzt werden um das von der FM Synthese erzeugte Signal zu verbessern. Diese Filter können mittels additive oder subtraktive Synthese das Signal manipulieren und so ungewollte Frequenzen herausfiltern. Typische Filter sind: Hochpassfilter, Tiefpassfilter, Bandpass und Bandsperre. \cite[S. 100-104]{stotz}
+Das bisher erzeugte Signal ist noch ein reines Signal, welches so in der Natur nicht vorkommen kann. Bei Luftverwirblungen und Unebenheiten des Instrumentes tritt Rauschen auf. Dieses Rauschen trägt zum typischen Klangbild eines Instrumentes bei und sollte auch nachgebildet werden. Ein Rauschen kann mittels Feedback-FM-Synthese erzeugt werden, dafür muss der Modulationsindex der Feedback-FM-Synthese sehr hoch angesetzt werden. Das von der Feedback-FM-Synthese erzeugte Signal gleicht bei sehr hohem Modulationsindex einem weißen Rauschen. Anschließend kann dieses Rauschen mittels Multibandpassfilter um die jeweiligen ausgeprägten Frequenzen gefiltert werden. Würde das Rauschen nicht gefiltert werden, kann neben dem Ton, das Rauschen als solches wahrgenommen werden. [TODO CITE]
 
-Kein Instrument erzeugt einen hundertprozentigen Klang. Bei Luftverwirblungen und Unebenheiten des Instrumentes wird Rauschen erzeugt. Dieses Rauschen trägt zum typischen Klangbild eines Instrumentes bei und sollte auch nachgebildet werden. Ein Rauschen kann mittels FM Feedback Generator erzeugt werden, dafür muss der Modulationsindex der Feedback FM-Synthese sehr hoch angesetzt werden. Anschließend kann dieses Rauschen mittels Multibandpassfilter um die jeweiligen ausgeprägten Frequenzen gefiltert werden. Würde das Rauschen nicht gefiltert werden, würde man neben dem Ton, das Rauschen als solches wahrnehmen.
-
-Raumhall
-
-Um den Klang des Synthetisierten Tones noch realistischer zu machen, kann er mit einem Raumhall veredelt werden.
+Um den Klang des Synthetisierten Tones noch natürlicher zu gestalten, könnte dem Ton noch ein Hall-Effekt hinzugefügt werden.
 
 
 \FloatBarrier
 \subsubsection{Nachbildung eines Tones einer Querflöte mittels FM-Synthese}
 
-Im Laufe dieses Kapitels soll ein Ton einer Querflöte mittels FM-Synthese erzeugt und mit den oben beschriebenen Techniken verfeinert werden. Alle Beispiele sind in Matlab erstellt und können mit den beiliegenden Dateien nachgestellt werden. In Abbildung \ref{fig:plotFluteOrig} sind Spektrogram, Waveform und Spektrum des Originalen Querflöten Tones abgebildet. Mit den Information aus den vorliegenden Grafiken wird versucht, diesen spezifischen Ton nachzubilden.
+Im Laufe dieses Kapitels soll ein Ton einer Querflöte mittels FM-Synthese erzeugt und mit den oben beschriebenen Techniken verfeinert werden. Alle Beispiele sind in Matlab erstellt und können mit den beiliegenden Dateien nachgestellt werden. In Abbildung \ref{fig:plotFluteOrig} sind Spektrogram, Waveform und Spektrum des originalen Querflöten Tones abgebildet. Mit den Information aus den vorliegenden Grafiken wird versucht, diesen spezifischen Ton nachzubilden.
 
-\begin{figure} [ht]
+\begin{figure} [h!t!b!]
 \centering
   \includegraphics[width=1\textwidth]{plotFluteOrig.png}
 \caption{Plot des Spektrograms, der Waveform und des Spektrums eines echten Tones einer Querflöte}
@@ -61,7 +53,7 @@ Im Laufe dieses Kapitels soll ein Ton einer Querflöte mittels FM-Synthese erzeu
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Anhand des Spektrums können bereits einige Erkenntnisse für die FM-Synthese auslesen werden. Zunächst ist zu erkennen das die am stärksten ausgeprägte Frequenz bei etwa 800 Hz liegt. Bei genauerer Betrachtung wird sichtbar das die Frequenz nicht exakt bei 800 Hz sondern bei 796.75 Hz ihren maximalen Ausschlag erreicht. Dies entspricht am ehesten einem G5 mit 784 Hz \cite[S. 181]{borucki}. Diese Frequenz (796.75 Hz) werden wir bei der FM-Synthese als Träger Frequenz nutzen. Im Spektrum sind außerdem noch mehrere Seitenfrequenzen zu sehen. Die erste dieser Seitenfrequenzen befindet sich bei etwa dem doppelten der Grundfrequenz. Bei genauerer Betrachtung wird sichtbar das sie ihren maximalen Amplitudenwert wirklich genau bei dem doppeltem der Grundfrequenz (1593.5 Hz) hat. Das bedeutet der Abstand zwischen Grundfrequenz und erster Seitenfrequenz ist genauso groß wie der Abstand von 0 Hz bis zur Grundfrequenz, hierbei ist zu bemerken das der Abstand von einem ganzzahligen Multiplikator mit der Grundfrequenz typisch für einen harmonischen Ton ist \cite[S. 528]{chowningPaper}. Die nächsten Seitenfrequenzen haben jeweils wieder den selben Abstand von 796.75 Hz zur jeweiligen vorangegangenen Seitenfrequenz. Aus dieser Beobachtung können wir unsere Modulationsfrequenz von 796.75 Hz schließen. Anhand der Anzahl der sichtbaren Seitenfrequenzen im Spektrum können wir eine ungefähre Abschätzung unseres Modulationsindexes wagen. Da zwischen Modulationsindex und Anzahl der Seitenfrequenzen etwa gilt I+2 = n (bla) wird als Modulationsindex fürs erste einmal 0.5 angenommen. 
+Anhand des Spektrums können bereits einige Erkenntnisse für die FM-Synthese ausgelesen werden. Zunächst ist zu bemerken, dass die am stärksten ausgeprägte Frequenz bei etwa 800 Hz liegt. Bei genauerer Betrachtung wird sichtbar, dass die Frequenz nicht exakt bei 800 Hz sondern bei 796.75 Hz ihren maximalen Ausschlag erreicht. Dies entspricht am ehesten einem G5 mit 784 Hz \cite[S. 181]{borucki}. Diese Frequenz (796.75 Hz) werden wir bei der FM-Synthese als Träger Frequenz nutzen. Im Spektrum sind außerdem noch mehrere Seitenfrequenzen zu sehen. Die erste dieser Seitenfrequenzen befindet sich bei etwa dem doppelten der Grundfrequenz. Bei genauerer Betrachtung wird sichtbar das sie ihren maximalen Amplitudenwert wirklich genau bei dem doppeltem der Grundfrequenz (1593.5 Hz) hat. Also ist der Abstand zwischen Grundfrequenz und erster Seitenfrequenz genauso groß wie der Abstand von 0 Hz bis zur Grundfrequenz, hierbei ist zu bemerken, dass der Abstand von einem ganzzahligen Multiplikator mit der Grundfrequenz typisch für einen harmonischen Ton ist \cite[S. 528]{chowningPaper}. Die nächsten Seitenfrequenzen haben jeweils wieder den selben Abstand von 796.75 Hz zur jeweiligen vorangegangenen Seitenfrequenz. Aus dieser Beobachtung können wir unsere Modulationsfrequenz von 796.75 Hz schließen. Anhand der Anzahl der sichtbaren Seitenfrequenzen im Spektrum können wir eine ungefähre Abschätzung unseres Modulationsindexes wagen. Somit wird als Modulationsindex für die ersten Tests vorerst 0.5 angenommen. 
 
 \begin{figure} [ht]
 \centering
@@ -71,13 +63,13 @@ Anhand des Spektrums können bereits einige Erkenntnisse für die FM-Synthese au
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Ein erstes Spektrum der FM-Synthese mit den eben festgelegten Werten kann in Abbildung \ref{fig:plotFMSyntheseI05} begutachtet werden. Beim evaluieren der Ergebnisse dieses Spektrums fällt auf das die erste Seitenfrequenz im Verhältnis zur Grundfrequenz einen viel Stärkeren Ausschlag aufweist als es bei der Querflöte der Fall ist. Außerdem fällt danach die Amplitude der 2. und 3. Seitenfrequenz viel stärker ab als bei dem Instrument. Sieht man sich jetzt noch das Spektrogram in Abbildung \ref{fig:plotFMSyntheseI05} an, fällt im Vergleich zum Spektrogram der Querflöte auf, das bei der FM-Synthese sehr viel weniger Seitenfrequenzen erzeugt werden. Die Seitenfrequenzen bei 4000 Hz und darüber sind bei dem Instrument noch deutlich sichtbar während sie bei der FM-Synthese schon bei 4000 Hz kaum noch existent sind. Versucht man jetzt den Modulationsindex zu erhöhen um mehr Seitenfrequenzen zu erzeugen verlagert sich die Amplitude unserer Träger Frequenz auf die Seitenfrequenzen, damit werden die Seitenfrequenz stärker und die Träger Frequenz schwächer, zu sehen in Abbildung \ref{fig:spektrumFMSyntheseI4}.
+Ein erstes Spektrum der FM-Synthese mit den eben festgelegten Werten kann in Abbildung \ref{fig:plotFMSyntheseI05} begutachtet werden. Beim Evaluieren der Ergebnisse dieses Spektrums fällt auf, dass die erste Seitenfrequenz im Verhältnis zur Grundfrequenz einen viel Stärkeren Ausschlag aufweist als es bei der Querflöte der Fall ist. Außerdem fällt danach die Amplitude der 2. und 3. Seitenfrequenz viel stärker ab als bei dem Instrument. Sieht man sich jetzt noch das Spektrogram (ebenfalls in Abbildung \ref{fig:plotFMSyntheseI05}) an, fällt im Vergleich zum Spektrogram der Querflöte die sehr viel geringer Anzahl an Seitenfrequenzen auf. Die Seitenfrequenzen bei 4000 Hz und darüber sind bei dem Instrument noch deutlich sichtbar während sie bei der FM-Synthese schon bei 4000 Hz kaum noch existent sind. Versucht man jetzt den Modulationsindex zu erhöhen um die Anzahl der Seitenfrequenzen zu erhöhen, verlagert sich die Amplitude unserer Trägerfrequenz auf die Seitenfrequenzen, damit werden die Seitenfrequenz stärker und die Träger Frequenz schwächer, zu sehen in Abbildung \ref{fig:spektrumFMSyntheseI2}. 
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{spektrumFMSyntheseI4.png}
-\caption{Plot des Spektrums der FM-Synthese mit den Parametern fc = 796.75 Hz, fm = fc und I = 4}
-\label{fig:spektrumFMSyntheseI4}
+  \includegraphics[width=0.5\textwidth]{spektrumFMSyntheseI2.png}
+\caption{Plot des Spektrums der FM-Synthese mit den Parametern fc = 796.75 Hz, fm = fc und I = 2}
+\label{fig:spektrumFMSyntheseI2}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
@@ -91,44 +83,41 @@ Um dieses Verhalten zu umgehen müssen wir uns der Komplexen FM-Synthese widmen.
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Da die Grundeinstellung der FM-Synthese mit den oben genannten Parametern ein zufriedenstellendes Signal erzeugt, können wir uns jetzt der Veredlung des Tones widmen. Durch Hinzufügen eines Vibratos wirkt der erzeugte Klang lebendiger und nicht ganz so künstlich. Dies kann bewerkstelligt werden indem die Modulationsfrequenz leicht erhöht oder verringert wird. Auch hierbei muss experimentiert werden, welche Erhöhung der Modulationsfrequenz das gewünschte Ergebnis erzeugt. Als sehr ähnlich zum Original Ton hat sich in diesem Fall eine Erhöhung um 2.5 Hz herausgestellt. Unsere neue Modulationsfrequenz ist somit fm = fc + 2.5. In Abbildung \ref{fig:spektrumFMSyntheseVibrato} wird die Auswirkung des Vibratos sichtbar, es bilden sich um die Seitenfrequenzen weitere recht gering ausgeprägte Frequenzausschläge. Der Vibrato führt zu einer leichten Schwingung des Tones. 
+Da die Grundeinstellung der FM-Synthese mit den oben genannten Parametern ein zufriedenstellendes Signal erzeugt, können wir uns jetzt der Veredlung des Tones widmen. Zuerst wird dem Signal ein Vibrato hinzugefügt. Durch das Hinzufügen des Vibratos, schwingt der erzeugte Ton leicht und wirkt lebendiger und nicht ganz so künstlich. Dies kann bewerkstelligt werden indem die Modulationsfrequenz leicht erhöht oder verringert wird. Auch hierbei muss experimentiert werden, welche Erhöhung der Modulationsfrequenz das gewünschte Ergebnis erzeugt. Als sehr ähnlich zum Original Ton hat sich in diesem Fall eine Erhöhung um 2.5 Hz herausgestellt. Unsere neue Modulationsfrequenz ist somit fm = fc + 2.5. In Abbildung \ref{fig:spektrumFMSyntheseVibrato} wird die Auswirkung des Vibratos sichtbar, es bilden sich um die Seitenfrequenzen weitere recht gering ausgeprägte Frequenzausschläge.
 
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.5\textwidth]{spektrumFMSyntheseVibrato.png}
-\caption{Plot des Spektrums der FM-Synthese mit 4 Modulatoren und Vibrato fm1 = fm2 = fm3 = fm4 = fc + 2.5}
+\caption{Plot des Spektrums der FM-Synthese mit 4 Modulatoren, Vibrato und den Parameter fc = 796.75 Hz, fm1 = fm2 = fm3 = fm4 = fc +2.5, I1 = 0.3, I2 = 0.5, I3 = 1 und I4 = 1}
 \label{fig:spektrumFMSyntheseVibrato}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Der nächste wichtige und einfach hinzuzufügende Bestandteil des synthetisierten Tones ist die ADSR-Hüllkurve. Um generell eine Querflöte nachzumachen wäre eine Hüllkurve wie in Abbildung \ref{fig:adsrFluteGeneral} gezeigt möglich. Allerdings versuchen wir den originalen Ton der Querflöte so gut wie möglich nachzuahmen, hierfür wurde eine Komplexere Hüllkurve nach dem Beispiel der Waveform des original Tones generiert. Bei dieser Hüllkurve wurde Attack, Decay und Release von der Allgemeinen Hüllkurve übernommen und die Sustain Phase angepasst, zu sehen in Abbildung \ref{fig:adsrFluteComplex}. 
+Der nächste wichtige und einfach hinzuzufügende Bestandteil des synthetisierten Tones ist die ADSR-Hüllkurve. Um generell eine Querflöte nachzumachen wäre eine Hüllkurve wie in Abbildung \ref{fig:adsrFlute} links gezeigt möglich. Allerdings versuchen wir den originalen Ton der Querflöte so gut wie möglich nachzuahmen, hierfür wurde eine Komplexere Hüllkurve nach dem Beispiel der Waveform des original Tones generiert. Bei dieser Hüllkurve wurde Attack, Decay und Release von der Allgemeinen Hüllkurve übernommen und die Sustain Phase angepasst, zu sehen in Abbildung \ref{fig:adsrFlute} rechts. 
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.5\textwidth]{adsrFluteGeneral.png}
-\caption{Plot der ADSR-Hüllkurve einer Querflöte}
-\label{fig:adsrFluteGeneral}
+  \includegraphics[width=1\textwidth]{adsrFlute.png}
+\caption{Plot der ADSR-Hüllkurve einer Querflöte und der hier genutzten, komplexeren Hüllkurve}
+\label{fig:adsrFlute}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-\begin{figure} [ht]
+Nachdem die ADSR-Hüllkurve hinzugefügt wurde, fällt im Spektrogram auf, dass die Seitenfrequenzen trotz geringerer Amplitude bei Attack und Release Phase einen größeren Ausschlag als beim Instrument aufweist. Dieser Ausschlag kann verringert werden, indem der erste Modulationsindex mit der ADSR-Hüllkurve variiert wird. 
+
+Nachdem Vibrato, Variabler Modulationsindex und ADSR-Hüllkurve hinzugefügt wurden, hat sich das Spektrogram zur Abbildung \ref{fig:plotFMSyntheseKomplex4Mod} kaum geändert. Es wird nur der Vibrato durch die etwas breiteren Seitenfrequenzen und die ADSR-Hüllkurve durch ansteigen des Spektrums zu Beginn des Tones und Abfallen des Spektrums nach 1.2 Sekunden sichtbar. Der Ton hört sich von der Tonhöhe und der Intensität schon stark nach dem Originalen Querflötenton an. Allerdings fehlen noch die Typischen Blas- und Luftverwirblungsgeräusche sowie das sehr starke Anblasgeräusch. Um die typischen Blasgeräusche zu erzeugen wird zunächst ein Rauschen mittels FM Feedback Generator mit hohem Modulationsindex erzeugt. Würde das Rauschen ohne weitere Arbeitsschritte dem synthetisiertem Signal hinzugefügt, könnte das Rauschen stark herausgehört werden. Um dies zu verhindern muss das Rauschen vorerst gefiltert werden. Hierzu wird ein Multibandpassfilter über alle möglichen Seitenfrequenzen erstellt. Das Gefilterte Rauschen wird anschließend noch mit einer ADSR-Hüllkurve veredelt. Dieser Schritt ist nötig, da während der Attack-Phase des Original Tones, wie im Spektrogram in Abbildung \ref{fig:plotFluteOrig} zu sehen, das Rauschen durch das Anblasen des Instrumentes sehr scharf heraus sticht. Zusätzlich kann noch ein sehr leises Rauschen des Feedback-FM-Generators ohne Filter über das ganze Frequenzspektrum gelegt werden um auch in den höheren Frequenzen einen leichten Ausschlag im Spektrogram kenntlich zu machen. Trotz des verstärkten Rauschens zu Begin des Tones, fehlt noch der Starke hörbare Ton der dabei entsteht. Beim betrachten des Spektrums und des Spektrograms fallen noch 2 recht Starke Ausschläge zu Begin des Signals auf. Ein Ausschlag befindet sich bei 904.3 Hz und der zweite bei 1182 Hz. Beide Frequenzen können mit einem einfachen Sinus erzeugt und mit einer ADSR-Hüllkurve, die nur eine kurze Attack-Phase aufweist, modeliert und zum Signal addiert werden. In Abbildung \ref{fig:spektrogramFMSyntheseComplete} ist das Ergebnis der FM-Synthese mit den, in diesem Kapitel, besprochenen Veredelungen gezeigt. In den Plots sind die Ähnlichkeiten zum originalen Ton deutlich zu sehen.
+
+\begin{figure} [h!t!b!]
 \centering
-  \includegraphics[width=0.5\textwidth]{adsrFluteComplex.png}
-\caption{Plot der Komplexen ADSR-Hüllkurve dieses Querflötentones}
-\label{fig:adsrFluteComplex}
+  \includegraphics[width=1\textwidth]{spektrogramFMSyntheseComplete.png}
+\caption{Plot des fertigen Tones der FM-Synthese mit 4 Modulatoren, ADSR-Hüllkurve, Variablem Modulationsindex, Vibrato, Rauschen und Anblasgeräusch}
+\label{fig:spektrogramFMSyntheseComplete}
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Nachdem Vibrato und ADSR-Hüllkurve hinzugefügt wurden, hat sich das Spektrogram zur Abbildung \ref{fig:plotFMSyntheseKomplex4Mod} kaum geändert. Es wird nur der Vibrato durch die etwas breiteren Seitenfrequenzen und die ADSR-Hüllkurve durch ansteigen des Spektrums zu Beginn des Tones und Abfallen des Spektrums nach 1.2 Sekunden sichtbar. Der Ton hört sich von der Tonhöhe und der Intensität schon stark nach dem Originalen Querflötenton an. Allerdings fehlen noch die Typischen Blas- und Luftverwirblungsgeräusche sowie das sehr starke Anblasgeräusch. Um die typischen Blasgeräusche zu erzeugen wird zunächst ein FM Feedback Generator mit hohem Modulationsindex erzeugt. Dieser erzeugt ein Rauschen ähnlich dem weißen Rauschen. Würde das Rauschen ohne weitere Arbeitsschritte dem synthetisiertem Signal hinzugefügt, könnte das Rauschen stark herausgehört werden. Um dies zu verhindern muss das Rauschen vorerst gefiltert werden. Hierzu wird ein Multibandpassfilter über alle möglichen Seitenfrequenzen erstellt. Das Gefilterte Rauschen wird anschließend noch mit einer ADSR-Hüllkurve veredelt, da während der Attack-Phase des Original Tones, wie im Spektrogram in Abbildung \ref{fig:plotFluteOrig} zu sehen, das Rauschen durch das Anblasen des Instrumentes sehr scharf heraus sticht. Zusätzlich kann noch ein sehr leises Rauschen des Feedback FM-Generators ohne Filter über das ganze Frequenzspektrum gelegt werden um auch in den höheren Frequenzen einen leichten Ausschlag im Spektrogram kenntlich zu machen. In Abbildung \ref{fig:} wird das Spektrogram des synthetisierten Tones für alle bisherigen Veränderungen gezeigt.
+Der in diesem Kapitel synthetisierte Ton gleicht dem originalen Flöten Ton sehr stark. Trotzdem weißt der Flöten Ton noch etwas mehr Lebendigkeit auf, da das gesamte Signal nicht so statisch wie das, der FM-Synthese ist. 
 
-\begin{figure} [ht]
-\centering
-  \includegraphics[width=0.5\textwidth]{spektrogramFMSyntheseComplex4ModVibratoADSRNoise.png}
-\caption{Plot des Spektrograms der FM-Synthese mit 4 Modulatoren, ADSR-Hüllkurve, Vibrato und Rauschen}
-\label{fig:spektrogramFMSyntheseComplex4ModVibratoADSRNoise}
-Quelle: Eigene Darstellung mit Matlab
-\end{figure}
-
+Dieses Ergebnis zeigt, dass es sehr wohl möglich ist, wenn auch mit erheblichem Aufwand verbunden, mit der FM-Synthese einen natürlich wirkenden Instrumententon zu erzeugen. Gerade in diesem Beispiel fällt allerdings auf das der synthetisierte Ton im Vergleich zum originalen Ton nicht ganz so lebendig empfunden wird. Das hängt in diesem Fall vorallem an der nicht sehr neutralen Spielweise des Querflötenspielers.
 
 
 \FloatBarrier

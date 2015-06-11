@@ -2,9 +2,9 @@ length = 1.3;       %length of the tone
 fs = 44100;
 t = 0:1/fs:length;  %timecode for each sample
 
-attackTime = [0,0.1];
-decayTime = [0.1,0.2];
-sustainTime = [0.2,1.2];
+attackTime = [0,0.05];
+decayTime = [0.05,0.15];
+sustainTime = [0.15,1.2];
 releaseTime = [1.2,1.3];
 attackValue = [0,0.3];
 decayValue = [0.3,0.25];
@@ -26,7 +26,7 @@ Sustain = linspace(sustainValue(1),sustainValue(2),SustainSize);
 Release = (cos(2*pi*(1/((releaseTime(2)-releaseTime(1))*2))*(ReleaseTimes-releaseTime(1)))+1)/2*releaseValue(1);
 
 A = [Attack,Decay,Sustain,Release];
-
+subplot(1,2,1);
 plot(A, 'LineWidth',1);
 set(gca, 'XTick', 0:4410:length*fs);
 set(gca, 'XTickLabel', 0:4410/fs:length);

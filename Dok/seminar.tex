@@ -14,6 +14,11 @@
 \usepackage[export]{adjustbox}
 \usepackage{bm}
 \usepackage{listings}
+
+\hbadness=10000
+\clubpenalty = 10000 % schliesst Schusterjungen aus
+\widowpenalty = 10000 % schliesst Hurenkinder aus
+
 \lstset{
 	 literate={ö}{{\"o}}1 	%Replaces "oe","ae" usw. with \o to use "Umlaute" in listings
            {ä}{{\"a}}1
