@@ -115,9 +115,9 @@ Nachdem Vibrato, Variabler Modulationsindex und ADSR-Hüllkurve hinzugefügt wur
 Quelle: Eigene Darstellung mit Matlab
 \end{figure}
 
-Der in diesem Kapitel synthetisierte Ton gleicht dem originalen Flöten Ton sehr stark. Trotzdem weißt der Flöten Ton noch etwas mehr Lebendigkeit auf, da das gesamte Signal nicht so statisch wie das, der FM-Synthese ist. 
+Der in diesem Kapitel synthetisierte Ton gleicht dem originalen Flöten Ton sehr stark. Trotzdem weißt der Flöten Ton noch etwas mehr Lebendigkeit auf, da das gesamte Signal nicht so statisch wie das, der FM-Synthese wirkt. 
 
-Dieses Ergebnis zeigt, dass es sehr wohl möglich ist, wenn auch mit erheblichem Aufwand verbunden, mit der FM-Synthese einen natürlich wirkenden Instrumententon zu erzeugen. Gerade in diesem Beispiel fällt allerdings auf das der synthetisierte Ton im Vergleich zum originalen Ton nicht ganz so lebendig empfunden wird. Das hängt in diesem Fall vorallem an der nicht sehr neutralen Spielweise des Querflötenspielers.
+Dieses Ergebnis zeigt, dass es sehr wohl möglich ist, wenn auch mit erheblichem Aufwand verbunden, mit der FM-Synthese einen natürlich wirkenden Instrumententon zu erzeugen. Gerade in diesem Beispiel fällt allerdings auf das der synthetisierte Ton im Vergleich zum originalen Ton nicht ganz so lebendig empfunden wird. Das hängt in diesem Fall vorallem an der Spielweise des Querflötenspielers.
 
 
 \FloatBarrier
@@ -127,5 +127,12 @@ Mittels genetischer Algorithmen ist es möglich Parameter der FM Synthese heraus
 
 \FloatBarrier
 \subsection{Modulationsframework (Theorie -> Praxis)}
+
+Zu Beginn dieser Arbeit wurde zum besseren Verständnis der FM-Synthese ein kleiner Software Synthesizer in C++ mit der Hilfe des Juce Frameworks geschrieben. Das Juce Framework wurde hierfür ausgewählt, da es gerade für ein Audioprogramm gut geeignet ist weil es bereits Funktionen zur Ausgabe eines Audio Signals und Möglichkeiten zur Erstellung einer Benutzeroberfläche bereitstellt. Zudem ist das Juce Framework Cross Plattform fähig und somit auch das geschriebene Programm. 
+
+Zunächst wurde eine einfache FM-Synthesizer Klasse geschrieben und diese an das Audio Ausgabesystem des Juce Frameworks angebunden. Dabei ruft die Soundkarte eine Methode des Programms auf und erwartet das der übergebene Puffer mit Audiodaten gefüllt wird. Das Programm füllt den gegebenen Puffer mit Daten die mit der FM-Synthesizer Klasse generiert werden. Später wurde das Programm dann noch um die Visuelle Darstellung des erzeugten Audiosignals erweitert. Außerdem ist es möglich dem FM-Synthesizer einen Hüllkurvengenerator zu übergeben, welcher bei der Erzeugung des Audiosignals den Amplitudenwert für die einzelnen Samples bereitstellt. Die Amplitudenwerte werden ebenfalls visuell dargestellt.
+
+Da gerade die Änderung der Parameter und das jeweils resultierende Klangbild zum Verständnis hilfreich sind, wurden Möglichkeiten in das Programm eingebaut um sowohl den Modulationsindex als auch die Modulationsfrequenz sowie die Oktave zu ändern. Das Ändern der Parameter ist mittels einfachem Tastendruck möglich. Zusätzlich wurde das Programm so angepasst, dass es mittels Tastendruck möglich ist verschiedene Töne zu spielen. Die Tasten "C", "D", "E", "F", "G", "A" und "B" entsprechen jeweils ihrem tonalen Equivalent. Beim Drücken der Taste startet die Hüllkurve in die Attack-Phase, geht dann über in die Decay und schließlich in die Release-Phase. Wird die Taste losgelassen startet die Release-Phase und der Ton klingt ab. Mit den Tasten "1" und "2" kann der Modulationsindex incrementiert sowie decrementiert werden. Um die Modulationsfrequenz zu ändern können die Pfeil hoch und Pfeil runter Tasten genutzt werden. Die Octave lässt sich mit den Tasten "+" und "-" verändern.
+
+Das entstandene Programm bietet eine gute Möglichkeit die Parameter der FM-Synthese während der Wiedergabe eines Tones zu verändern und hilft so zu verstehen was beim Ändern dieser passiert.
 \FloatBarrier
-\subsection{Demo: Parameter und Effekte - Grafiken (evtl. Plotten)}
