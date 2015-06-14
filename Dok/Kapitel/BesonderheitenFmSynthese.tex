@@ -106,9 +106,11 @@ Diese Formel entspricht somit der von Chowning vorgestellten Formel für eine FM
 \subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
 \label{bulli:ohrToeneUndFrequenzen}
 Ein Ton wird durch eine einfache Sinusschwingung erzeugt. Die Tonstärke, also die Lautstärke eines Tones, hängt von der Amplitude der Schwingung ab. Je größer die Amplitude desto lauter wirkt der Ton. Die Frequenz einer Schwingung empfindet der Mensch als Tonhöhe. Je größer die Frequenz der Schwingung desto höher wird der Ton empfunden. 
+Das menschliche Ohr nimmt Frequenzen zwischen 16 Hz und 20 kHz wahr. Mit zunehmenden Alter nimmt die obere Hörschwelle ab. \cite[S. 199]{borucki}
 Ein natürlicher Klang setzt sich nicht aus einer einzigen Frequenz zusammen, sondern aus mehreren Teiltönen. Jeder Teilton entspricht einem Sinuston mit einer bestimmten Frequenz, welche ein ganzzahliges Vielfaches des tiefsten Teiltones ist. Der tiefste Teilton, also der Teilton mit der niedrigsten Frequenz, wird als Grundton bezeichnet. \cite[S. 87]{borucki} 
 Dabei kann das menschliche Gehör die Tonhöhe bestimmen, auch wenn der Grundton schwach ausgeprägt oder nicht vorhanden ist. \cite[S. 4]{zwicker} Abbildung~\ref{fig:geige} zeigt die Wellenform eines Geigentones und dem dazu gehörigen Frequenzspektrums. Obwohl der Grundton wenig dominiert, die ersten acht Frequenzen sind in etwa gleichstark, würde das Ohr die Tonhöhe richtig erkennen. Des Weiteren nehmen wir neben der Tonhöhe und Lautstärke eines Tones etwas Weiteres war. Das Spektrum eines Tones gibt uns ein Gefühl für unterschiedliche Klänge. Dieses Empfinden wird als Klangfarbe bezeichnet und lässt uns z.B. zwischen verschiedenen Instrumenten unterscheiden. \cite[S. 5]{zwicker} \cite[S. 226]{raichel}
 Warum die Teiltöne entscheidend für den Klangcharakter sind, erkennt man an der stark vereinfachten Funktionsweise des menschlichen Ohres. Die Schallwellen eines Klangs versetzten im Ohr, genauer in der Gehörschnecke, eine Flüssigkeit in Schwingung. Dadurch, dass die Gehörschnecke sich verengt, treffen die unterschiedlichen Frequenzen in Kombination mit der Amplitude, an unterschiedlichen Stellen auf Sinneshaare, welche die entsprechenden elektrischen Signale an das Gehirn weiterleiten. \cite[S. 87 f.]{zwicker}
+
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth]{GeigenTon.png}
@@ -118,9 +120,7 @@ Quelle: \cite[S. 4]{zwicker}
 \end{figure}
 \FloatBarrier
 
-Um daher einen ungefähren Eindruck eines synthetisierten Tones zu bekommen, reicht es nicht aus, die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen (siehe~\ref{matze:simplefm}), kann die Formel der FM-Synthese~\ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
-
-% TODO siehe matze
+Um daher einen ungefähren Eindruck eines synthetisierten Tones zu bekommen, reicht es nicht aus, die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen (siehe Kap.~\ref{matze:simplefm}), kann die Formel der FM-Synthese~\ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
 
 \begin{equation}
 \begin{split}
@@ -133,7 +133,7 @@ s(t)=A*\{\; & J_0(I)*\sin(\omega_c t)  \\
 \label{eq:chowningAddition}
 \end{equation}
 
-Hier bezieht sich $J_\nu(x)$ auf die Bessel Funktionen erster Ordnung. Bessel Funktionen zweiter Ordnung können dazu verwendet werden, Lösungen für nicht ganzzahlige $\nu$ Werte zu finden. Im Zusammenhang mit der FM-Synthese werden jedoch nur ganzzahlige $\nu$ Werte benötigt, daher genügt die Bessel Funktion erster Ordnung und $\nu$ wird mit $n$ angegeben. [TODO CITE; Temme] Abbildung~\ref{fig:bessel2D} stellt die ersten drei Bessel Funktionen dar.
+Hier bezieht sich $J_\nu(x)$ auf die Bessel Funktionen erster Ordnung, mit $\nu,x \in \mathbb{R}$. \cite[S. 223]{temme} Im Zusammenhang mit der FM-Synthese werden jedoch nur ganzzahlige $\nu$ Werte benötigt. Um diesen Umstand zu verdeutlichen wird im Folgenden $\nu$ als $n$ angegeben. Abbildung~\ref{fig:bessel2D} stellt die ersten drei Bessel Funktionen dar.
 
 \begin{figure} [ht]
 \centering
@@ -146,10 +146,14 @@ Quelle: Eigene Darstellung mit MATLAB
 \FloatBarrier
 
 
-Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung. Bei der FM-Synthese treten sie in Erscheinung, sobald die Formel~\ref{eq:FM_Chowning} der FM-Synthese als Fourier-Reihe dargestellt wird. Eine Fourier-Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss. [TODO CITE] \cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
-% aabramowitz s. 369??
+Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung.\cite[S. 220]{temme} Bei der FM-Synthese treten sie in Erscheinung, sobald die Formel~\ref{eq:FM_Chowning} der FM-Synthese als Fourier-Reihe dargestellt wird. Eine Fourier-Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss.\cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
 
-Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude des Grundtones lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel~\ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung~\ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel~ \ref{eq:chowningAddition} auf die Grundschwingung $1*sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht.
+Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude des Grundtones lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel~\ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung~\ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel~ \ref{eq:chowningAddition} auf die Grundschwingung $1*sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht. Die Amplitude der n-ten Seitenschwingung berechnet sich durch $J_n(I)$ wobei $n$ für die erste, zweite, dritte usw. Seitenfrequenz steht. Für Oberschwingungen ist $n$ immer positiv, für Unterschwingungen negativ. Bei negativen $n$ Werten gilt folgender Zusammenhang: \cite[S. 223]{temme}
+\begin{equation*}
+J_{-n}(x)=(-1)^nJ_n(x)
+\end{equation*}
+
+Die Formel drückt aus, dass für ungerade Seitenschwingungen das Vorzeichen invertiert werden muss und bei geraden Seitenschwingungen nicht. Dies ist auch in der Summenformel~\ref{eq:chowningAddition} ersichtlich. Für ungerade $n$ Werte werden die Sinus Werte subtrahiert, bei geraden $n$ addiert. Dies wird nicht offensichtlicher, wenn $J_n(I)$ mit der Klammer multipliziert wird, wie in Formel~\ref{eq:FormelinchenBessel} in Kapitel~\ref{matze:simplefm}.
 
 \label{bulli:besselModIndexZusammenahang}
 Wird nun der Modulationsindex stetig erhöht, wird Energie aus der Grundfrequenz genommen und auf die Seitenbänder verteilt. Dies lässt sich wieder an Abbildung~\ref{fig:bessel2D} erkennen. Wird $I$ größer, fällt die Amplitude von $J_0(I)$ ab und die restlichen Bessel Funktionen steigen an. $J_0(I)$ durchläuft den Nullpunkt bei $\approx2,5$, das bedeutet bei einem Modulationsindex von ungefähr $2,5$ ist der Grundton nicht im Frequenzspektrum vorhanden, sondern nur noch Seitenfrequenzen. In Abbildung~ \ref{fig:chowningEnergieVerteilung} wird der Modulationsindex von $0$ bis $4$ inkrementiert. Es wird ersichtlich, wie immer mehr Seitenfrequenzen entstehen und dabei die Grundfrequenz abnimmt. In Abbildung~ \ref{fig:chowningEnergieVerteilung} wird der Betrag der Amplitude dargestellt, somit wird die Grundfrequenz für $I=3$ im Vergleich zu $I=2$ wieder größer, da die Bessel Funktion den Nullpunkt durchlaufen hat und im negativen Bereich größer wird, bis das lokale Minimum erreicht wird und der Betrag wieder bis $0$ abnimmt.
@@ -165,7 +169,8 @@ Quelle: \cite{chowningPaper}
 
 An Abbildung~\ref{fig:chowningEnergieVerteilung} erkennt man auch, dass die Seitenfrequenzen sich symmetrisch in negativer und positiver Richtung zur Grundfrequenz ausbreiten. Dies erkennt man auch an Formel~\ref{eq:chowningAddition}, der innere Teil vom Sinus entspricht der Seitenfrequenz, wobei $(\omega_c+n*\omega_m)$ der n-ten Oberschwinung entspricht und $(\omega_c-n*\omega_m)$ der n-ten Unterschwinung. $J_n(I)$ gibt die Amplitude der n-ten Unter- und Oberschwinung an. 
 Dies ist ein Vorteil der FM-Synthese im Vergleich zu anderen Sound Synthese Verfahren. Durch eine relativ simple Änderung des Modulationsindex können komplexe Klänge mit reichen Klangspektrum erzeugt werden.
-Wie in Kapitel XX [TODO ref Julius] beschrieben, ist es jedoch schwer das Ergebnis der FM-Synthese vorher zusehen. Dies liegt zum einen an dem schwingenden Verlauf der Bessel Funktionen und deren Zusammenspiel.
+Wie in Kapitel \nameref{PrinzipFM} beschrieben, ist es jedoch schwer das Ergebnis der FM-Synthese vorher zusehen. Dies liegt zum einen an dem schwingenden Verlauf der Bessel Funktionen und deren Zusammenspiel. TODO 'die 3D Darstellung der Besselfunktion kann diesen Faktor etwas abschwächen, da man durch die Darstellung ein Gefühl für die Funktion bekommt'
+
 Zum Anderen an zwei Effekten bei der Bestimmung des Frequenzspektrums, die in Abbildung~ \ref{fig:chowningEnergieVerteilung} ignoriert wurden, machen die Vorhersehbarkeit noch schwerer. Der erste Effekt betrifft negative Seitenfrequenzen. Deren Vorzeichen invertiert wird und somit, anschaulich, an der Ordinate in den positiven Frequenzbereich reflektiert werden. [TODO warum ist das so?] Der zweite Effekt betrifft Frequenzen, die den selben Wert haben. Dabei werden die Amplituden der gleichen Frequenzen algebraisch addiert. Dies kann auch zuvor reflektierte Frequenzen betreffen. Daher kann es unter Umständen schwer sein, einen gegeben Klang durch FM-Synthese zu rekonstruieren, da man keine direkte Kontrolle über die Teiltöne wie bei der additiven Synthese hat. Abbildung~\ref{fig:chowningFreqReflektion} veranschaulicht das Verhalten der Seitenfrequenzen. Als einfaches Beispiel wählte Chowning $\omega_c=\omega_m=100$ und $I=4$.
 
 
@@ -199,6 +204,44 @@ Das Frequenzspektrum eines natürlichen Tons ist selten statisch sondern variier
 
 \FloatBarrier
 \subsubsection{Harmonische Frequenzverhältnisse(Inkl. Vibrato)}
+Bisher wurde nur wenig auf die beiden Frequenzparameter eingegangen. Diese können theoretisch beliebige Werte annehmen, so lange sie innerhalb des hörbaren Frequenzbereichs liegen. Ist das Ziel jedoch harmonische Klänge für Musik zu synthetisieren, müssen Trägerfrequenz und Modulationsfrequenz in einem besonderem Verhältnis stehen. Genauer gesagt muss das Verhältnis durch eine rationale Zahl beschrieben werden können, also durch einen Bruch aus zwei ganzen Zahlen $N_1$ und $N_2$. Somit gilt:
+\begin{equation*}
+\frac{f_c}{f_m}=\frac{N_1}{N_2}
+\end{equation*}
+Ist der Bruch $N_1/N_2$ zusätzlich gekürzt, ergibt sich für die Grundfrequenz $f_0$ der modulierten Schwingung folgende Gleichung:
+\begin{equation*}
+f_0=\frac{\omega_c}{N_1}=\frac{\omega_m}{N_2}
+\end{equation*}
+Für die Positionen der Seitenfrequenzen in der harmonischen Reihe des Klangs gilt:
+% TODO formatierung
+\begin{equation*}
+k=N_1+n*N_2 \mbox{fuer} n=...,-2,-,1,0,1,2,...
+\end{equation*}
+Wobei $k$ die Nummer der Harmonischen entspricht und $n$ der n-ten Seitenfrequenz. Unter den obigen Bedingungen lassen sich weitere, für die Klangerzeugung hilfreiche, Aussagen treffen: \cite{chowningPaper}
+\begin{lstlisting}[mathescape]
+1) Die Trägerfrequenz ist immer die $N_1$-te Harmonische.
+2) Für $N_2=1$ enthält das Spektrum alle Harmonischen und der Grundton entspricht der Trägerfrequenz.
+3) Wenn $N_2$ gerade ist, enthält das Spektrum nur ungerade Harmonische.
+4) Ist $N_2=3$, fehlt jede dritte Harmonische in der Reihe der Harmonischen.
+\end{lstlisting}
+Die Anzahl der Harmonische im modulierten Signal mit ausreichend großer Amplitude ist abhängig vom Modulationsindex. Für kleine Indizes und Frequenzverhältnisse mit $N_1\neq1$ kann der Grundton nicht im erzeugten Klang vorhanden sein. Die Seitenschwinungen im negativen Frequenzbereich, werden wie weiter oben beschrieben, an dem Ursprung ins Positive gespiegelt. Solang das Verhältnis eine rationale Zahl ist, werden diese Frequenzen genau auf die positiven Frequenzen der Harmonischen reflektiert und auf diese addiert.
+Es entstehen somit keine neue Frequenzen neben den Harmonischen. Ist das Verhältnisse der beiden Frequenzen jedoch irrational, 
+zum Beispiel $f_c/f_m=1/\sqrt{2}$, treffen die reflektierten Frequenzen nicht genau auf die positiven Frequenzen und erzeugen somit Seitenfrequenzen die kein ganzzahlig Vielfaches der Grundfrequenz sind. Es resultiert ein disharmonisches Klangspektrum.
+
+Wie in \nameref{geschichteFMSynthese} beschrieben, entdeckte Chowning nach eigener Angabe die FM-Synthese beim Experimentieren mit einem Vibrato. Der Begriff Vibrato kommt aus der Musik und beschreibt eine oszillierende leichte Variation der Tonhöhe und somit der Frequenz. Dieser Effekt ist gerade bei Violinisten erwünscht und lässt den Ton "'reicher"' und "'zarter"' klingen. \cite[S. 422]{tobias} Da der Vibrato eine Abweichung der Tonhöhe und somit eine periodische Änderung der Frequenz ist, lässt sich einfach nachvollziehen wie Chowning beim Experimentieren mit verschiedenen Zahlwerten die FM-Synthese entdeckte. Von einem Vibrato wird gesprochen, wenn die Modulataionsfrequenz unter 20 Hz liegt.
+
+TODO Vibrator Spektorgram
 
 
-\FloatBarrier
+
+
+
+
+
+
+
+
+
+
+
+\FloatBarrier 
