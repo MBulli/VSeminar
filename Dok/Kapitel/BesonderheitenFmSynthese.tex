@@ -228,11 +228,16 @@ Die Anzahl der Harmonische im modulierten Signal mit ausreichend großer Amplitu
 Es entstehen somit keine neue Frequenzen neben den Harmonischen. Ist das Verhältnisse der beiden Frequenzen jedoch irrational, 
 zum Beispiel $f_c/f_m=1/\sqrt{2}$, treffen die reflektierten Frequenzen nicht genau auf die positiven Frequenzen und erzeugen somit Seitenfrequenzen die kein ganzzahlig Vielfaches der Grundfrequenz sind. Es resultiert ein disharmonisches Klangspektrum.
 
-Wie in \nameref{geschichteFMSynthese} beschrieben, entdeckte Chowning nach eigener Angabe die FM-Synthese beim Experimentieren mit einem Vibrato. Der Begriff Vibrato kommt aus der Musik und beschreibt eine oszillierende leichte Variation der Tonhöhe und somit der Frequenz. Dieser Effekt ist gerade bei Violinisten erwünscht und lässt den Ton "'reicher"' und "'zarter"' klingen. \cite[S. 422]{tobias} Da der Vibrato eine Abweichung der Tonhöhe und somit eine periodische Änderung der Frequenz ist, lässt sich einfach nachvollziehen wie Chowning beim Experimentieren mit verschiedenen Zahlwerten die FM-Synthese entdeckte. Von einem Vibrato wird gesprochen, wenn die Modulataionsfrequenz unter 20 Hz liegt.
+Ein Weiteres erwähnenswertes Frequenzverhältnis ist, wenn die Modulationsfrequenz relativ gering ist.
+Wie in \nameref{geschichteFMSynthese} beschrieben, entdeckte Chowning nach eigener Angabe die FM-Synthese beim Experimentieren mit einem Vibrato. Der Begriff Vibrato kommt aus der Musik und beschreibt eine oszillierende leichte Variation der Tonhöhe und somit der Frequenz. Dieser Effekt ist gerade bei Violinisten erwünscht und lässt den Ton "'reicher"' und "'zarter"' klingen. \cite[S. 422]{tobias} Da der Vibrato eine Abweichung der Tonhöhe und somit eine periodische Änderung der Frequenz ist, lässt sich einfach nachvollziehen wie Chowning beim Experimentieren mit verschiedenen Zahlwerten die FM-Synthese entdeckte. Von einem Vibrato wird gesprochen, wenn die Modulataionsfrequenz unter 20 Hz liegt. In Abbildung~\ref{fig:vibrato} ist ein Vibrato in einem Spektrogramm dargestellt, die oszillierende Trägerfrequenz lässt sich gut erkennen.
 
-TODO Vibrator Spektorgram
-
-
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.75\textwidth]{vibrato.png}
+\caption{Gut sichtbarer Vibrato bei einer Trägerfrequenz von 2093 Hz, was einem C4 Ton entspricht. Die Modulationsfrequenz ist mit 0.3 Hz sehr niedrig gewählt und der Modulationsindex relativ hoch mit $I=500$.}
+\label{fig:vibrato}
+Quelle: Eigene Darstellung mit MATLAB.
+\end{figure}
 
 
 
