@@ -169,7 +169,8 @@ Quelle: \cite{chowningPaper}
 
 An Abbildung~\ref{fig:chowningEnergieVerteilung} erkennt man auch, dass die Seitenfrequenzen sich symmetrisch in negativer und positiver Richtung zur Grundfrequenz ausbreiten. Dies erkennt man auch an Formel~\ref{eq:chowningAddition}, der innere Teil vom Sinus entspricht der Seitenfrequenz, wobei $(\omega_c+n*\omega_m)$ der n-ten Oberschwinung entspricht und $(\omega_c-n*\omega_m)$ der n-ten Unterschwinung. $J_n(I)$ gibt die Amplitude der n-ten Unter- und Oberschwinung an. 
 Dies ist ein Vorteil der FM-Synthese im Vergleich zu anderen Sound Synthese Verfahren. Durch eine relativ simple Änderung des Modulationsindex können komplexe Klänge mit reichen Klangspektrum erzeugt werden.
-Wie in Kapitel \nameref{PrinzipFM} beschrieben, ist es jedoch schwer das Ergebnis der FM-Synthese vorher zusehen. Dies liegt zum einen an dem schwingenden Verlauf der Bessel Funktionen und deren Zusammenspiel. TODO 'die 3D Darstellung der Besselfunktion kann diesen Faktor etwas abschwächen, da man durch die Darstellung ein Gefühl für die Funktion bekommt'
+Wie in Kapitel \nameref{PrinzipFM} beschrieben, ist es jedoch schwer das Ergebnis der FM-Synthese vorher zusehen. Dies liegt zum einen an dem schwingenden Verlauf der Bessel Funktionen und deren Wirken auf die Seitenschwingungen. Abbildung~\ref{fig:bessel3D} stellt Bessel Funktionen $J_0$ bis $J_{15}$ dreidimensional, in Abhängigkeit des Modulationsindexes dar.
+Durch genaue Betrachtung des Funktionsverlaufs lässt sich ein Gefühl für die Veränderung der Seitenfrequenzen entwickeln.
 
 Zum Anderen an zwei Effekten bei der Bestimmung des Frequenzspektrums, die in Abbildung~ \ref{fig:chowningEnergieVerteilung} ignoriert wurden, machen die Vorhersehbarkeit noch schwerer. Der erste Effekt betrifft negative Seitenfrequenzen. Deren Vorzeichen invertiert wird und somit, anschaulich, an der Ordinate in den positiven Frequenzbereich reflektiert werden. [TODO warum ist das so?] Der zweite Effekt betrifft Frequenzen, die den selben Wert haben. Dabei werden die Amplituden der gleichen Frequenzen algebraisch addiert. Dies kann auch zuvor reflektierte Frequenzen betreffen. Daher kann es unter Umständen schwer sein, einen gegeben Klang durch FM-Synthese zu rekonstruieren, da man keine direkte Kontrolle über die Teiltöne wie bei der additiven Synthese hat. Abbildung~\ref{fig:chowningFreqReflektion} veranschaulicht das Verhalten der Seitenfrequenzen. Als einfaches Beispiel wählte Chowning $\omega_c=\omega_m=100$ und $I=4$.
 
@@ -190,7 +191,7 @@ Quelle: \cite{chowningPaper}
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth]{ChowningBessel.png}
-\caption{Besselfunktion $J_0$ bis $J_{15}$ und Modulationsindex $I$ von 0 bis 20. }
+\caption{3D Darstellung der Bessel Funktionen $J_0$ bis $J_{15}$ und Modulationsindex $I$ von 0 bis 20. }
 \label{fig:bessel3D}
 Quelle: \cite{chowningPaper}
 \end{figure}
