@@ -21,6 +21,18 @@ Bei der äußeren Sinusfunktion handelt es sich um das Trägersignal, welches in
 Quelle: Eigene Darstellung mit MATLAB
 \end{figure}
 \FloatBarrier
+
+Technisch gesehen kann die FM-Synthese mit Oszillatoren umgesetzt werden. In der einfachsten Form, der einfachen FM-Synthese, benötigt man dazu einen Träger-Oszillator und einen Modulator-Oszillator. Wie eine einfache FM-Synthese in Form einer Schaltung aussehen kann, zeigt Abbildung \textbf{Abbildung \ref{fig:schaltung}}. Der Ausgang des ersten Oszillators geht dabei in den Eingang des Zweiten. Bei VCA handelt es sich um einen spannungsgesteuerten Verstärker (Voltage controlled amplifiert), EG ist ein Hüllkurvengenerator (Envelope Generator). $f_M$ und $f_C$ sind die Frequenzen der beiden Oszillatoren. Über den Modulationsindex $\beta$ kann die Sträke der Modulation festgelegt werden. 
+
+\begin{figure} [ht]
+\centering
+  \includegraphics[width=0.8\textwidth,frame]{schaltung.png}
+\caption{Abbildung einer einfachen FM-Synthese als Schaltung}
+\label{fig:schaltung}
+Quelle: \url{http://mmmmaven.com/wp-content/uploads/800px-2op_FM.svg_.png} 
+\\Stand 16.06.2015
+\end{figure}
+
 Die Frequenzmodulationssynthese ist in ihren Grundzügen recht einfach zu verstehen und man kann mit geringem Aufwand bereits sehr komplexe, wenn auch oft unkontrollierbare Signale mit komplexen Klangspektren (bzw. Frequenzspektren) erzeugen. Wie sich im Folgenden jedoch noch herausstellen wird, ist es dagegen sehr schwierig und erfordert viel Zeit und Aufwand durch die FM-Synthese gezielt Signale zu erzeugen und diese zu kontrollieren.
 
 Praktisch gesehen kann die Frequenzmodulationssynthese dazu verwendet werden, um zum einen Klangbilder echter Instrumente nachzubilden, jedoch auch um ganz neue Töne zu erzeugen die so in der Natur nicht vorkommen.
