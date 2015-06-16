@@ -4,7 +4,7 @@ length = 1.3;       %length of the tone
 t = 0:1/fs:length;  %timecode for each sample
 
 A = 0.22;
-fc = 796.75;        %carrier frequency G5
+fc = 791;        %carrier frequency G5
 fm = fc;        %modulation frequency
 I = 2;            %modulation index
 
@@ -42,7 +42,8 @@ A = adsrComplex(t);
 fluteFM = A.*sin(2*pi*fc*t + I1.*sin(2*pi*fm1*t + I2*sin(2*pi*fm2*t + I3*sin(2*pi*fm3*t + I4*sin(2*pi*fm4*t)))));
 
 %% Synth Flute + 4 Mod + Vibrato + ADSR + VARI
-I1 = A;            %modulation index
+I1 = A*2;            %modulation index
+I2 = 0.3;
 
 % generate signal
 fluteFM = A.*sin(2*pi*fc*t + I1.*sin(2*pi*fm1*t + I2*sin(2*pi*fm2*t + I3*sin(2*pi*fm3*t + I4*sin(2*pi*fm4*t)))));
@@ -64,7 +65,7 @@ A(t> 0.1 & t <= 1.2) = linspace(0.2,0.2,size(A(t> 0.1 & t <= 1.2),2));
 A(t> 1.2 & t <= 1.3) = linspace(0.2,0.0,size(A(t> 1.2 & t <= 1.3),2));
 
 HighfeedbackNoise = filter(noiseFilter24BandPassHigh, feedbackNoise);
-fluteFM = fluteFM+(HighfeedbackNoise.*A);
+fluteFM = fluteFM+(HighfeedbackNoise.*A*0.3);
 
 %% Synth Flute + 4 Mod + Vibrato + ADSR + VARI + Noise + Blow
 % envelope for discrete blow sound
@@ -93,7 +94,7 @@ ylabel('Frequenz (Hz)');
 %% plot waveform
 subplot(2,2,2)
 plot(fluteFM);
-title('Waveform Querflöte');
+title('Waveform FM-Synthese');
 set(gca, 'XTick', 0:4410:length*fs);
 set(gca, 'YTick', -1:0.2:1);
 set(gca, 'YLim', [-1,1]);
@@ -124,7 +125,7 @@ set(gca, 'XLim', [0, 5000]);
 %% plot spectrum 700-1800 Hz
 subplot(2,2,4)
 area(f,YProz);
-title('Spektrum Querflöte 700 - 1800 Hz');
+title('Spektrum FM-Synthese 700 - 1800 Hz');
 xlabel('Frequenz (Hz)'); 
 ylabel('Amplitude (%)');
 set(gca, 'XLim', [700, 1800]);
