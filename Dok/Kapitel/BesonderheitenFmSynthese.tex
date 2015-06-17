@@ -1,11 +1,11 @@
 \subsection{Besonderheiten der FM-Synthese}
 \FloatBarrier
 \subsubsection{Phasenmodulation als FM}
-Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben. Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung, da er in seinem Artikel eine Formel beschreibt, die einer PM gleicht und ein MUSIC V Patch der eine FM beschreibt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM-Synthesizer entnommen werden, dass Yamaha ihre FM-Synthese über eine PM erzeugte. \cite{oya1987electronic} 
+Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben. Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung, da er in seinem Artikel eine Formel beschreibt, die einer PM gleicht und ein MUSIC~V Patch der eine FM beschreibt, aber beides als FM-Synthese vorstellt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM-Synthesizer entnommen werden, dass Yamaha ihre FM-Synthese über eine PM erzeugte. \cite{oya1987electronic} 
 
 Wie der Name Winkelmodulation andeutet, wird der Phasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. Die Amplitude \(A\) bleibt während der Modulation konstant. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden:
 \begin{equation}
-s(t)=A\cdot sin(\theta(t))
+s(t)=A\cdot\sin(\theta(t))
 \label{eq:signal_basis_funktion}
 \end{equation}
 Dabei wird \(\theta(t)\) als \textit{momentaner Winkel} bezeichnet und ist als Summe der konstanten Kreisfrequenz $\omega_0$ multipliziert mit der Zeit $t$ und der \textit{momentanen Phase} $\varphi(t)$ definiert:
@@ -21,7 +21,7 @@ Für die momentane Phase ergibt sich folgende einfache Formel:
 \end{equation}
 Für akustische Anwendungen wird der konstante Teil \(\varphi_0\) der Phase nicht benötigt und wird als 0 angenommen. Bei \(k_{PM}\) handelt es sich um eine Proportionalitätskonstante, welche Modulatorkonstante genannt wird. Die Modulatorkonstante bestimmt, wie stark das Modulationssignal auf das Trägersignal einwirkt. Wird nun \(\theta(t)\) in die allgemeine Formel~\ref{eq:signal_basis_funktion} für ein moduliertes Signal substituiert und das obige \(\varphi(t)\) eingesetzt, ergibt sich die Formel für das phasenmodulierte Signal:
 \begin{equation}
-s_{PM}(t)=A\cdot sin(\omega_0t + \varphi(t))=A\cdot sin(\omega_0t+k_{PM}\cdot p(t))
+s_{PM}(t)=A\cdot\sin(\omega_0t + \varphi(t))=A\cdot\sin(\omega_0t+k_{PM}\cdot p(t))
 \label{eq:s_pm}
 \end{equation}
 Für die Herleitung der Frequenzmodulation muss zuvor noch der Begriff der \textit{momentan Kreisfrequenz} \(\omega_m(t)\) eingeführt werden.
@@ -44,7 +44,7 @@ Bei \(k_{FM}\) handelt es sich wieder um eine Modulatorkonstante und gibt an wie
 \end{equation*}
 Setzt man diesen Term in \(s(t)\) ein, erhält man die Formel für ein frequenzmoduliertes Signal
 \begin{equation}
-s_{FM}(t)=A\cdot sin(\omega_0t + k_{FM} \cdot \int_0^t{f(t)} dt)
+s_{FM}(t)=A\cdot\sin(\omega_0t + k_{FM} \cdot \int_0^t{f(t)} dt)
 \label{eq:s_fm}
 \end{equation}
 Es sei angemerkt, dass wissentlich die Integrationskonstante mit Null gleichgesetzt wurde und somit nicht in den Formeln auftritt, da sie für unsere Beobachtungen unerheblich ist und die Terme nur unnötig verkomplizieren würde.
@@ -74,20 +74,20 @@ Da \({d\varphi(t)}/{dt}\) die Ableitung und somit die Änderung von \(\varphi(t)
 Bisher wurde nur das modulierte Signal betrachtet und dessen Abhängigkeit von den allgemeinen Modulationssignalen \(p(t)\) bzw. \(f(t)\). Für die bisherigen Erkenntnisse war es einfach nicht notwendig, sich auf eine spezifische Modulationssignale festzulegen. Diese allgemeine Betrachtung ist jedoch mehr für die Nachrichtentechnik interessant als für einen FM-Synthesizer.
 Daher werden die folgenden Formeln im Kontext der Akustik betrachtet und weniger streng mathematisch wie bisher. So kann zum Beispiel das menschliche Gehör keine initiale Phasenverschiebungen wahrnehmen. Dies erlaubt Umformungen von Termen, die mathematisch nicht korrekt sind, jedoch am Ergebnis, also dem hörbaren Klang, keine Auswirkung haben. Deshalb ist es auch korrekt, bei den obigen Umformungen den initialen Phasenwinkel $\varphi_0$ zu ignorieren. Des Weiteren wird im Folgenden ein sinusförmiges Signal als Modulator verwendet, welches sowohl für die PM als auch die FM verwendet wird und wie folgt definiert ist:
 \begin{equation}
-m(t)=f(t)=p(t)=sin(\omega_m t)
+m(t)=f(t)=p(t)=\sin(\omega_m t)
 \end{equation}
 Wobei \(\omega_m\) die Modulationskreisfrequenz darstellt. Eingesetzt in die Formeln für PM und FM ergibt sich
 \begin{eqnarray*}
-s_{PM}(t)&=&A\cdot sin(\omega_0t+k_{PM}\cdot sin(\omega_m t)) \\
-s_{FM}(t)&=&A\cdot sin(\omega_0t+k_{FM}\cdot \int_0^t{sin(\omega_m t)} dt)
+s_{PM}(t)&=&A\cdot\sin(\omega_0t+k_{PM}\cdot\sin(\omega_m t)) \\
+s_{FM}(t)&=&A\cdot\sin(\omega_0t+k_{FM}\cdot\int_0^t{\sin(\omega_m t)} dt)
 \end{eqnarray*}
 Die von Chowning vorgestellte Formel gleicht der Formel für eine PM, \cite{chowningPaper} wobei Chowning seine Formel als Frequenzmodulation vorstellt. Wieso diese Aussage trotzdem korrekt ist, wird im Folgenden gezeigt. Im ersten Schritt muss das Integral innerhalb von \(s_{FM}\) ausgerechnet werden:
 \begin{equation*}
-s_{FM}(t)=A\cdot sin(\omega_0t-\frac{k_{FM}}{\omega_m}\cdot cos(\omega_m t))
+s_{FM}(t)=A\cdot\sin(\omega_0t-\frac{k_{FM}}{\omega_m}\cdot\cos(\omega_m t))
 \end{equation*}
 Mathematisch gesehen, unterscheidet sich diese Formel zu einer Phasenmodulation. Genauer gesagt, ergibt sich durch die Integration eine Verschiebung von einer Phase, da ein negativer Kosinus genau eine Phase verschoben zu einem Sinus ist. Wie bereits erwähnt, nimmt das Gehör jedoch keine initiale Phasenverschiebungen wahr. Unter dieser Annahme, kann der negative Kosinus mit einem positiven Sinus ausgetauscht werden, ohne eine hörbare Veränderung des Tons zu erzeugen.
 \begin{equation*}
-e(t)=A\cdot sin(\omega_0t+\frac{k_{FM}}{\omega_m}\cdot sin(\omega_m t))
+e(t)=A\cdot\sin(\omega_0t+\frac{k_{FM}}{\omega_m}\cdot\sin(\omega_m t))
 \end{equation*}
 Die dadurch gewonnene Formel ähnelt in der Struktur der von Chowning vorgestellten Formel schon sehr. Jedoch ist in der obigen Formel der Modulationsindex $I$ nicht direkt ersichtlich. Dieser ist bei Chowning als $I=d/\beta$ definiert. Wobei $d$ dem Frequenzhub entspricht und $\beta$ der Modulationsfrequenz $\omega_m$ (s. Kapitel~\ref{chowningparameter}). Für den Frequenzhub $\Delta f$ gilt: \cite[S. 219]{lathi}
 \begin{equation*}
@@ -95,12 +95,10 @@ Die dadurch gewonnene Formel ähnelt in der Struktur der von Chowning vorgestell
 \end{equation*}
 Da unser $f(t)$ eine Sinusfunktion darstellt, entspricht die Ableitung $\dot f(t)$ einer Kosinusfunktion und somit ist ihr Maximum gleich $1$ und entfällt in der obigen Formel. Somit reduziert sich der Frequenzhub zu $\Delta f=k_{FM}$ und kann in die obige Formel eingesetzt werden. Dadurch kann nun $\Delta f / \omega_m$ durch den Modulationsindex $I$ substituiert werden und es ergibt sich die originale Formel nach Chowning:
 \begin{equation}
-e(t)=A\cdot sin(\omega_0t+I\cdot sin(\omega_m t))
+e(t)=A\cdot\sin(\omega_0t+I\cdot\sin(\omega_m t))
 \label{eq:FM_Chowning}
 \end{equation}
-Diese Formel entspricht somit der von Chowning vorgestellten Formel für eine FM-Synthese und ist im Kontext der Akustik korrekt.
-
-
+Diese Formel entspricht somit der von Chowning vorgestellten Formel für eine FM-Synthese und ist im Kontext der Akustik korrekt. Zusammengefasst sieht man, dass die von Chowning streng mathematisch betrachtet keine FM-Synthese darstellt, sondern eine PM-Synthese. Dieser feine Unterschied spielt jedoch in der Akustik kaum eine Rolle. Im nächsten Kapitel werden wir sehen, dass Klangspektren berechnet werden um den Klangcharakter zu bestimmen. Um ein solches Klangspektrum zu bestimmen, muss bekannt sein welche Formel tatsächlich implementiert wurde.
 
 \FloatBarrier
 \subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
@@ -124,7 +122,7 @@ Um daher einen ungefähren Eindruck eines synthetisierten Tones zu bekommen, rei
 
 \begin{equation}
 \begin{split}
-s(t)=A\cdot \{\; & J_0(I)\cdot \sin(\omega_c t)  \\
+s(t)=A\cdot \{\; & J_0(I)\cdot\sin(\omega_c t)  \\
          +&J_1(I)\cdot [\sin(t\cdot (\omega_c + \;\,\omega_m))-\sin(t\cdot (\omega_c-\;\,\omega_m))] \\
          +&J_2(I)\cdot [\sin(t\cdot (\omega_c + 2\omega_m))+\sin(t\cdot (\omega_c-2\omega_m))] \\
          +&J_3(I)\cdot [\sin(t\cdot (\omega_c + 3\omega_m))-\sin(t\cdot (\omega_c-3\omega_m))] \\
@@ -148,7 +146,7 @@ Quelle: Eigene Darstellung mit MATLAB
 
 Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung.\cite[S. 220]{temme} Bei der FM-Synthese treten sie in Erscheinung, sobald die Formel~\ref{eq:FM_Chowning} der FM-Synthese als Fourier-Reihe dargestellt wird. Eine Fourier-Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss.\cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
 
-Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude des Grundtones lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel~\ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung~\ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel~ \ref{eq:chowningAddition} auf die Grundschwingung $1\cdot sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht. Die Amplitude der n-ten Seitenschwingung berechnet sich durch $J_n(I)$ wobei $n$ für die erste, zweite, dritte usw. Seitenfrequenz steht. Für Oberschwingungen ist $n$ immer positiv, für Unterschwingungen negativ. Bei negativen $n$ Werten gilt folgender Zusammenhang: \cite[S. 223]{temme}
+Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude der Trägerschwingung lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel~\ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung~\ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel~ \ref{eq:chowningAddition} auf die Grundschwingung $1\cdot\sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht. Die Amplitude der n-ten Seitenschwingung berechnet sich durch $J_n(I)$ wobei $n$ für die erste, zweite, dritte usw. Seitenfrequenz steht. Für Oberschwingungen ist $n$ immer positiv, für Unterschwingungen negativ. Bei negativen $n$ Werten gilt folgender Zusammenhang: \cite[S. 223]{temme}
 \begin{equation*}
 J_{-n}(x)=(-1)^nJ_n(x)
 \end{equation*}
@@ -215,13 +213,13 @@ f_0=\frac{\omega_c}{N_1}=\frac{\omega_m}{N_2}
 \end{equation*}
 Für die Positionen der Seitenfrequenzen in der harmonischen Reihe des Klangs gilt:
 % TODO formatierung
-\begin{equation*}
-k=N_1+n\cdot N_2 \mbox{fuer} n=...,-2,-,1,0,1,2,...
-\end{equation*}
+\begin{align}
+k=N_1+n\cdot N_2 \tag*{für n=...,-2,-,1,0,1,2,... }
+\end{align}
 Wobei $k$ die Nummer der Harmonischen entspricht und $n$ der n-ten Seitenfrequenz. Unter den obigen Bedingungen lassen sich weitere, für die Klangerzeugung hilfreiche, Aussagen treffen: \cite{chowningPaper}
 \begin{lstlisting}[mathescape]
 1) Die Trägerfrequenz ist immer die $N_1$-te Harmonische.
-2) Für $N_2=1$ enthält das Spektrum alle Harmonischen und der Grundton entspricht der Trägerfrequenz.
+2) Für $N_2=1$ enthält das Spektrum alle Harmonischen und der Grundton entspricht der Modulationsfrequenz.
 3) Wenn $N_2$ gerade ist, enthält das Spektrum nur ungerade Harmonische.
 4) Ist $N_2=3$, fehlt jede dritte Harmonische in der Reihe der Harmonischen.
 \end{lstlisting}
