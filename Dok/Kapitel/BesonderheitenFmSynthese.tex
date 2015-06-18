@@ -1,7 +1,8 @@
 \subsection{Besonderheiten der FM-Synthese}
 \FloatBarrier
 \subsubsection{Phasenmodulation als FM}
-Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben. Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung, da er in seinem Artikel eine Formel beschreibt, die einer PM gleicht und ein MUSIC~V Patch der eine FM beschreibt, aber beides als FM-Synthese vorstellt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM-Synthesizer entnommen werden, dass Yamaha ihre FM-Synthese über eine PM erzeugte. \cite{oya1987electronic} 
+Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben.
+Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung. In seinem Artikel definiert er eine Formel, welche einer PM gleicht. Zusätzlich beschreibt er ein MUSIC~V Patch der einer FM gleicht. Beides wird jedoch von ihm als FM-Synthese vorgestellt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM-Synthesizer entnommen werden, dass Yamaha ihre FM-Synthese über eine PM erzeugte. \cite{oya1987electronic} 
 
 Wie der Name Winkelmodulation andeutet, wird der Phasenwinkel eines Trägersignales in Abhängigkeit eines Modulationssignals verändert. Die Amplitude \(A\) bleibt während der Modulation konstant. In der allgemeinsten Form kann ein winkelmoduliertes Signal als Sinusfunktion eines sich zeitlich ändernden Winkels beschrieben werden:
 \begin{equation}
@@ -12,6 +13,8 @@ Dabei wird \(\theta(t)\) als \textit{momentaner Winkel} bezeichnet und ist als S
 \begin{equation*}
 \theta(t)=\omega_0t + \varphi(t)
 \end{equation*}
+Ein Großteil der Frequenzen in diesen Kapitel beziehen sich auf eine Schwingung, welche selbst auf eine Kreisbewegung zurück geführt werden kann. Daher macht es Sinn Frequenzen $f$ als Kreisfrequenz $\omega$ anzugeben. Zwischen Frequenz und Kreisfrequenz gilt $\omega=2\pi f$.
+
 
 Wird nun die momentane \textbf{Phase} des Trägersignals proportional zum Modulationssignal \(p(t)\) verändert, erhält man das \textbf{phasenmodulierte} Signal \(s_{PM}(t)\). \cite[S. 209]{lathi}
 Für die momentane Phase ergibt sich folgende einfache Formel:
@@ -30,7 +33,7 @@ Diese entspricht der Änderung des Phasenwinkels in Abhängigkeit der Zeit. Dahe
 \omega_m(t)=\dot \theta(t)=\frac{d\theta(t)}{dt}=\frac{d[\omega_0t+\varphi(t)]}{dt}=\frac{d\omega_0t}{dt}+\frac{d\varphi(t)}{dt}=\omega_0+\frac{d\varphi(t)}{dt}
 \label{eq:omega_m_herleitung}
 \end{equation}
-Wieso dieser Zusammenhang gültig ist, lässt sich einfach veranschaulichen. Bei \(\omega_m\) handelt es sich um die Kreisfrequenz, also wie häufig eine Schwingung einen Kreis pro Zeitspanne durchläuft, hier in Sekunden. Bei einer Kreisfrequenz von \(\omega=2 s^{-1}\) wird ein Phasenwinkel von \(4\pi\) pro Sekunde überstrichen. Wird nun die Kreisfrequenz erhöht, wird ein größerer Phasenwinkel überstrichen. Daher gibt die momentane Kreisfrequenz die Änderungsrate des momentanen Phasenwinkels zu einem bestimmten Zeitpunkt \(t\) an. Da die Änderung einer Funktion der Ableitung dieser Funktion entspricht, ergibt sich der Zusammenhang aus der obigen Formel. Eine Analogie aus der Physik hierzu ist der Zusammenhang zwischen Weg \(s(t)\) und Geschwindigkeit \(v(t)\). Die Geschwindigkeit gibt die Änderung des Weges pro Zeiteinheit vor und somit gilt, \(\dot{s(t)}=v(t)\). In unserem Zusammenhang verhält sich die Kreisfrequenz analog zur Geschwindigkeit und der Phasenwinkel ist im Prinzip die Strecke ausgedrückt als Winkel.
+Wieso dieser Zusammenhang gültig ist, lässt sich einfach veranschaulichen. Bei \(\omega_m\) handelt es sich um die Kreisfrequenz, also wie häufig eine Schwingung einen Kreis pro Zeitspanne durchläuft, hier in Sekunden. Bei einer Kreisfrequenz von \(\omega=2 s^{-1}\) wird ein Phasenwinkel von \(4\pi\) pro Sekunde überstrichen. Wird nun die Kreisfrequenz erhöht, wird ein größerer Phasenwinkel überstrichen. Daher gibt die momentane Kreisfrequenz die Änderungsrate des momentanen Phasenwinkels zu einem bestimmten Zeitpunkt \(t\) an. Da die Änderung einer Funktion der Ableitung dieser Funktion entspricht, ergibt sich der Zusammenhang aus der obigen Formel. Eine Analogie aus der Physik hierzu ist der Zusammenhang zwischen dem Weg \(s(t)\) und der Geschwindigkeit \(v(t)\). Die Geschwindigkeit gibt die Änderung des Weges pro Zeiteinheit vor. Somit gilt \(\dot{s(t)}=v(t)\). In unserem Zusammenhang verhält sich die Kreisfrequenz analog zur Geschwindigkeit und der Phasenwinkel ist im Prinzip die Strecke ausgedrückt als Winkel.
 
 Wird die momentane \textbf{Frequenz} des Trägersignals proportional zum Modulationssignal \(f(t)\) verändert, erhält man das \textbf{frequenzmodulierte} Signal \(s_{FM}(t)\). \cite[S. 210]{lathi} Für die momentane Frequenz ergibt sich analog zur Phasenmodulation folgende Formel:
 \begin{equation}
@@ -54,7 +57,7 @@ Wie einführlich erklärt, ist die Phasenmodulation mit der Frequenzmodulation v
 k_{PM}\cdot p(t)=k_{FM} \cdot  \int_0^t{f(\tau)} d\tau
 \end{equation}
 
-Vorausgesetzt \(k_{PM}\) ist gleich \(k_{FM}\), dann können beide Faktoren aus der Gleichung eliminiert werden. Ist es nun möglich, für \(f(t)\) eine Ableitung zu finden, kann eine PM durch eine FM dargestellt werden. Durch die Ableitung von \(\int{f(\tau)}\) wird das Integral aufgehoben und die Gleichung reduziert sich zu einem einfachen \(p(t)=f(t)\). Umgekehrt gilt, dass genau dann eine FM durch eine PM dargestellt werden kann, wenn \(p(t)\) integrierbar ist. Unter diesen Bedingungen sind beide Verfahren mathematisch betrachtet gleich. Daher kann nur anhand der Betrachtung eines modulierten Signals nicht darauf zurück geschlossen werden, ob es mit einer Phasen- oder Frequenzmodulation moduliert wurde. Die unterschiedlichen Namen (FM, PM) zeigen somit nur, welche Größe des Modulationssignals (\(f(t), p(t)\)) proportional ist. \cite[S. 210]{lathi}
+Vorausgesetzt \(k_{PM}\) ist gleich \(k_{FM}\), dann können beide Faktoren aus der Gleichung eliminiert werden. Ist es nun möglich, für \(f(t)\) eine Ableitung zu finden, kann eine PM durch eine FM dargestellt werden. Durch die Ableitung von \(\int_0^t{f(\tau)}d\tau\) wird das Integral aufgehoben und die Gleichung reduziert sich zu einem einfachen \(p(t)=f(t)\). Umgekehrt gilt, dass genau dann eine FM durch eine PM dargestellt werden kann, wenn \(p(t)\) integrierbar ist. Unter diesen Bedingungen sind beide Verfahren mathematisch betrachtet gleich. Daher kann nur anhand der Betrachtung eines modulierten Signals nicht darauf zurück geschlossen werden, ob es mit einer Phasen- oder Frequenzmodulation moduliert wurde. Die unterschiedlichen Namen (FM, PM) zeigen somit nur, welche Größe des Modulationssignals (\(f(t), p(t)\)) proportional ist. \cite[S. 210]{lathi}
 Eine weitere, erwähnenswerte Eigenschaft lässt sich gewinnen, wenn der momentane Phasenwinkel beider Verfahren gegenüber gestellt wird. Während \(\varphi(t)\) für PM durch die Formel~\ref{eq:varphi_t} gegeben ist, muss \(\varphi(t)\) für FM durch gleichsetzten der Formeln~\ref{eq:omega_m_herleitung} und \ref{eq:omega_m} gewonnen werden:
 \begin{eqnarray*}
 \omega_0+\frac{d\varphi(t)}{dt}&=&\omega_0+k_{FM}\cdot f(t) \\
@@ -118,7 +121,8 @@ Quelle: \cite[S. 4]{zwicker}
 \end{figure}
 \FloatBarrier
 
-Um daher einen ungefähren Eindruck eines synthetisierten Tones zu bekommen, reicht es nicht aus, die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine Alternative Darstellung des Signals gesucht werden. Ein \textbf{Frequenzspektrum} berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen (siehe Kap.~\ref{matze:simplefm}), kann die Formel der FM-Synthese~\ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
+Bei der FM-Synthese treten Seitenschwingungen durch die zeitliche Änderung der Frequenz auf. Um daher einen ungefähren Eindruck eines synthetisierten Tones zu bekommen, reicht es nicht aus, die berechnete Kurve (Wellenform) zu betrachten, welche eine Funktion der Zeit ist. Daher muss eine alternative Darstellung des Signals gesucht werden. 
+Hierzu eignet sich ein \textbf{Frequenzspektrum}. Es berechnet die Intensität einer gegeben Frequenz und ist somit eine Funktion der Frequenz. Das Frequenzspektrum lässt sich durch Fourier Analyse bestimmen. So kann jede periodische komplexe Sinuswelle als Fourier Reihe dargestellt werden und somit als Addition aus mehreren Teilsinuswellen mit unterschiedlichen Amplituden. \cite[S. 33]{raichel} Durch mathematische Umformungen (siehe Kap.~\ref{matze:simplefm}), kann die Formel der FM-Synthese~\ref{eq:FM_Chowning} als folgende Summe dargestellt werden: \cite{chowningPaper}
 
 \begin{equation}
 \begin{split}
@@ -131,30 +135,31 @@ s(t)=A\cdot \{\; & J_0(I)\cdot\sin(\omega_c t)  \\
 \label{eq:chowningAddition}
 \end{equation}
 
-Hier bezieht sich $J_\nu(x)$ auf die Bessel Funktionen erster Ordnung, mit $\nu,x \in \mathbb{R}$. \cite[S. 223]{temme} Im Zusammenhang mit der FM-Synthese werden jedoch nur ganzzahlige $\nu$ Werte benötigt. Um diesen Umstand zu verdeutlichen wird im Folgenden $\nu$ als $n$ angegeben. Abbildung~\ref{fig:bessel2D} stellt die ersten drei Bessel Funktionen dar.
+Hier bezieht sich $J_\nu(x)$ auf die Bessel-Funktionen erster Ordnung, mit $\nu,x \in \mathbb{R}$. \cite[S. 223]{temme} Im Zusammenhang mit der FM-Synthese werden jedoch nur ganzzahlige $\nu$ Werte benötigt. Um diesen Umstand zu verdeutlichen wird im Folgenden $\nu$ als $n$ angegeben. Abbildung~\ref{fig:bessel2D} stellt die ersten drei Bessel-Funktionen dar.
 
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.80\textwidth]{Bessel2D.png}
 \caption{2D-Plot der Bessel Funktionen $J_0$, $J_1$ und $J_2$.}
 \label{fig:bessel2D}
-Quelle: Eigene Darstellung mit MATLAB
 \end{figure}
 
 \FloatBarrier
 
 
-Allgemein sind die Bessel Funktionen Lösungen für die Besselsche Differentialgleichung.\cite[S. 220]{temme} Bei der FM-Synthese treten sie in Erscheinung, sobald die Formel~\ref{eq:FM_Chowning} der FM-Synthese als Fourier-Reihe dargestellt wird. Eine Fourier-Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss.\cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
+Allgemein sind die Bessel-Funktionen Lösungen für die Besselsche Differentialgleichung.\cite[S. 220]{temme} Bei der FM-Synthese treten sie in Erscheinung, sobald die Formel~\ref{eq:FM_Chowning} der FM-Synthese als Fourier-Reihe dargestellt wird. Eine Fourier-Reihe setzt sich aus der Addition aus Sinus Funktionen multipliziert mit einem Fourier-Koeffizienten zusammen. Für die FM-Synthese entspricht dieser Koeffizient der Bessel-Funktionen erster Ordnung. \cite[S. 221]{lathi} Die genaue mathematische Herleitung soll an dieser Stelle nicht behandelt werden. Es soll jedoch angemerkt sein, dass $J_n(x)$ nicht elementar berechnet werden kann und numerisch bestimmt werden muss.\cite[S. 385]{abramowitz} Funktionswerte können in geeigneten Tabellen nachgeschlagen werden. \cite{davis}
 
-Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. Die Amplitude der Trägerschwingung lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel~\ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung~\ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel~ \ref{eq:chowningAddition} auf die Grundschwingung $1\cdot\sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Daraus lässt sich erschließen, dass die Trägerfrequenz $\omega_c$ dem Grundton entspricht. Die Amplitude der n-ten Seitenschwingung berechnet sich durch $J_n(I)$ wobei $n$ für die erste, zweite, dritte usw. Seitenfrequenz steht. Für Oberschwingungen ist $n$ immer positiv, für Unterschwingungen negativ. Bei negativen $n$ Werten gilt folgender Zusammenhang: \cite[S. 223]{temme}
+Wie oben beschrieben, besteht ein Klang nicht nur aus seinem Grundton sondern auch aus Seitenfrequenzbänder. Theoretisch treten unendlich viele solcher Frequenzbänder auf, jedoch werden diese nicht mehr vom Ohr wahrgenommen, wenn sie eine gewisse Grenze an Intensität unterschreiten. \cite[S. 221]{lathi}
+Die Amplitude der Trägerschwingung lässt sich durch $J_0(I)$ berechnen, wobei $I$ für den Modulationsindex steht. Dies lässt sich auch einfach aus Formel~\ref{eq:chowningAddition} entnehmen. Der erste Additionsterm $J_0(I)\sin(\omega_c t)$ entspricht der Trägerfrequenz. Bei einem Modulationsindex von $I=0$ findet keine Frequenzmodulation statt. An Abbildung~\ref{fig:bessel2D} wird ersichtlich, dass $J_0(0)=0$ ist. Für alle weiteren Bessel-Funktionen gilt $J_n(0)=0$, damit reduziert sich die Addition aus Formel~ \ref{eq:chowningAddition} auf die Grundschwingung $1\cdot\sin(\omega_c t)$ und deckt sich somit mit unserer Erwartung, dass keine Modulation statt findet. Die Amplitude der n-ten Seitenschwingung berechnet sich durch $J_n(I)$ wobei $n$ für die erste, zweite, dritte, usw. Seitenfrequenz steht. Für Oberschwingungen ist $n$ immer positiv, für Unterschwingungen negativ. Bei negativen $n$ Werten gilt folgender Zusammenhang: \cite[S. 223]{temme}
 \begin{equation*}
 J_{-n}(x)=(-1)^nJ_n(x)
 \end{equation*}
 
-Die Formel drückt aus, dass für ungerade Seitenschwingungen das Vorzeichen invertiert werden muss und bei geraden Seitenschwingungen nicht. Dies ist auch in der Summenformel~\ref{eq:chowningAddition} ersichtlich. Für ungerade $n$ Werte werden die Sinus Werte subtrahiert, bei geraden $n$ addiert. Dies wird nicht offensichtlicher, wenn $J_n(I)$ mit der Klammer multipliziert wird, wie in Formel~\ref{eq:FormelinchenBessel} in Kapitel~\ref{matze:simplefm}.
+Die Formel drückt aus, dass für ungerade Seitenschwingungen das Vorzeichen invertiert werden muss und bei geraden Seitenschwingungen nicht. Dies ist auch in der Summenformel~\ref{eq:chowningAddition} ersichtlich. Für ungerade $n$ Werte werden die Sinus Werte subtrahiert, bei geraden $n$ addiert. 
+Dies wird offensichtlich, wenn $J_n(I)$ mit der Klammer multipliziert wird, wie in Formel~\ref{eq:FormelinchenBessel} in Kapitel~\ref{matze:simplefm}.
 
 \label{bulli:besselModIndexZusammenahang}
-Wird nun der Modulationsindex stetig erhöht, wird Energie aus der Grundfrequenz genommen und auf die Seitenbänder verteilt. Dies lässt sich wieder an Abbildung~\ref{fig:bessel2D} erkennen. Wird $I$ größer, fällt die Amplitude von $J_0(I)$ ab und die restlichen Bessel Funktionen steigen an. $J_0(I)$ durchläuft den Nullpunkt bei $\approx2,5$, das bedeutet bei einem Modulationsindex von ungefähr $2,5$ ist der Grundton nicht im Frequenzspektrum vorhanden, sondern nur noch Seitenfrequenzen. In Abbildung~ \ref{fig:chowningEnergieVerteilung} wird der Modulationsindex von $0$ bis $4$ inkrementiert. Es wird ersichtlich, wie immer mehr Seitenfrequenzen entstehen und dabei die Grundfrequenz abnimmt. In Abbildung~ \ref{fig:chowningEnergieVerteilung} wird der Betrag der Amplitude dargestellt, somit wird die Grundfrequenz für $I=3$ im Vergleich zu $I=2$ wieder größer, da die Bessel Funktion den Nullpunkt durchlaufen hat und im negativen Bereich größer wird, bis das lokale Minimum erreicht wird und der Betrag wieder bis $0$ abnimmt.
+Wird nun der Modulationsindex stetig erhöht, wird Energie aus der Grundfrequenz genommen und auf die Seitenbänder verteilt. Dies lässt sich wieder an Abbildung~\ref{fig:bessel2D} erkennen. Wird $I$ größer, fällt die Amplitude von $J_0(I)$ ab und die restlichen Bessel-Funktionen steigen an. $J_0(I)$ durchläuft den Nullpunkt bei $\approx2,5$, das bedeutet bei einem Modulationsindex von ungefähr $2,5$ ist der Grundton nicht im Frequenzspektrum vorhanden, sondern nur noch Seitenfrequenzen. In Abbildung~ \ref{fig:chowningEnergieVerteilung} wird der Modulationsindex von $0$ bis $4$ inkrementiert. Es wird ersichtlich, wie immer mehr Seitenfrequenzen entstehen und dabei die Grundfrequenz abnimmt. In Abbildung~ \ref{fig:chowningEnergieVerteilung} wird der Betrag der Amplitude dargestellt, somit wird die Grundfrequenz für $I=3$ im Vergleich zu $I=2$ wieder größer, da die Bessel-Funktion den Nullpunkt durchlaufen hat und im negativen Bereich größer wird, bis das lokale Minimum erreicht wird und der Betrag wieder bis $0$ abnimmt.
 
 \begin{figure} [ht]
 \centering
@@ -166,40 +171,37 @@ Quelle: \cite{chowningPaper}
 \FloatBarrier
 
 An Abbildung~\ref{fig:chowningEnergieVerteilung} erkennt man auch, dass die Seitenfrequenzen sich symmetrisch in negativer und positiver Richtung zur Grundfrequenz ausbreiten. Dies erkennt man auch an Formel~\ref{eq:chowningAddition}, der innere Teil vom Sinus entspricht der Seitenfrequenz, wobei $(\omega_c+n\cdot \omega_m)$ der n-ten Oberschwinung entspricht und $(\omega_c-n\cdot \omega_m)$ der n-ten Unterschwinung. $J_n(I)$ gibt die Amplitude der n-ten Unter- und Oberschwinung an. 
-Dies ist ein Vorteil der FM-Synthese im Vergleich zu anderen Sound Synthese Verfahren. Durch eine relativ simple Änderung des Modulationsindex können komplexe Klänge mit reichen Klangspektrum erzeugt werden.
-Wie in Kapitel \nameref{PrinzipFM} beschrieben, ist es jedoch schwer das Ergebnis der FM-Synthese vorher zusehen. Dies liegt zum einen an dem schwingenden Verlauf der Bessel Funktionen und deren Wirken auf die Seitenschwingungen. Abbildung~\ref{fig:bessel3D} stellt Bessel Funktionen $J_0$ bis $J_{15}$ dreidimensional, in Abhängigkeit des Modulationsindexes dar.
+Dies ist ein Vorteil der FM-Synthese im Vergleich zu anderen Sound Synthese Verfahren. Durch eine relativ simple Änderung des Modulationsindex können komplexe Klänge mit reichen Klangspektrum erzeugt werden. Die Bandbreite $B_{FM}$ des Klangspektrums bei der FM-Synthese entspricht:\cite[S. 221]{lathi}
+\begin{equation}
+B_{FM}=2nf_m=2(I+1)f_m
+\label{eq:fmBandwidth}
+\end{equation} 
+Die Bandbreite des synthetisierten Tones ist somit abhängig vom Modulationsindex und der Modulationsfrequenz. 
+Dieser Zusammenhang lässt sich aus dem graphischen Verlauf der Bessel-Funktion ablesen (s. \ref{fig:bessel2D}). Für einen festen Wert $I$, nimmt $J_n(I)$ ab. Für ein ausreichend großes $n$ können weitere Seitenfrequenz ignoriert werden, da ihre Amplitude vernachlässigbar klein werden. Durch die obige Formel kann auch ein Zusammenhang zwischen Modulationsindex und die Anzahl der Seitenfrequenzbänder hergestellt werden. Die Anzahl der signifikanten Seitenfrequenzen $n$ ist in etwa $I+1$. Wird zusätzlich ein zeitabhängiger Modulationsindex $I(t)$ verwendet, kann die Bandbreite des Spektrums zusätzlich variiert werden. Dies schafft weitere Möglichkeiten bei der Klanggestaltung. 
+
+Wie in Kapitel \nameref{PrinzipFM} beschrieben, ist es jedoch schwer das Ergebnis der FM-Synthese vorher zusehen. Dies liegt zum Einen an dem schwingenden Verlauf der Bessel-Funktionen und deren Wirken auf die Seitenschwingungen. Abbildung~\ref{fig:bessel3D} stellt Bessel-Funktionen $J_0$ bis $J_{15}$ dreidimensional, in Abhängigkeit des Modulationsindexes dar.
 Durch genaue Betrachtung des Funktionsverlaufs lässt sich ein Gefühl für die Veränderung der Seitenfrequenzen entwickeln.
 
-Zum Anderen an zwei Effekten bei der Bestimmung des Frequenzspektrums, die in Abbildung~ \ref{fig:chowningEnergieVerteilung} ignoriert wurden, machen die Vorhersehbarkeit noch schwerer. Der erste Effekt betrifft negative Seitenfrequenzen. Deren Vorzeichen invertiert wird und somit, anschaulich, an der Ordinate in den positiven Frequenzbereich reflektiert werden. [TODO warum ist das so?] Der zweite Effekt betrifft Frequenzen, die den selben Wert haben. Dabei werden die Amplituden der gleichen Frequenzen algebraisch addiert. Dies kann auch zuvor reflektierte Frequenzen betreffen. Daher kann es unter Umständen schwer sein, einen gegeben Klang durch FM-Synthese zu rekonstruieren, da man keine direkte Kontrolle über die Teiltöne wie bei der additiven Synthese hat. Abbildung~\ref{fig:chowningFreqReflektion} veranschaulicht das Verhalten der Seitenfrequenzen. Als einfaches Beispiel wählte Chowning $\omega_c=\omega_m=100$ und $I=4$.
-
+Zwei weitere Effekte erschweren die Vorhersehbarkeit. Der erste Effekt betrifft negative Seitenfrequenzen. Eine negative Frequenz entspricht einer Phasenverschiebung von $\pi$. Daher muss das Vorzeichen der Amplitude einer solchen Frequenz invertiert werden und der Betrag der Frequenz wird genommen. Dies lässt sich anschaulich als Punktspiegelung am Ursprung vorstellen. Dies wird von Chowning als Reflexion bezeichnet. Der zweite Effekt betrifft Frequenzen, die den selben Zahlenwert haben. Dabei werden die Amplituden der gleichen Frequenzen algebraisch addiert. Dies kann auch zuvor reflektierte Frequenzen betreffen. Daher kann es unter Umständen schwer sein, einen gegeben Klang durch FM-Synthese zu rekonstruieren, da keine direkte Kontrolle über die Teiltöne, wie bei der additiven Synthese, gegeben ist. Abbildung~\ref{fig:chowningFreqReflektion} veranschaulicht das Verhalten der Seitenfrequenzen.
 
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.5\textwidth]{ChowningFreqReflektion.png}
-\caption{TODO}
+\caption{In \textit{a} sind alle Frequenzen an ihren ursprünglichen Positionen eingezeichnet. In \textit{b} wurden negative Frequenzen in den positiven Frequenzbereich reflektiert. \textit{c} entspricht dem endgültigen Spektrum. Für $f_c=f_m=100$ und $I=4$.}
 \label{fig:chowningFreqReflektion}
 Quelle: \cite{chowningPaper}
 \end{figure}
 \FloatBarrier
 
 
-
-
-
 \begin{figure} [ht]
 \centering
   \includegraphics[width=0.95\textwidth]{ChowningBessel.png}
-\caption{3D Darstellung der Bessel Funktionen $J_0$ bis $J_{15}$ und Modulationsindex $I$ von 0 bis 20. }
+\caption{3D Darstellung der Bessel-Funktionen $J_0$ bis $J_{15}$ und Modulationsindex $I$ von 0 bis 20. }
 \label{fig:bessel3D}
 Quelle: \cite{chowningPaper}
 \end{figure}
 
-
-
-Durch die zeitliche Änderung der Frequenz bei der Frequenzmodulation entstehen Seitenfrequenzbänder.
-
-
-Das Frequenzspektrum eines natürlichen Tons ist selten statisch sondern variiert mit der Zeit. Diese Änderung der Teiltöne lässt das menschliche Ohr Töne unterschiedlich wahrnehmen. Durch die FM-Synthese lassen sich, im Vergleich zu anderen Syntheseverfahren, auf einfachen Weg komplexe und vielfältige Frequenzspektren künstlich erzeugen.
 
 \FloatBarrier
 \subsubsection{Harmonische Frequenzverhältnisse(Inkl. Vibrato)}
@@ -212,9 +214,8 @@ Ist der Bruch $N_1/N_2$ zusätzlich gekürzt, ergibt sich für die Grundfrequenz
 f_0=\frac{\omega_c}{N_1}=\frac{\omega_m}{N_2}
 \end{equation*}
 Für die Positionen der Seitenfrequenzen in der harmonischen Reihe des Klangs gilt:
-% TODO formatierung
 \begin{align}
-k=N_1+n\cdot N_2 \tag*{für n=...,-2,-,1,0,1,2,... }
+k=N_1+n\cdot N_2
 \end{align}
 Wobei $k$ die Nummer der Harmonischen entspricht und $n$ der n-ten Seitenfrequenz. Unter den obigen Bedingungen lassen sich weitere, für die Klangerzeugung hilfreiche, Aussagen treffen: \cite{chowningPaper}
 \begin{lstlisting}[mathescape]
@@ -235,7 +236,6 @@ Wie in \nameref{geschichteFMSynthese} beschrieben, entdeckte Chowning nach eigen
   \includegraphics[width=0.75\textwidth]{vibrato.png}
 \caption{Gut sichtbarer Vibrato bei einer Trägerfrequenz von 2093 Hz, was einem C4 Ton entspricht. Die Modulationsfrequenz ist mit 0.3 Hz sehr niedrig gewählt und der Modulationsindex relativ hoch mit $I=500$.}
 \label{fig:vibrato}
-Quelle: Eigene Darstellung mit MATLAB.
 \end{figure}
 
 
