@@ -40,21 +40,21 @@ Wird die momentane \textbf{Frequenz} des Trägersignals proportional zum Modulat
 
 Bei \(k_{FM}\) handelt es sich wieder um eine Modulatorkonstante und gibt an wie stark das Modulationssignal das Trägersignal beeinflusst. Um nun das frequenzmodulierte Signal zu erhalten muss die momentan Frequenz, analog wie bei der Phasenmodulation, in \(s(t)\) eingesetzt werden. Jedoch kommt \(\omega_m\) nicht direkt in \(s(t)\) oder \(\theta(t)\) vor. Aus Formel~\ref{eq:omega_m_herleitung} ist bekannt, dass die momentane Frequenz gleich der ersten Ableitung des momentan Winkels \(\theta(t)\) ist. Im Umkehrschluss bedeutet das, dass die Integration von \(\omega_m\) nach der Zeit gleich \(\theta(t)\) sein muss.
 \begin{equation*}
-\theta(t)=\int_0^t{\omega_m(t)} dt = \int_0^t{\omega_0 + k_{FM}\cdot f(t)} dt = \omega_0t + k_{FM} \cdot \int_0^t{f(t)} dt
+\theta(t)=\int_0^t{\omega_m(\tau)} d\tau = \int_0^t{\omega_0 + k_{FM}\cdot f(\tau)} d\tau = \omega_0t + k_{FM} \cdot \int_0^t{f(\tau)} d\tau
 \end{equation*}
 Setzt man diesen Term in \(s(t)\) ein, erhält man die Formel für ein frequenzmoduliertes Signal
 \begin{equation}
-s_{FM}(t)=A\cdot\sin(\omega_0t + k_{FM} \cdot \int_0^t{f(t)} dt)
+s_{FM}(t)=A\cdot\sin(\omega_0t + k_{FM} \cdot \int_0^t{f(\tau)} d\tau)
 \label{eq:s_fm}
 \end{equation}
 Es sei angemerkt, dass wissentlich die Integrationskonstante mit Null gleichgesetzt wurde und somit nicht in den Formeln auftritt, da sie für unsere Beobachtungen unerheblich ist und die Terme nur unnötig verkomplizieren würde.
 
 Wie einführlich erklärt, ist die Phasenmodulation mit der Frequenzmodulation verwandt. Wie ähnlich die beiden Verfahren sind, ist leicht ersichtlich an den Formeln für die modulierten Signalen~\ref{eq:s_pm} und \ref{eq:s_fm}. Beide Formeln sind bis auf die letzte Addition gleich. Daraus lässt sich eine Bedingung ableiten, welche beschreibt wann eine FM durch eine PM oder umgekehrt dargestellt werden kann. Dies ist genau dann möglich, wenn die Signale \(s_{PM}(t)\) und \(s_{FM}(t)\) gleich sind. Daraus ergibt sich für die Modulationssignale \(p(t)\) und \(f(t)\) folgende Beziehung:
 \begin{equation}
-k_{PM}\cdot p(t)=k_{FM} \cdot  \int_0^t{f(t)} dt
+k_{PM}\cdot p(t)=k_{FM} \cdot  \int_0^t{f(\tau)} d\tau
 \end{equation}
 
-Vorausgesetzt \(k_{PM}\) ist gleich \(k_{FM}\), dann können beide Faktoren aus der Gleichung eliminiert werden. Ist es nun möglich, für \(f(t)\) eine Ableitung zu finden, kann eine PM durch eine FM dargestellt werden. Durch die Ableitung von \(\int{f(t)}\) wird das Integral aufgehoben und die Gleichung reduziert sich zu einem einfachen \(p(t)=f(t)\). Umgekehrt gilt, dass genau dann eine FM durch eine PM dargestellt werden kann, wenn \(p(t)\) integrierbar ist. Unter diesen Bedingungen sind beide Verfahren mathematisch betrachtet gleich. Daher kann nur anhand der Betrachtung eines modulierten Signals nicht darauf zurück geschlossen werden, ob es mit einer Phasen- oder Frequenzmodulation moduliert wurde. Die unterschiedlichen Namen (FM, PM) zeigen somit nur, welche Größe des Modulationssignals (\(f(t), p(t)\)) proportional ist. \cite[S. 210]{lathi}
+Vorausgesetzt \(k_{PM}\) ist gleich \(k_{FM}\), dann können beide Faktoren aus der Gleichung eliminiert werden. Ist es nun möglich, für \(f(t)\) eine Ableitung zu finden, kann eine PM durch eine FM dargestellt werden. Durch die Ableitung von \(\int{f(\tau)}\) wird das Integral aufgehoben und die Gleichung reduziert sich zu einem einfachen \(p(t)=f(t)\). Umgekehrt gilt, dass genau dann eine FM durch eine PM dargestellt werden kann, wenn \(p(t)\) integrierbar ist. Unter diesen Bedingungen sind beide Verfahren mathematisch betrachtet gleich. Daher kann nur anhand der Betrachtung eines modulierten Signals nicht darauf zurück geschlossen werden, ob es mit einer Phasen- oder Frequenzmodulation moduliert wurde. Die unterschiedlichen Namen (FM, PM) zeigen somit nur, welche Größe des Modulationssignals (\(f(t), p(t)\)) proportional ist. \cite[S. 210]{lathi}
 Eine weitere, erwähnenswerte Eigenschaft lässt sich gewinnen, wenn der momentane Phasenwinkel beider Verfahren gegenüber gestellt wird. Während \(\varphi(t)\) für PM durch die Formel~\ref{eq:varphi_t} gegeben ist, muss \(\varphi(t)\) für FM durch gleichsetzten der Formeln~\ref{eq:omega_m_herleitung} und \ref{eq:omega_m} gewonnen werden:
 \begin{eqnarray*}
 \omega_0+\frac{d\varphi(t)}{dt}&=&\omega_0+k_{FM}\cdot f(t) \\
@@ -79,7 +79,7 @@ m(t)=f(t)=p(t)=\sin(\omega_m t)
 Wobei \(\omega_m\) die Modulationskreisfrequenz darstellt. Eingesetzt in die Formeln für PM und FM ergibt sich
 \begin{eqnarray*}
 s_{PM}(t)&=&A\cdot\sin(\omega_0t+k_{PM}\cdot\sin(\omega_m t)) \\
-s_{FM}(t)&=&A\cdot\sin(\omega_0t+k_{FM}\cdot\int_0^t{\sin(\omega_m t)} dt)
+s_{FM}(t)&=&A\cdot\sin(\omega_0t+k_{FM}\cdot\int_0^t{\sin(\omega_m \tau)} d\tau)
 \end{eqnarray*}
 Die von Chowning vorgestellte Formel gleicht der Formel für eine PM, \cite{chowningPaper} wobei Chowning seine Formel als Frequenzmodulation vorstellt. Wieso diese Aussage trotzdem korrekt ist, wird im Folgenden gezeigt. Im ersten Schritt muss das Integral innerhalb von \(s_{FM}\) ausgerechnet werden:
 \begin{equation*}
