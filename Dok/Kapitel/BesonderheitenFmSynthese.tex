@@ -1,6 +1,6 @@
 \subsection{Besonderheiten der FM-Synthese}
 \FloatBarrier
-\subsubsection{Phasenmodulation als FM}
+\subsubsection{Zusammenhang zwischen Phasen- und Frequenzmodulation}
 Frequenzmodulation (FM) und Phasenmodulation (PM) können unter dem Oberbegriff Winkelmodulation zusammen gefasst werden. Im Folgenden soll der Zusammenhang zwischen PM und FM genauer beschrieben werden. Zuerst wird die mathematische Herleitung der beiden Modulationen beschrieben. Anschließend wird die Ähnlichkeit der beiden Verfahren erörtert und im Kontext der Akustik beschrieben.
 Interessanterweise führte die Publikation von Chowning zu anfänglicher Verwirrung. In seinem Artikel definiert er eine Formel, welche einer PM gleicht. Zusätzlich beschreibt er ein MUSIC~V Patch der einer FM gleicht. Beides wird jedoch von ihm als FM-Synthese vorgestellt. \cite{rossum1999method} Des Weiteren kann dem Yamaha Patent für die Implementierung eines FM-Synthesizer entnommen werden, dass Yamaha ihre FM-Synthese über eine PM erzeugte. \cite{oya1987electronic} 
 
@@ -104,7 +104,7 @@ e(t)=A\cdot\sin(\omega_0t+I\cdot\sin(\omega_m t))
 Diese Formel entspricht somit der von Chowning vorgestellten Formel für eine FM-Synthese und ist im Kontext der Akustik korrekt. Zusammengefasst sieht man, dass die von Chowning streng mathematisch betrachtet keine FM-Synthese darstellt, sondern eine PM-Synthese. Dieser feine Unterschied spielt jedoch in der Akustik kaum eine Rolle. Im nächsten Kapitel werden wir sehen, dass Klangspektren berechnet werden um den Klangcharakter zu bestimmen. Um ein solches Klangspektrum zu bestimmen, muss bekannt sein welche Formel tatsächlich implementiert wurde.
 
 \FloatBarrier
-\subsubsection{Seitenfrequenzbänder (Evtl. Besselfunktion)}
+\subsubsection{Klangspektrum der FM-Synthese}
 \label{bulli:ohrToeneUndFrequenzen}
 Ein Ton wird durch eine einfache Sinusschwingung erzeugt. Die Tonstärke, also die Lautstärke eines Tones, hängt von der Amplitude der Schwingung ab. Je größer die Amplitude desto lauter wirkt der Ton. Die Frequenz einer Schwingung empfindet der Mensch als Tonhöhe. Je größer die Frequenz der Schwingung desto höher wird der Ton empfunden. 
 Das menschliche Ohr nimmt Frequenzen zwischen 16 Hz und 20 kHz wahr. Mit zunehmenden Alter nimmt die obere Hörschwelle ab. \cite[S. 199]{borucki}
@@ -204,7 +204,7 @@ Quelle: \cite{chowningPaper}
 
 
 \FloatBarrier
-\subsubsection{Harmonische Frequenzverhältnisse(Inkl. Vibrato)}
+\subsubsection{Harmonische Frequenzverhältnisse}
 Bisher wurde nur wenig auf die beiden Frequenzparameter eingegangen. Diese können theoretisch beliebige Werte annehmen, so lange sie innerhalb des hörbaren Frequenzbereichs liegen. Ist das Ziel jedoch harmonische Klänge für Musik zu synthetisieren, müssen Trägerfrequenz und Modulationsfrequenz in einem besonderem Verhältnis stehen. Genauer gesagt muss das Verhältnis durch eine rationale Zahl beschrieben werden können, also durch einen Bruch aus zwei ganzen Zahlen $N_1$ und $N_2$. Somit gilt:
 \begin{equation*}
 \frac{f_c}{f_m}=\frac{N_1}{N_2}
