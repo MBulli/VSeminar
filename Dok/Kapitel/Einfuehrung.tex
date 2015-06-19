@@ -7,7 +7,7 @@ Die \textbf{Frequenzmodulationssynthese} ist eine für die Musikwelt sehr wichti
 Generell wird bei der Frequenzmodulation die Frequenz eines \textbf{Trägersignals} durch ein weiteres \textbf{Modulationssignal} verändert, die Amplitude bleibt jedoch unangetastet. In der Nachrichtentechnik können durch die unterschiedlichen Frequenzen im modulierten Träger Informationen übertragen werden. Bei der FM-Synthese kann die maximale Amplitude in besonderen Fällen jedoch von der maximalen Auslenkung des Trägers abweichen bzw. kleiner als diese werden. 
 Die momentane Amplitude der Modulation lässt sich bei der FM-Synthese durch folgende Formel beschreiben:
 \[
-\bm{e(t) = A\sin(\pmb{\alpha} t + I\sin(\pmb{\beta} t))} \cite{chowningPaper}
+e(t) = A\sin(\alpha t + I\sin(\beta t)) \cite{chowningPaper}
 \]
 Bei der äußeren Sinusfunktion handelt es sich um den Träger, welcher in seiner Frequenz durch das Modulationssignal (innerer Sinus) moduliert wird.
 
@@ -15,13 +15,13 @@ Bei der äußeren Sinusfunktion handelt es sich um den Träger, welcher in seine
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.95\textwidth,frame]{Prinzip.png}
+  \includegraphics[width=0.95\textwidth]{Prinzip.png}
 \caption{Vergleich Träger/Modulator}
 \label{fig:vergleichSignale}
 \end{figure}
 \FloatBarrier
 
-Technisch gesehen kann die FM-Synthese mit Oszillatoren umgesetzt werden. In der einfachsten Form benötigt man dazu einen Träger-Oszillator und einen Modulator-Oszillator. Wie eine einfache FM-Synthese in Form einer Schaltung aussehen kann, zeigt Abbildung \textbf{Abbildung \ref{fig:schaltung}}. Der Ausgang des ersten Oszillators geht dabei in den Eingang des Zweiten. Dabei kann entweder direkt die Frequenz des Trägers beeinflusst werden, jedoch auch dessen Phase. Eine Erläuterung dazu folgt in Kapitel \cite{Bulli-Teil}. Bei VCA handelt es sich um einen spannungsgesteuerten Verstärker (Voltage controlled amplifiert), EG ist ein Hüllkurvengenerator (Envelope Generator). $f_M$ und $f_C$ sind die Frequenzen der beiden Oszillatoren. Über den Modulationsindex $\beta$ kann die Sträke der Modulation festgelegt werden. 
+Technisch gesehen kann die FM-Synthese mit Oszillatoren umgesetzt werden. In der einfachsten Form benötigt man dazu einen Träger-Oszillator und einen Modulator-Oszillator. Wie eine einfache FM-Synthese in Form einer Schaltung aussehen kann, zeigt Abbildung \textbf{Abbildung \ref{fig:schaltung}}. Der Ausgang des ersten Oszillators geht dabei in den Eingang des Zweiten. Dabei kann entweder direkt die Frequenz des Trägers beeinflusst werden, jedoch auch dessen Phase. Bei VCA handelt es sich um einen spannungsgesteuerten Verstärker (Voltage controlled amplifier), EG ist ein Hüllkurvengenerator (Envelope Generator). $f_M$ und $f_C$ sind die Frequenzen der beiden Oszillatoren. Über den Modulationsindex $\beta$ kann die Sträke der Modulation festgelegt werden. 
 
 \begin{figure} [ht]
 \centering
@@ -43,7 +43,7 @@ Die Frequenzen der jeweiligen Funktionen wurden so gewählt, dass sie in einem F
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.95\textwidth,frame]{Beispiel1.png}
+  \includegraphics[width=0.95\textwidth]{Beispiel1.png}
 \caption{Beispiel 1. Darstellung einer Frequenzmodulation mit einer Trägerfrequenz von 600 Hz, einer Modulationsfrequenz von 75 Hz und einem Modulationsindex von 5 }
 \label{fig:beispiel1}
 \end{figure}
@@ -53,14 +53,14 @@ In Beispiel 1 (siehe \textbf{Abbildung \ref{fig:beispiel1}})  wurden folgende Si
 \begin{lstlisting}[mathescape]
 Trägersignal: 		$y(t) = \,\;\;\sin(2 \pi 600\cdot t)$
 Modulator:		$y(t) =5 \sin(2 \pi 75\cdot t)$
-[*Gesamtfunktion: 	$\bm{y(t) = \,\;\;\sin(2 \pmb{\pi} 600\cdot t + 5 \sin(2 \pmb{\pi} 75\cdot t))}$*]
+Gesamtfunktion: 	$y(t) = \,\;\;\sin(2 \pi 600\cdot t + 5 \sin(2 \pi 75\cdot t))$
 \end{lstlisting}
 
 Konkret bedeuted eine Trägerfrequenz von 600 Hz, dass die Trägerfunktion 600 mal in der Sekunde schwingt, d.h. eine Periode ist genau $\frac{1}{600}$ Sekunden lang. Der Modulator hat eine Frequenz von 75 Hz, wodurch er 75 Schwingung pro Sekunde durchläuft und eine Periode dann $\frac{1}{75}$ Sekunden lang ist. Für die Modulation gilt im Allgemeinen, dass der sogenannte Frequenzhub der Modulation (Erklärung siehe Kapitel \textbf{``\ref{chowningparameter} - \nameref{chowningparameter}''}) immer dann Maximal ist, wenn die Änderung der Modulationsfunktion (also deren Steigung) ihr Maximum bzw. Minimum hat. In der Grafik tritt dies immer dann auf, wenn der Modulator den Funktionswert 0 hat.
 
 \begin{figure} [ht]
 \centering
-  \includegraphics[width=0.95\textwidth,frame]{Beispiel2.png}
+  \includegraphics[width=0.95\textwidth]{Beispiel2.png}
 \caption{Beispiel 2. Darstellung einer Frequenzmodulation mit einer Trägerfrequenz von 300 Hz, einer Modulationsfrequenz von 120 Hz und einem Modulationsindex von 5}
 \label{fig:beispiel2}
 \end{figure}
@@ -68,7 +68,7 @@ Konkret bedeuted eine Trägerfrequenz von 600 Hz, dass die Trägerfunktion 600 m
 Das zweite Beispiel in \textbf{Abbildung \ref{fig:beispiel2}} zeigt eine Frequenzmodulation, bei der sich auch die Amplitude des Signals ändert. Dies geschieht rein durch die Phasenverschiebung des äußeren Sinus durch den Modulator, die tatsächliche Amplitude der Funktion bleibt dabei unangetastet. Die Formel des modulierten Signals sieht wie folgt aus:
 
 \[
-\bm{y(t) = \sin(2 \pmb{\pi} 300\cdot t + 5 \sin(2 \pmb{\pi} 120\cdot t))}
+y(t) = \sin(2 \pi 300\cdot t + 5 \sin(2 \pi 120\cdot t))
 \]
 
 An diesem Beispiel kann man sehr gut erkennen, dass die FM-Synthese mit wenig Aufwand komplexe Signale erzeugen kann, diese jedoch schlecht kontrollierbar bzw. erklärbar sind.
