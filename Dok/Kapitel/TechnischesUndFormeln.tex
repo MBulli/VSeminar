@@ -34,7 +34,7 @@ Quelle: \url{http://www.ulrich-rapp.de/stoff/mathematik/Sinus_Einheitskreis.gif}
 \\Stand 09.06.2015
 \end{figure}
 
-Der aktuelle Winkel im Einheitskreis kann auch im \textbf{Bogenmaß} angegeben werden. Das Bogenmaß beschreibt, wie weit der Bogen des Einheitskreises im Uhrzeigersinn abgelaufen wird. Dabei ist $\bm{\pmb{\pi}}$ die \textbf{Kreiszahl}. Ein Bogenmaß von $2\pi$ gibt eine ganze Umdrehung im Einheitskreis an, der Wert $\pi$ entspricht einer halben Umdrehung. Um nun auf eine Sinusfunktion überzuleiten, muss das Bogenmaß in Abhängigkeit von der \textbf{Zeit t} angegeben werden, die Formel lautet dann $\bm{\sin(2\pmb{\pi}*t)}$. Damit festgelegt werden kann, wie oft der Einheitskreis in einer Sekunde abgelaufen wird, multipliziert man das Bogenmaß $2\pi$ mit dem Faktor $\bm{f}$. Dabei entspricht $f$ der \textbf{Frequenz} der Funktion, also wie viele Schwingungen in einer Sekunde durchlaufen werden. Der Wert $\bm{2\pmb{\pi} * f}$ wird auch als \textbf{Kreisfrequenz} bezeichnet.
+Der aktuelle Winkel im Einheitskreis kann auch im \textbf{Bogenmaß} angegeben werden. Das Bogenmaß beschreibt, wie weit der Bogen des Einheitskreises im Uhrzeigersinn abgelaufen wird. Dabei ist $\bm{\pmb{\pi}}$ die \textbf{Kreiszahl}. Ein Bogenmaß von $2\pi$ gibt eine ganze Umdrehung im Einheitskreis an, der Wert $\pi$ entspricht einer halben Umdrehung. Um nun auf eine Sinusfunktion überzuleiten, muss das Bogenmaß in Abhängigkeit von der \textbf{Zeit t} angegeben werden, die Formel lautet dann $\bm{\sin(2\pmb{\pi}\cdot t)}$. Damit festgelegt werden kann, wie oft der Einheitskreis in einer Sekunde abgelaufen wird, multipliziert man das Bogenmaß $2\pi$ mit dem Faktor $\bm{f}$. Dabei entspricht $f$ der \textbf{Frequenz} der Funktion, also wie viele Schwingungen in einer Sekunde durchlaufen werden. Der Wert $\bm{2\pmb{\pi} \cdot f}$ wird auch als \textbf{Kreisfrequenz} bezeichnet.
 Man spricht bei Sinus- und Kosinusfunktion auch von Winkelfunktionen, denn der Funktionswert der Funktion kann auch anhand des Winkels (in Bogenmaß) im Einheitskreis angeben. 
 Eine Veranschaulichung des Zusammenhangs zwischen dem Einheitskreis und der Sinusfunktion zeigt Abbildung \ref{fig:unitcircleToSinus}.
 
@@ -45,9 +45,9 @@ $\bm{\sin(\frac {\pmb{\pi}}{2} – x) =\cos(x)}$
 $\bm{\cos(\frac {\pmb{\pi}}{2} – x) = \sin(x)}$ 
 \end{lstlisting}\cite[s. 218]{matheBuch}
 
-Überträgt man diese mathematischen Erkenntnisse nun auf einen Ton, so kann man dessen Funktion wie folgt beschreiben: 		$\bm{y(t) = A * \sin(2 \pmb{\pi} f * t)}$
+Überträgt man diese mathematischen Erkenntnisse nun auf einen Ton, so kann man dessen Funktion wie folgt beschreiben: 		$\bm{y(t) = A \cdot \sin(2 \pmb{\pi} f \cdot t)}$
 
-Um \textbf{90\degree} oder $\bm{\frac{\pmb{\pi}}{2}}$ verschoben gilt: 		$\bm{y(t) = A*\cos(2 \pmb{\pi} f*t)}$
+Um \textbf{90\degree} oder $\bm{\frac{\pmb{\pi}}{2}}$ verschoben gilt: 		$\bm{y(t) = A\cdot \cos(2 \pmb{\pi} f\cdot t)}$
 
 Bei $\bm{A}$ handelt es sich um die \textbf{Amplitude} des Tons und somit dessen \textbf{Lautstärke}. Alle Funktionswerte der Funktion werden mit diesem Faktor multipliziert und dadurch größer oder kleiner.
 
@@ -79,7 +79,7 @@ Die Gleichung für eine frequenzmodulierte Welle lautet wie folgt:
 \end{lstlisting} \cite{chowningPaper}
 
 Der Modulationsindex beschreibt also das Verhältnis des Frequenzhubs zur Modulationsfrequenz.
-Man kann anhand der Formel bereits erkennen, dass bei einem Modulationsindex von 0 keine Modulation stattfindet. Dabei wird der Frequenzhub der Modulation auch gleich 0, da $ I=\frac{d}{m} $ und somit $ d = 0*m = 0 $ gilt. 
-\[ e(t) = A \sin(\alpha t + 0 \sin(\beta t))  \Rightarrow  e(t) = a \sin(\alpha t) \]
+Man kann anhand der Formel bereits erkennen, dass bei einem Modulationsindex von 0 keine Modulation stattfindet. Dabei wird der Frequenzhub der Modulation auch gleich 0, da $ I=\frac{d}{m} $ und somit $ d = 0\cdot m = 0 $ gilt. 
+\[ e(t) = A \sin(\alpha t + 0 \sin(\beta t))  \Rightarrow  e(t) = A \sin(\alpha t) \]
 Die Frequenz in Hz (Schwingungen pro Sekunde) ergibt sich, wenn man die Kreisfrequenz (siehe oben) durch $2\pi$ teilt.
 Anhand der Frequenz des Modulators kann man sehen, wie oft der oben beschriebene Frequenzhub pro Sekunde durchlaufen wird. Beispiel: Bei einer Modulationsfrequenz von 440 Hz wird der Frequenzhub 440 mal pro Sekunde durchlaufen.
