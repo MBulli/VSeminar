@@ -1,17 +1,16 @@
 writePNG = 0;
 
 fc=440; %Hz
-fm=20; %Hz
+fm=440; %Hz
 
 Imin=0;
-Istep=1;
+Istep=2;
 Imax=10;
 
 maxBandwidth = (Imax+2)*fm + fc;
 
 for I = Imin:Istep:Imax
-    magic=I+ceil(log2(abs(I)+1))*2; 
-    n = -magic:1:magic;
+    n = -I-2:1:I+1;
     j = besselj(n, I);
     frequenzen = fc+n*fm;
       
@@ -27,7 +26,7 @@ for I = Imin:Istep:Imax
     % ic enthält keys, diese werden bei accumarray summiert
     [uniqFreq, ia, ic] = unique(X(:,1));
     amps = accumarray(ic, X(:,2));
-    Xreal = [uniqFreq, amps];
+    Xreal = [uniqFreq, abs(amps)];
     
     % calc sound 
     Fs=44100;
