@@ -1,5 +1,5 @@
 %% read audio file
-[fluteOrig, fs] = audioread('fluteOrigG4.wav');
+[fluteOrig, fs] = audioread('fluteOrigG5.wav');
 figure(2);
 length = size(fluteOrig,1)/fs;
 
