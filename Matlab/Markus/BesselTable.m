@@ -1,89 +1,75 @@
+clear;
+
 fc=100; %Hz
-fm=200; %Hz
-I=20;
+fm=100; %Hz
+I = 10.3;
+
+ybounds = [-1; 1];
 
 n = -I-2:1:I+1;
 j = besselj(n, I);
 frequenzen = fc+n*fm;
 
-figure(1);
-subplot(2,2,1);
-stem(frequenzen, j, '.');
-title('1) Ausgangslage');
-xlabel('Hz');
-ylim([-1; 1]);
-
-% reflect
-subplot(2,2,2);
-R1 = []; % j for negative freq
-R2 = []; % j for postive  freq
-for c = 1:size(frequenzen, 2)
-    if frequenzen(c) < 0
-        R1(length(R1)+1, 1) = -1*j(c);
-    else
-        R2(length(R2)+1, 1) = j(c);
-    end
-end
-
-%if ~isempty(R2)
-    stem(frequenzen(frequenzen>=0), R2, '.');
-%end;
-if ~isempty(R1)
-    hold on;
-    stem(abs(frequenzen(frequenzen<0)), R1, '.', 'Color','red');
-    hold off;
+% reflect freqs
+X = [ones(length(frequenzen), 1), transpose(frequenzen), transpose(j)];
+for row = 1:size(X,1)
+    if X(row, 2) < 0
+        X(row, 1) = -1;             % store sign info
+        X(row, 2) = abs(X(row, 2)); % freq
+        X(row, 3) = -X(row, 3);     % amp
+    end;
 end;
 
+% Indicies for positve and negative freqs
+idxPos = X(:,1)>0;
+idxNeg = X(:,1)<0;
+
+% ic enthält keys, diese werden bei accumarray summiert
+[uniqFreq, ia, ic] = unique(X(:,2));
+amps = accumarray(ic, X(:,3));
+Xreal = [uniqFreq, amps];
+
+% PLOTS!!
+subplot(2,2,1);
+stem(X(:,2).*X(:,1), X(:,3), '.');
+title('1) Ausgangslage');
+xlabel('Hz');
+ylim(ybounds);
+%# vertical line at fc
+hx = graph2d.constantline(fc, 'LineStyle',':', 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+subplot(2,2,2);
+hold on;
+stem(X(idxPos,2), X(idxPos,3), '.');
+stem(X(idxNeg,2), X(idxNeg,3), '.', 'Color','red');
 title('2) Reflektiert');
 xlabel('Hz');
-ylim([-1; 1]);
+ylim(ybounds);
+%# vertical line at fc
+hx = graph2d.constantline(fc, 'LineStyle',':', 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+hold off;
 
 
-% add
 subplot(2,2,3);
-
-% 0Hz tritt nur auf wenn fc ganzzahliges Vielfaches von fm ist
-% Beim Sortieren nach +/- wird die Null bei + einsortiert.
-% Daher muss sie bei - nachträglich hinzugefügt werden.
-if mod(fc,fm) == 0 
-    R1 = [R1; 0];
-end
-R1=flipud(R1);
-
-sizeR1 = max(size(R1));
-sizeR2 = max(size(R2));
-
-if sizeR1 > sizeR2
-    R2=[R2; zeros(sizeR1-sizeR2, 1)];
-else
-    R1=[R1; zeros(sizeR2-sizeR1, 1)];
-end
-
-R=R1+R2;
-
-positiveFreq = frequenzen(frequenzen>=0); 
-negativeFreq = frequenzen(frequenzen<=0);
-
-if length(positiveFreq) > length(negativeFreq)
-    frequencies2 = positiveFreq;
-else 
-    frequencies2 = negativeFreq;
-end
-
-stem(frequencies2, R, '.');
+stem(Xreal(:,1), Xreal(:,2), '.');
 title('3) Addiert');
 xlabel('Hz');
-ylim([-1; 1]);
+ylim(ybounds);
+%# vertical line at fc
+hx = graph2d.constantline(fc, 'LineStyle',':', 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
 
-% y abs
+
+% plot
 subplot(2,2,4);
-if length(positiveFreq) > length(negativeFreq)
-    frequencies3 = positiveFreq;
-else 
-    frequencies3 = abs(negativeFreq);
-end
-
-stem(frequencies3, abs(R), '.');
+stem(Xreal(:,1), abs(Xreal(:,2)), '.');
 title('4) Betrag Amplitude');
 xlabel('Hz');
-ylim([-1; 1]);
+ylim([0; ybounds(2)]);
+%# vertical line at fc
+hx = graph2d.constantline(fc, 'LineStyle',':', 'Color',[.7 .7 .7]);
+changedependvar(hx,'x');
+
+
