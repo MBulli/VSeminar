@@ -1,6 +1,6 @@
 %% read audio file
 [fluteOrig, fs] = audioread('fluteOrigG5.wav');
-figure(2);
+figure(10);
 length = size(fluteOrig,1)/fs;
 
 
@@ -61,4 +61,4 @@ set(gca, 'XLim', [700, 1800]);
 
 
 %% play sound
- sound(fluteOrig,fs);
+% sound(fluteOrig,fs);
