@@ -125,7 +125,7 @@ Wie man sieht, sind die Spektren für die Modulation durch zwei verschiedene Mod
 \label{singlecarryparallelmod}
 Wird ein einzelner Träger $T$ von zwei parallel geschalteten Modulatoren $M1$ und $M2$ gleichzeitig moduliert, kann das erzeugte Frequenzspektrum nicht mehr einfach als Summe der Spektren zweier einfacher FM begriffen werden. Da sich die Auswirkungen der beiden Modulatoren auf den Träger gegenseitig beeinflussen, entstehen zahlreiche \textit{Kombinationsseitenfrequenzen} (\cite[S.117]{fmtheory})oder \textit{Intermodulationsfrequenzen]} (\cite{schottiWeb}). Das ist bereits aus der Funktion für diese Art der Parallelmodulation ersichtlich. Mit \cite[S.46]{schottstaedt} wird \ref{eq:SimpleFM} wie folgt um einen weiteren Modulator erweitert:
 \begin{equation}
-f_{FMparallel}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t))
+f_{FMparallel}(t) = \sin(w_ct + I_1\sin(w_{m1}t) + I_2\sin(w_{m2}t))
 \end{equation}
 Nach mehrmaliger Anwendung der trigonometrischen Additionstheoreme zeigt sich im Vergleich mit \ref{eq:BesselZwischenform} bereits, dass diese Formel eine Vielzahl zusätzlicher Terme generiert:
 \begin{equation}
@@ -140,7 +140,7 @@ Substituiert man auch hier wieder jedes \begin{math} \sin(I\sin(w_{mx}t) \end{ma
 Damit ergeben sich exakt $i \times k$ Kombinationen der Besselfunktionskoeffizienten. Das bedeutet, dass bereits für alle Kombinationen der Indizes von -2 bis +2 ganze 25 verschiedene Terme generiert werden: 16 für die Kombinationsmöglichkeiten von 1 und 2 jeweils mit positivem oder negativem Vorzeichen; weitere 9 für die Kombinationen von 0 mit 1 oder 2 inklusive beider Vorzeichen; schließlich noch die einzelne Kombination von 0 mit sich selbst. Nachdem jeder Term für ein Seitenband steht, kann man sich die Komplexität des resultierenden Spektrums leicht ausmalen. Die entsprechenden Additionsterme lauten wie folgt:
 \begin{equation}\label{eq:wallofequations}
 \begin{split}
-\sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
+\sin&(w_ct + I_1\sin(w_{m1}t) + I_2\sin(w_{m2}t)) \\
 &= J_0(I_1)J_0(I_2)\sin(w_ct) \\
 &+ J_0(I_1)J_1(I_2)\sin(w_ct + w_{m2}t) - J_0(I_1)J_1(I_2)\sin(w_ct - w_{m2}t) \\
 &+ J_0(I_1)J_2(I_2)\sin(w_ct + 2w_{m2}t) + J_0(I_1)J_1(I_2)\sin(w_ct - 2w_{m2}t) \\
@@ -227,7 +227,7 @@ Da hier die beiden Klammern in der Sinusfunktion zusammen exakt einer eigenstän
 Damit entspricht die Formel für das Frequenzspektrum der Kaskadenschaltung exakt jener für die Parallelschaltung \ref{eq:ParallelKompakt}, mit einem kleinen Zusatz: Es wird bei der Kaskadenschaltung zusätzlich der Modulationsindex $ I_2 $ des äußersten Modulators $M2$ mit der Ordnung $ n $ des ersten Besselkoeffizienten multipliziert und erst anschließend als Argument an die Besselfunktion gereicht. Damit ändern sich auch bei den Additionstermen für das Spektrum im Vergleich zur Parallelschaltung \ref{eq:wallofequations} lediglich die Koeffizienten:
 \begin{equation}
 \begin{split}
-\sin&(w_ct + I_1\sin(w_{m1}t) + I\sin(w_{m2}t)) \\
+\sin&(w_ct + I_1\sin(w_{m1}t) + I_2\sin(w_{m2}t)) \\
 &= J_0(I_1)J_0(\mathbf{0}I_2)\sin(w_ct) \\
 &+ J_0(I_1)J_1(\mathbf{0}I_2)\sin(w_ct + w_{m2}t) - J_0(I_1)J_1(I_2)\sin(w_ct - w_{m2}t) \\
 &+ J_0(I_1)J_2(\mathbf{0}I_2)\sin(w_ct + 2w_{m2}t) + J_0(I_1)J_1(I_2)\sin(w_ct - 2w_{m2}t) \\
@@ -309,7 +309,7 @@ Da ein höherer Modulationsindex grundsätzlich die Bandbreite erhöht und für 
 
 Eine Spezialform der komplexen FM besteht darin, das Ausgangssignal des Trägers zur Modulation des Trägers heranzuziehen anstelle eines Modulators wie in der einfachen FM. Die Formel für eine Feedbackschaltung kann rekursiv wie folgt angegeben werden:
 \begin{equation}
-f_{FMfeedback}(t_{n}) = sin(w_{c}t_{n} + If_{FMfeedback}(t_{n-1})) \quad \text{mit} \quad f_{FMfeedback}(t_{n_0}) = 0
+f_{FMfeedback}(t_{n}) = sin(w_{c}t_{n} + If_{FMfeedback}(t_{n-1})) \quad \text{mit} \quad f_{FMfeedback}(t_{0}) = 0
 \end{equation}
 In MATLAB oder in einer beliebigen Programmiersprache kann diese Formel dann natürlich komfortabel iterativ oder rekursiv implementiert werden.
 Das Frequenzspektrum berechnet sich \cite{schottiWeb} über:
