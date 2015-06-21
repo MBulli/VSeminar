@@ -6,7 +6,7 @@ t = 0:1/fs:length;  %timecode for each sample
 A = 0.22;           %amplitude
 fc = 791;           %carrier frequency G5
 fm = fc;            %modulation frequency
-I = 2;              %modulation index
+I = 0.5;              %modulation index
 
 % generate signal
 fluteFM = A.*sin(2*pi*fc*t + I*sin(2*pi*fm*t));
@@ -44,7 +44,6 @@ fluteFM = A.*sin(2*pi*fc*t + I1.*sin(2*pi*fm1*t + I2*sin(2*pi*fm2*t + I3*sin(2*p
 %% Synth Flute + 4 Mod + Vibrato + ADSR + VARI
 I1 = A*2;            %modulation index 1
 I2 = 0.3;            %modulation index 2
-
 
 % generate signal
 fluteFM = A.*sin(2*pi*fc*t + I1.*sin(2*pi*fm1*t + I2*sin(2*pi*fm2*t + I3*sin(2*pi*fm3*t + I4*sin(2*pi*fm4*t)))));
@@ -143,15 +142,14 @@ audiowrite('fmflute.wav',fluteFM,fs);
 
 
 
-
-%% Synth Flute Var fc
-%B = A;
-%B(t>1.2) = 0.2551;
-%swing = 10;
+% %% Synth Flute Var fc
+% B = A;
+% B(t>1.2) = 0.2551;
+% swing = 10;
 % fc = 791 -0.25*swing + B*swing;
 % % fm1 = fc;
 % % fm2 = fc;
 % % fm3 = fc;
 % % fm4 = fc;
-%fluteFM = A.*sin(2*pi*fc.*t + I1.*sin(2*pi*fm1.*t + I2*sin(2*pi*fm2.*t + I3*sin(2*pi*fm3.*t + I4*sin(2*pi*fm4.*t)))));
-%fc = 791;
+% fluteFM = A.*sin(2*pi*fc.*t + I1.*sin(2*pi*fm1.*t + I2*sin(2*pi*fm2.*t + I3*sin(2*pi*fm3.*t + I4*sin(2*pi*fm4.*t)))));
+% fc = 791;
