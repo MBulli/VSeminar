@@ -253,18 +253,18 @@ Damit entspricht die Formel für das Frequenzspektrum der Kaskadenschaltung exak
 \begin{split}
 \sin&(w_ct + I_1\sin(w_{m1}t) + I_2\sin(w_{m2}t)) \\
 &= J_0(I_1)J_0(\mathbf{0}I_2)\sin(w_ct) \\
-&+ J_0(I_1)J_1(\mathbf{0}I_2)\sin(w_ct + w_{m2}t) - J_0(I_1)J_1(I_2)\sin(w_ct - w_{m2}t) \\
-&+ J_0(I_1)J_2(\mathbf{0}I_2)\sin(w_ct + 2w_{m2}t) + J_0(I_1)J_1(I_2)\sin(w_ct - 2w_{m2}t) \\
-&+ J_1(I_1)J_0(\mathbf{1}I_2)\sin(w_ct + w_{m1}t) - J_1(I_1)J_0(I_2)\sin(w_ct - w_{m1}t) \\
-&+ J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct + w_{m1}t + w_{m2}t) - J_1(I_1)J_1(I_2)\sin(w_ct + w_{m1}t - w_{m2}t) \\
-&- J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct - w_{m1}t + w_{m2}t) + J_1(I_1)J_1(I_2)\sin(w_ct - w_{m1}t - w_{m2}t) \\
-&+ J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct + w_{m1}t + 2w_{m2}t) + J_1(I_1)J_2(I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \\
-&- J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct - w_{m1}t + 2w_{m2}t) - J_1(I_1)J_2(I_2)\sin(w_ct - w_{m1}t - 2w_{m2}t) \\
-&+ J_2(I_1)J_0(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t) + J_2(I_1)J_0(I_2)\sin(w_ct - 2w_{m1}t) \\
-&+ J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t + w_{m2}t) + J_2(I_1)J_1(I_2)\sin(w_ct + 2w_{m1}t - w_{m2}t) \\
-&+ J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct - 2w_{m1}t + w_{m2}t) - J_2(I_1)J_1(I_2)\sin(w_ct - 2w_{m1}t - w_{m2}t) \\
-&+ J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct + 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(I_2)\sin(2w_ct + 2w_{m1}t - 2w_{m2}t) \\
-&+ J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct - 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(I_2)\sin(2w_ct - 2w_{m1}t - 2w_{m2}t) \\
+&+ J_0(I_1)J_1(\mathbf{0}I_2)\sin(w_ct + w_{m2}t) - J_0(I_1)J_1(\mathbf{0}I_2)\sin(w_ct - w_{m2}t) \\
+&+ J_0(I_1)J_2(\mathbf{0}I_2)\sin(w_ct + 2w_{m2}t) + J_0(I_1)J_1(\mathbf{0}I_2)\sin(w_ct - 2w_{m2}t) \\
+&+ J_1(I_1)J_0(\mathbf{1}I_2)\sin(w_ct + w_{m1}t) - J_1(I_1)J_0(\mathbf{1}I_2)\sin(w_ct - w_{m1}t) \\
+&+ J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct + w_{m1}t + w_{m2}t) - J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct + w_{m1}t - w_{m2}t) \\
+&- J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct - w_{m1}t + w_{m2}t) + J_1(I_1)J_1(\mathbf{1}I_2)\sin(w_ct - w_{m1}t - w_{m2}t) \\
+&+ J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct + w_{m1}t + 2w_{m2}t) + J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct + w_{m1}t - 2w_{m2}t) \\
+&- J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct - w_{m1}t + 2w_{m2}t) - J_1(I_1)J_2(\mathbf{1}I_2)\sin(w_ct - w_{m1}t - 2w_{m2}t) \\
+&+ J_2(I_1)J_0(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t) + J_2(I_1)J_0(\mathbf{2}I_2)\sin(w_ct - 2w_{m1}t) \\
+&+ J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t + w_{m2}t) + J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct + 2w_{m1}t - w_{m2}t) \\
+&+ J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct - 2w_{m1}t + w_{m2}t) - J_2(I_1)J_1(\mathbf{2}I_2)\sin(w_ct - 2w_{m1}t - w_{m2}t) \\
+&+ J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct + 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct + 2w_{m1}t - 2w_{m2}t) \\
+&+ J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct - 2w_{m1}t + 2w_{m2}t) + J_2(I_1)J_2(\mathbf{2}I_2)\sin(2w_ct - 2w_{m1}t - 2w_{m2}t) \\
 &+ ... 
 \end{split}
 \end{equation}
