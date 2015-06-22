@@ -48,14 +48,23 @@ Um den Klang des synthetisierten Tones noch natürlicher zu gestalten, könnte d
 \FloatBarrier
 \subsubsection{Nachbildung des Klangbildes eines Querflötentones mittels FM-Synthese}
 
+Im Laufe dieses Kapitels soll der Ton einer Querflöte mittels FM-Synthese erzeugt und mit den oben beschriebenen Techniken verfeinert werden. Das Instrument \textit{Querflöte} wurde ausgewählt, da es sehr harmonische Spektren erzeugt. Auf die Nutzung eines Instrumentes mit einem disharmonischem Spektrum wurde vorsätzlich verzichtet, da die FM-Synthese mit harmonischen Spektren kontrollierbarer ist. Alle Beispiele sind in MATLAB erstellt und können mit dem beiliegenden Source-Code nachgestellt werden. In Abbildung \ref{fig:plotFluteOrig} und \ref{fig:plotFluteOrig1} sind Spektrogramm, Waveform und Spektrum des originalen Querflötentones abgebildet. Mit den Informationen aus den vorliegenden Grafiken wird versucht, dieses spezifische Klangbild nachzubilden.
+
+\FloatBarrier
 \begin{figure} [h!t!b!]
 \centering
-  \includegraphics[width=1\textwidth]{plotFluteOrig.png}
-\caption{Plot des Spektrogramms, der Waveform und des Spektrums eines echten Querflötentones}
+  \includegraphics[width=1\textwidth]{orig1.png}
+\caption{Plot des Spektrogramms und der Waveform eines echten Querflötentones}
 \label{fig:plotFluteOrig}
 \end{figure}
 
-Im Laufe dieses Kapitels soll der Ton einer Querflöte mittels FM-Synthese erzeugt und mit den oben beschriebenen Techniken verfeinert werden. Das Instrument \textit{Querflöte} wurde ausgewählt, da es sehr harmonische Spektren erzeugt. Auf die Nutzung eines Instrumentes mit einem disharmonischem Spektrum wurde vorsätzlich verzichtet, da die FM-Synthese mit harmonischen Spektren kontrollierbarer ist. Alle Beispiele sind in MATLAB erstellt und können mit dem beiliegenden Source-Code nachgestellt werden. In Abbildung \ref{fig:plotFluteOrig} sind Spektrogramm, Waveform und Spektrum des originalen Querflötentones abgebildet. Mit den Informationen aus den vorliegenden Grafiken wird versucht, dieses spezifische Klangbild nachzubilden.
+\begin{figure} [h!t!b!]
+\centering
+  \includegraphics[width=1\textwidth]{orig2.png}
+\caption{Plot des Spektrums eines echten Querflötentones}
+\label{fig:plotFluteOrig1}
+\end{figure}
+\FloatBarrier
 
 Anhand des Spektrums können bereits einige Erkenntnisse für die FM-Synthese gewonnen werden. Zunächst ist zu bemerken, dass die Grundfrequenz am stärksten ausgeprägt ist und bei etwa 800 Hz liegt. Um das Klangbild möglichst genau nachzubilden, muss die Frequenz allerdings durch Vergrößern der Grafik ausgelesen werden. Bei dieser genaueren Betrachtung wird sichtbar, dass die Frequenz bei 791 Hz ihren maximalen Ausschlag erreicht. Diese Frequenz wird bei der FM-Synthese als Trägerfrequenz $f_c$ genutzt. Der Klang entspricht somit am ehesten einem G5 (in deutscher Notation einem g\textsuperscript{2}) mit 784 Hz \cite[S. 181]{borucki}. Im Spektrum sind außerdem noch mehrere Seitenfrequenzen zu erkennen. Die erste dieser Seitenfrequenzen befindet sich bei etwa dem doppelten der Grundfrequenz. Bei erneuter genauerer Betrachtung wird erkennbar, dass sie ihren maximalen Amplitudenwert bei exakt dem doppeltem der Grundfrequenz (1582 Hz) hat. Somit ist der Abstand zwischen Grundfrequenz und erster Seitenfrequenz genauso groß wie die Grundfrequenz selbst. Hierbei ist zu bemerken, dass der Abstand von einem ganzzahligen Multiplikator mit der Grundfrequenz typisch für einen harmonischen Klang ist \cite[S. 528]{chowningPaper}. Die nächsten Seitenfrequenzen haben jeweils wieder denselben Abstand von 791 Hz zur jeweiligen vorangegangenen Seitenfrequenz. Aus dieser Beobachtung kann die Modulationsfrequenz $f_m$ von 791 Hz geschlossen werden. Anhand der Anzahl der sichtbaren Seitenfrequenzen im Spektrum kann eine ungefähre Abschätzung des Modulationsindexes $I$ mit der Faustformel aus \ref{eq:faustformel} vorgenommen werden. Somit wird der Modulationsindex $I$ für die ersten Tests auf 0.5 eingestellt. 
 
