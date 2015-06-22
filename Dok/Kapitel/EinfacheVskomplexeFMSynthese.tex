@@ -33,7 +33,7 @@ Die inneren Terme \begin{math} \cos(I\sin(w_mt)) \end{math} und \begin{math} \si
 \begin{equation}\label{eq:Besselcos}
 \cos(I\sin(w_mt)) = J_0(I)+2J_2(I)\cos(2w_mt)+...+2J_{2n}(I)\cos(2nw_mt)+...
 \end{equation}
-Man setzt dies in den Ausdruck \ref{eq:BesselZwischenform} ein und expandiert alle auftretende Terme der Form \begin{math} \sin(w_ct)\cos(2nw_mt) \end{math} über das Additionstheorem \begin{math} \sin(a)\cos(b) = \frac{1}{2}\left(\sin(x+y)+\sin(x-y)\right) \end{math} sowie alle Terme der Form \begin{math} \cos(w_ct)\sin((2n+1)w_mt) \end{math} über  \begin{math} \cos(a)\sin(b) = \frac{1}{2}\left(\sin(x+y)-\sin(x-y)\right) \end{math}. Letztlich gilt: 
+Man setzt dies in den Ausdruck \ref{eq:BesselZwischenform} ein und expandiert alle auftretenden Terme \begin{math} \sin(w_ct)\cos(2nw_mt) \end{math} über das Additionstheorem \begin{math} \sin(a)\cos(b) = \frac{1}{2}\left(\sin(x+y)+\sin(x-y)\right) \end{math} sowie alle Terme der Form \begin{math} \cos(w_ct)\sin((2n+1)w_mt) \end{math} über  \begin{math} \cos(a)\sin(b) = \frac{1}{2}\left(\sin(x+y)-\sin(x-y)\right) \end{math}. Letztlich gilt: 
 \begin{equation}
 \begin{split}
 \sin(w_ct + I\sin(w_mt)) \\ &\quad = J_0(I)\sin(w_ct) \\ &\quad + J_1(I)(\sin(w_ct + w_mt) - \sin(w_ct - w_mt)) \\ &\quad + J_2(I)(\sin(w_ct + 2w_mt)+\sin(w_ct-2w_mt)) \\ &\quad  + J_3(I)(\sin(w_ct + 3w_mt) - \sin(w_ct - 3w_mt)) \\ &\quad  + ...
@@ -47,7 +47,7 @@ Man setzt dies in den Ausdruck \ref{eq:BesselZwischenform} ein und expandiert al
 \end{equation}
 Die erste Zeile zeigt hier die Lage der Trägerfrequenz an, während jede folgende Zeile stets die Lage eines oberen Seitenbands angibt (erster Term) sowie das dazugehörige untere Seitenband (zweiter Term). 
 
-Die Funktion \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden (\cite{schottstaedtWeb}) zu 
+Die Funktion \ref{eq:FormelinchenBessel} kann übersichtlich zusammengefasst werden (\cite{schottiWeb}) zu 
 \begin{equation}\label{esq:Besselbabymonster}
 \sin(w_ct + I\sin(w_mt)) = \sum_{n=-\infty}^{\infty}J_n(I)\sin(w_ct+nw_mt)
 \end{equation}
