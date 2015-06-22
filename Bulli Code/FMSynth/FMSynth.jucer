@@ -5,6 +5,19 @@
               jucerVersion="3.1.0">
   <MAINGROUP id="NJpog5" name="FMSynth">
     <GROUP id="{4ECDEE7A-DC96-11FB-1D4B-0A3A671D9D1E}" name="Source">
+      <FILE id="ksteHK" name="DefaultEnvelope.cpp" compile="1" resource="0"
+            file="Source/DefaultEnvelope.cpp"/>
+      <FILE id="RGa4V5" name="DefaultEnvelope.h" compile="0" resource="0"
+            file="Source/DefaultEnvelope.h"/>
+      <FILE id="JlyO7H" name="Envelope.h" compile="0" resource="0" file="Source/Envelope.h"/>
+      <FILE id="KucD8f" name="Generator.h" compile="0" resource="0" file="Source/Generator.h"/>
+      <FILE id="rCpM4W" name="RepaintTimer.cpp" compile="1" resource="0"
+            file="Source/RepaintTimer.cpp"/>
+      <FILE id="ZyA6sb" name="RepaintTimer.h" compile="0" resource="0" file="Source/RepaintTimer.h"/>
+      <FILE id="SwXPo1" name="TimeHelper.cpp" compile="1" resource="0" file="Source/TimeHelper.cpp"/>
+      <FILE id="q2b2Cy" name="TimeHelper.h" compile="0" resource="0" file="Source/TimeHelper.h"/>
+      <FILE id="jVZ63A" name="Wave.cpp" compile="1" resource="0" file="Source/Wave.cpp"/>
+      <FILE id="MRcm2B" name="Wave.h" compile="0" resource="0" file="Source/Wave.h"/>
       <FILE id="lMvlbz" name="FMGenerator.h" compile="0" resource="0" file="Source/FMGenerator.h"/>
       <FILE id="Cj7Onl" name="FMGenerator.cpp" compile="1" resource="0" file="Source/FMGenerator.cpp"/>
       <FILE id="uhjj60" name="MainComponent.cpp" compile="1" resource="0"

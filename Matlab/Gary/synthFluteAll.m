@@ -67,7 +67,7 @@ A(t> 0.07 & t <= 0.1) = linspace(0.35,0.2,size(A(t> 0.07 & t <= 0.1),2));
 A(t> 0.1 & t <= 1.2) = linspace(0.2,0.2,size(A(t> 0.1 & t <= 1.2),2));
 A(t> 1.2 & t <= 1.3) = linspace(0.2,0.0,size(A(t> 1.2 & t <= 1.3),2));
 
-FilteredfeedbackNoise = filter(noiseFilter24BandPassHigh, feedbackNoise);
+FilteredfeedbackNoise = filter(noiseFilter24BandPass, feedbackNoise);
 fluteFM = fluteFM+(FilteredfeedbackNoise.*A*0.3);
 
 % figure(3);
